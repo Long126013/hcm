@@ -1,5 +1,4 @@
-import React from 'react';
-import { HelpCircle, Scale, Users, Shield, Target, Award, ArrowRight } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 export function SectionFAQ() {
   return (
