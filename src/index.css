@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f2eee5;
+    color: #292524;
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+.font-serif-quote {
+  font-family: 'Merriweather', 'Times New Roman', serif;
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f2eee5;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1c8b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b5a995;
+}
+
+/* ==========================================================
+   THEME 1: EYE-CARE (WARM PAPER / DỊU MẮT) - DEFAULT
+   Soothing, low-contrast, zero-glare warm paper reading palette
+   ========================================================== */
+html:not([data-theme]),
+[data-theme="eye-care"],
+[data-theme="eye-care"] body {
+  background-color: #f2eee5 !important;
+  color: #292524 !important;
+}
+
+[data-theme="eye-care"] .bg-white {
+  background-color: #faf7f2 !important;
+}
+
+[data-theme="eye-care"] .bg-slate-50 {
+  background-color: #f2eee5 !important;
+}
+
+[data-theme="eye-care"] .bg-slate-100 {
+  background-color: #e8e2d5 !important;
+}
+
+[data-theme="eye-care"] .bg-stone-100 {
+  background-color: #e8e2d5 !important;
+}
+
+[data-theme="eye-care"] .bg-red-50 {
+  background-color: #f5ebe6 !important;
+}
+
+[data-theme="eye-care"] .bg-amber-50 {
+  background-color: #f7f1e4 !important;
+}
+
+[data-theme="eye-care"] .bg-blue-50 {
+  background-color: #e9eff5 !important;
+}
+
+[data-theme="eye-care"] .bg-slate-900 {
+  background-color: #262320 !important;
+  border-color: #38332e !important;
+}
+
+[data-theme="eye-care"] .bg-slate-800 {
+  background-color: #35302c !important;
+}
+
+[data-theme="eye-care"] .border-slate-200,
+[data-theme="eye-care"] .border-slate-200\/60,
+[data-theme="eye-care"] .border-slate-200\/80,
+[data-theme="eye-care"] .border-stone-200 {
+  border-color: #dfd7c8 !important;
+}
+
+[data-theme="eye-care"] .border-slate-100 {
+  border-color: #e8e2d5 !important;
+}
+
+[data-theme="eye-care"] .text-slate-900 {
+  color: #262320 !important;
+}
+
+[data-theme="eye-care"] .text-slate-800,
+[data-theme="eye-care"] .text-stone-800 {
+  color: #38332e !important;
+}
+
+[data-theme="eye-care"] .text-slate-700 {
+  color: #524c46 !important;
+}
+
+[data-theme="eye-care"] .text-slate-600 {
+  color: #69625b !important;
+}
+
+[data-theme="eye-care"] .text-slate-500 {
+  color: #7d756d !important;
+}
+
+[data-theme="eye-care"] .text-red-900 {
+  color: #7f1d1d !important;
+}
+
+[data-theme="eye-care"] .text-red-800,
+[data-theme="eye-care"] .text-red-700 {
+  color: #991b1b !important;
+}
+
+[data-theme="eye-care"] .bg-red-800,
+[data-theme="eye-care"] .bg-red-700 {
+  background-color: #8f1e1e !important;
+}
+
+/* ==========================================================
+   THEME 2: DARK COMFORT (TRẦM TỐI / DỊU MẮT BAN ĐÊM)
+   Deep soothing dark slate palette, zero glare
+   ========================================================== */
+[data-theme="dark"],
+[data-theme="dark"] body {
+  background-color: #0b1120 !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .bg-slate-50 {
+  background-color: #0b1120 !important;
+}
+
+[data-theme="dark"] .bg-slate-100,
+[data-theme="dark"] .bg-stone-100 {
+  background-color: #162032 !important;
+}
+
+[data-theme="dark"] .bg-red-50 {
+  background-color: rgba(185, 28, 28, 0.2) !important;
+}
+
+[data-theme="dark"] .bg-amber-50 {
+  background-color: rgba(217, 119, 6, 0.18) !important;
+}
+
+[data-theme="dark"] .bg-blue-50 {
+  background-color: rgba(37, 99, 235, 0.18) !important;
+}
+
+[data-theme="dark"] .bg-slate-900 {
+  background-color: #060b14 !important;
+  border-color: #1e293b !important;
+}
+
+[data-theme="dark"] .bg-slate-800 {
+  background-color: #141e30 !important;
+}
+
+[data-theme="dark"] .border-slate-200,
+[data-theme="dark"] .border-slate-200\/60,
+[data-theme="dark"] .border-slate-200\/80,
+[data-theme="dark"] .border-stone-200,
+[data-theme="dark"] .border-slate-100 {
+  border-color: #273549 !important;
+}
+
+[data-theme="dark"] .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .text-slate-800,
+[data-theme="dark"] .text-stone-800 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .text-slate-500 {
+  color: #64748b !important;
+}
+
+[data-theme="dark"] .text-red-900,
+[data-theme="dark"] .text-red-800,
+[data-theme="dark"] .text-red-700 {
+  color: #fca5a5 !important;
+}
+
+[data-theme="dark"] .text-amber-800 {
+  color: #fcd34d !important;
+}
+
+[data-theme="dark"] .bg-red-800,
+[data-theme="dark"] .bg-red-700 {
+  background-color: #991b1b !important;
+}
+
+/* ==========================================================
+   THEME 3: LIGHT (SÁNG TIÊU CHUẨN)
+   ========================================================== */
+[data-theme="light"],
+[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .bg-white {
+  background-color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-slate-50 {
+  background-color: #f8fafc !important;
+}
+
