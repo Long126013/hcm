@@ -27,12 +27,13 @@ export const SECTIONS_LIST = [
     parentTitle: '4.1. Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam',
     title: 'Đảng phải trong sạch, vững mạnh',
     status: 'completed' as const,
+    presenter: 'Ngân & Nhiên',
     badge: 'Trọng tâm',
-    description: 'Gồm 3 nội dung: Đảng là đạo đức/văn minh, các nguyên tắc hoạt động và xây dựng đội ngũ cán bộ, đảng viên.',
+    description: 'Gồm 3 nội dung: Đảng là đạo đức/văn minh (Ngân), các nguyên tắc hoạt động và xây dựng đội ngũ cán bộ, đảng viên (Nhiên).',
     subsections: [
-      { id: '4.1.2-a', title: 'a) Đảng là đạo đức, là văn minh' },
+      { id: '4.1.2-a', title: 'a) Đảng là đạo đức, là văn minh (Ngân)' },
       { id: '4.1.2-b', title: 'b) Những vấn đề nguyên tắc trong hoạt động của Đảng' },
-      { id: '4.1.2-c', title: 'c) Xây dựng đội ngũ cán bộ, đảng viên' },
+      { id: '4.1.2-c', title: 'c) Xây dựng đội ngũ cán bộ, đảng viên (Nhiên)' },
     ],
   },
   {
@@ -275,6 +276,247 @@ export const CONTENT_411 = {
   },
 };
 
+export const CONTENT_412 = {
+  partA: {
+    title: 'a) Đảng là đạo đức, là văn minh',
+    presenter: 'Ngân',
+    quote: {
+      text: 'Đảng ta là đạo đức, là văn minh.',
+      author: 'Chủ tịch Hồ Chí Minh',
+      context: 'Lời khẳng định tại Lễ kỷ niệm 30 năm ngày thành lập Đảng (1960)',
+      foundation: 'Đạo đức cách mạng là nền tảng để Đảng giữ vững vai trò lãnh đạo và hoàn thành nhiệm vụ cách mạng.',
+    },
+    manifestations: [
+      {
+        number: '(1)',
+        title: 'Mục đích hoạt động',
+        content: 'Lãnh đạo đấu tranh vì độc lập dân tộc, giải phóng xã hội, giải phóng giai cấp và giải phóng con người.',
+        details: 'Mục tiêu cuối cùng là đem lại ấm no, tự do, hạnh phúc cho nhân dân và đoàn kết, hữu nghị với các dân tộc.',
+      },
+      {
+        number: '(2)',
+        title: 'Đường lối và hoạt động',
+        content: 'Cương lĩnh, đường lối, chủ trương và hoạt động của Đảng phải vì lợi ích của dân tộc và nhân dân.',
+        details: 'Đảng không có lợi ích riêng, sự tồn tại và phát triển của Đảng gắn với lợi ích của đất nước và nhân dân.',
+      },
+      {
+        number: '(3)',
+        title: 'Đội ngũ cán bộ, đảng viên',
+        content: 'Phải thường xuyên tu dưỡng, rèn luyện đạo đức cách mạng.',
+        details: 'Có các phẩm chất: cần, kiệm, liêm, chính, chí công vô tư. Trung thành với Đảng, với Tổ quốc; hiếu với dân, đoàn kết, yêu thương đồng chí. Phải là những người tiên phong, gương mẫu, không bị tiền tài, khó khăn hay quyền lực khuất phục.',
+      },
+    ],
+    sixContents: [
+      'Đại diện cho lương tâm, trí tuệ và danh dự của dân tộc.',
+      'Sự ra đời và hoạt động của Đảng phù hợp với quy luật phát triển của dân tộc và nhân loại, đặt lợi ích dân tộc lên hàng đầu.',
+      'Luôn trong sạch, vững mạnh, hoàn thành sứ mệnh lãnh đạo đất nước, đồng thời phòng chống các biểu hiện tiêu cực trong Đảng.',
+      'Khi cầm quyền, Đảng phải hoạt động trong khuôn khổ Hiến pháp và pháp luật, không đứng trên dân tộc.',
+      'Cán bộ, đảng viên phải tiên phong, gương mẫu, từ người giữ chức vụ lãnh đạo đến đảng viên bình thường.',
+      'Có quan hệ quốc tế trong sáng, bảo vệ lợi ích, độc lập và chủ quyền của Việt Nam; hướng tới hòa bình, hữu nghị và hợp tác giữa các dân tộc.',
+    ],
+    whyCleanAndStrong: {
+      question: 'Vì sao phải xây dựng Đảng trong sạch, vững mạnh?',
+      explanation: 'Nếu Đảng không có đạo đức, không văn minh, Đảng có nguy cơ:',
+      risks: [
+        'Mất vai trò lãnh đạo.',
+        'Trở nên không trong sạch, vững mạnh.',
+        'Cán bộ, đảng viên thoái hóa, biến chất.',
+        'Những thành quả cách mạng có thể bị mất.',
+      ],
+    },
+  },
+  partB: {
+    title: 'b) Những vấn đề nguyên tắc trong hoạt động của Đảng',
+    intro: 'Theo tư tưởng Hồ Chí Minh, để Đảng luôn giữ được sự trong sạch, vững mạnh và bảo đảm sự thống nhất trong lãnh đạo, hoạt động của Đảng phải tuân thủ một số nguyên tắc cơ bản.',
+    principles: [
+      {
+        number: 1,
+        name: 'Nguyên tắc tập trung dân chủ',
+        definition: 'Tập trung dân chủ là nguyên tắc cơ bản trong tổ chức và hoạt động của Đảng.',
+        points: [
+          'Dân chủ nhằm phát huy trí tuệ, trách nhiệm và quyền tham gia của các tổ chức, cán bộ, đảng viên.',
+          'Tập trung nhằm bảo đảm sự thống nhất về tư tưởng, tổ chức và hành động.',
+          'Các vấn đề quan trọng cần được thảo luận dân chủ, nhưng khi đã có quyết định thì phải thống nhất thực hiện.',
+        ],
+        conclusion: 'Nguyên tắc này giúp Đảng vừa phát huy dân chủ, vừa bảo đảm sự thống nhất trong hoạt động.',
+      },
+      {
+        number: 2,
+        name: 'Nguyên tắc tập thể lãnh đạo, cá nhân phụ trách',
+        definition: 'Hồ Chí Minh đề cao sự kết hợp giữa tập thể lãnh đạo và cá nhân phụ trách.',
+        points: [
+          'Tập thể lãnh đạo giúp huy động trí tuệ của nhiều người và hạn chế quyết định chủ quan.',
+          'Cá nhân phụ trách giúp xác định rõ người chịu trách nhiệm và bảo đảm công việc được thực hiện cụ thể.',
+          'Hai yếu tố này phải đi đôi với nhau, tránh tình trạng dựa dẫm vào tập thể hoặc độc đoán, cá nhân quyết định mọi việc.',
+        ],
+        conclusion: 'Mục đích là bảo đảm công việc có sự bàn bạc tập thể nhưng vẫn có người chịu trách nhiệm rõ ràng.',
+      },
+      {
+        number: 3,
+        name: 'Nguyên tắc tự phê bình và phê bình',
+        definition: 'Hồ Chí Minh coi tự phê bình và phê bình là nguyên tắc quan trọng để xây dựng và chỉnh đốn Đảng.',
+        points: [
+          'Tự phê bình là mỗi tổ chức, cán bộ và đảng viên phải chủ động nhìn nhận khuyết điểm của mình.',
+          'Phê bình là góp ý, chỉ ra những hạn chế, sai sót của đồng chí và tổ chức.',
+          'Mục đích của phê bình không phải để công kích cá nhân mà nhằm sửa chữa khuyết điểm, giúp nhau tiến bộ và củng cố đoàn kết.',
+          'Đảng phải có tinh thần thẳng thắn nhìn nhận khuyết điểm và tự sửa chữa, thay vì che giấu khuyết điểm.',
+        ],
+        conclusion: 'Đảng phải có tinh thần thẳng thắn tự nhìn nhận và sửa chữa để không ngừng tiến bộ và củng cố đoàn kết.',
+      },
+      {
+        number: 4,
+        name: 'Nguyên tắc kỷ luật nghiêm minh và tự giác',
+        definition: 'Đảng phải có kỷ luật nghiêm minh và tự giác.',
+        points: [
+          'Mọi tổ chức và đảng viên phải chấp hành các nguyên tắc, quy định và quyết định chung của Đảng.',
+          'Kỷ luật phải được thực hiện nghiêm túc, thống nhất.',
+          'Đồng thời, mỗi cán bộ, đảng viên phải có ý thức tự giác chấp hành kỷ luật, chứ không chỉ thực hiện khi bị kiểm tra hoặc nhắc nhở.',
+        ],
+        conclusion: 'Kỷ luật giúp bảo đảm sự thống nhất trong tổ chức và hành động của Đảng.',
+      },
+      {
+        number: 5,
+        name: 'Nguyên tắc đoàn kết, thống nhất trong Đảng',
+        definition: 'Hồ Chí Minh đặc biệt coi trọng đoàn kết, thống nhất trong Đảng.',
+        points: [
+          'Đoàn kết phải được xây dựng trên cơ sở mục tiêu, lý tưởng và nguyên tắc chung.',
+          'Mỗi cán bộ, đảng viên cần đặt lợi ích chung lên trên lợi ích cá nhân.',
+          'Phải giữ gìn sự thống nhất về tư tưởng và hành động.',
+          'Đồng thời, cần tránh những biểu hiện mất đoàn kết, cục bộ, bè phái.',
+        ],
+        conclusion: 'Đoàn kết, thống nhất là điều kiện quan trọng để Đảng có đủ sức mạnh thực hiện vai trò lãnh đạo.',
+      },
+    ],
+  },
+  partC: {
+    title: 'c) Xây dựng đội ngũ cán bộ, đảng viên',
+    presenter: 'Nhiên',
+    standards: [
+      {
+        number: 1,
+        title: 'Phải Tuyệt Đối Trung Thành Với Đảng',
+        desc: 'Lợi ích của Đảng luôn phải đặt lên trước lợi ích cá nhân — kể cả khi phải hy sinh tính mạng.',
+        quote: 'Vô luận lúc nào, vô luận việc gì, đảng viên và cán bộ phải đặt lợi ích của Đảng ra trước, lợi ích của cá nhân lại sau… Khi cần đến tính mệnh của mình cũng phải vui lòng hy sinh cho Đảng.',
+      },
+      {
+        number: 2,
+        title: 'Phải nghiêm Chỉnh Thực Hiện Cương Lĩnh, Đường Lối Của Đảng',
+        desc: 'Mọi chủ trương, nghị quyết, nguyên tắc xây dựng Đảng phải được chấp hành đầy đủ, không ngoại lệ.',
+      },
+      {
+        number: 3,
+        title: 'Phải luôn luôn Tu Dưỡng Đạo Đức Cách Mạng',
+        desc: 'Rèn luyện đạo đức là việc làm suốt đời, không phải thành tích một lần.',
+        quote: 'Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư.',
+      },
+      {
+        number: 4,
+        title: 'Phải luôn luôn Học Tập Nâng Cao Trình Độ',
+        desc: 'Cán bộ phải liên tục nâng cao hiểu biết về mọi mặt để không bị tụt hậu.',
+        quote: 'Nếu không chịu khó học thì không tiến bộ được. Không tiến bộ là thoái bộ.',
+      },
+      {
+        number: 5,
+        title: 'Phải Có Mối Liên Hệ Mật Thiết Với Nhân Dân',
+        desc: 'Cán bộ phải là "đầy tớ thật trung thành" của nhân dân — chịu khổ trước, hưởng sau.',
+        quote: 'Đảng viên đi trước, làng nước theo sau.',
+      },
+      {
+        number: 6,
+        title: 'Phải Luôn Chịu Trách Nhiệm, Năng Động, Sáng Tạo',
+        desc: 'Không thụ động, không lười biếng — phải dám chịu trách nhiệm trước Đảng và nhân dân.',
+        quote: 'Thắng không kiêu, bại không nản.',
+      },
+      {
+        number: 7,
+        title: 'Phải Phòng Và Chống Các Tiêu Cực',
+        desc: 'Tham ô, lãng phí, quan liêu được Hồ Chí Minh coi là "giặc nội xâm" — nguy hiểm hơn cả kẻ thù bên ngoài.',
+        quote: 'Mỗi kẻ địch bên trong là một bạn đồng minh của kẻ địch bên ngoài. Địch bên ngoài không đáng sợ. Địch bên trong đáng sợ hơn, vì nó phá hoại từ trong phá ra.',
+      },
+    ],
+    degradationManifestations: {
+      title: 'Những Biểu Hiện Suy Thoái Cần Tránh',
+      desc: 'Hồ Chí Minh chỉ đích danh những cán bộ "đạo đức, phẩm chất còn thấp kém":',
+      items: [
+        'Đặt lợi ích cá nhân lên trên hết',
+        'Tham ô, hủ hoá, lãng phí, xa hoa',
+        'Độc đoán, chuyên quyền, quan liêu',
+        'Mất đoàn kết, thiếu kỷ luật, kém trách nhiệm',
+      ],
+      corePrincipleQuote: 'Đảng không che giấu những khuyết điểm của mình, không sợ phê bình. Đảng phải nhận khuyết điểm của mình mà tự sửa chữa.',
+    },
+    cadreWork: {
+      title: 'Công Tác Cán Bộ (Yếu Tố Quyết Định Thành Bại)',
+      famousQuote: 'Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.',
+      requirements: [
+        {
+          title: 'Hiểu và đánh giá đúng cán bộ',
+          desc: 'Tránh dùng người sai chỗ; đánh giá công tâm, khách quan.',
+        },
+        {
+          title: 'Huấn luyện thiết thực, có hiệu quả',
+          desc: 'Không huấn luyện hình thức, gắn chặt lý luận với thực hành.',
+        },
+        {
+          title: 'Đề bạt đúng người',
+          desc: 'Dựa trên năng lực và phẩm chất, tuyệt đối không dựa trên quan hệ.',
+        },
+        {
+          title: 'Kết hợp cán bộ trẻ với cán bộ cũ',
+          desc: 'Truyền kinh nghiệm quý báu, tránh đứt gãy thế hệ.',
+        },
+        {
+          title: 'Chống bệnh địa phương cục bộ',
+          desc: 'Không ưu tiên người thân quen, bè phái, dòng tộc.',
+        },
+        {
+          title: 'Thường xuyên kiểm tra và hỗ trợ',
+          desc: 'Không bỏ mặc cán bộ sau khi bổ nhiệm, kịp thời uốn nắn.',
+        },
+      ],
+    },
+    deepDiveQuestions: [
+      {
+        question: '1/ Tại sao cán bộ lại quan trọng đến vậy?',
+        answer:
+          'Cán bộ chính là "cầu nối" giữa Đảng và nhân dân. Họ là người trực tiếp đưa chính sách vào thực tiễn và phản ánh tình hình thực tế ngược lại cho lãnh đạo. Nếu không có đội ngũ cán bộ tốt, dù đường lối có đúng đắn đến đâu cũng không thể thực hiện được. Hồ Chí Minh ví von rõ ràng: "Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém" — tức là cán bộ không chỉ là người thừa hành, mà là nhân tố quyết định kết quả của toàn bộ sự nghiệp.',
+      },
+      {
+        question: '2/ Hồ Chí Minh mong muốn xây dựng điều gì qua những yêu cầu cho đảng viên và cán bộ?',
+        answer:
+          'Người hướng đến một Đảng vừa trong sạch vừa vững mạnh — không chỉ mạnh về tổ chức và chính sách, mà còn mạnh về đạo đức và uy tín trước nhân dân. Mục tiêu sâu xa hơn là xây dựng một lớp cán bộ vừa "hồng" vừa "chuyên": có lý tưởng cách mạng (hồng) và có năng lực thực tiễn (chuyên). Trong Di Chúc, Người gửi gắm: "Đảng cần phải chăm lo giáo dục đạo đức cách mạng cho họ, đào tạo họ thành những người thừa kế xây dựng chủ nghĩa xã hội vừa \'hồng\' vừa \'chuyên\'." — đây chính là tầm nhìn cho thế hệ tương lai.',
+      },
+      {
+        question: '3/ Bối cảnh lịch sử nào đã dẫn đến những tư tưởng này?',
+        answer:
+          'Những yêu cầu này không xuất hiện trong chân không — chúng là phản ứng trực tiếp trước thực tế lịch sử khắc nghiệt mà Việt Nam đang trải qua:',
+        historicalStages: [
+          {
+            period: 'Giai đoạn 1930–1945',
+            context:
+              'Đảng Cộng sản Việt Nam còn non trẻ, hoạt động bí mật dưới sự đàn áp của thực dân Pháp. Cần cán bộ trung thành tuyệt đối vì một người phản bội có thể xóa sổ cả tổ chức.',
+          },
+          {
+            period: 'Giai đoạn 1945–1954 (Kháng chiến chống Pháp)',
+            context:
+              'Nhà nước mới thành lập, thiếu nhân lực có năng lực lẫn phẩm chất. Tham nhũng và quan liêu bắt đầu xuất hiện ngay trong hàng ngũ — đây là lý do Người viết tác phẩm "Sửa đổi lối làm việc" (1947) nêu rõ 5 tiêu chuẩn: Nhân, Nghĩa, Dũng, Trí, Liêm.',
+          },
+          {
+            period: 'Giai đoạn 1954–1969 (Xây dựng miền Bắc, kháng chiến chống Mỹ)',
+            context:
+              'Đất nước bị chia cắt, miền Bắc vừa xây dựng chủ nghĩa xã hội vừa chi viện cho miền Nam. Áp lực kép này đòi hỏi bộ máy cán bộ không được có điểm yếu nào — sự suy thoái của một cá nhân có thể gây hậu quả dây chuyền cho cả hệ thống.',
+          },
+          {
+            period: 'Bài báo cuối đời (1969)',
+            context:
+              'Chỉ vài tháng trước khi mất, Người vẫn viết "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân" — cho thấy đây là vấn đề Người lo lắng đến tận cuối đời, không phải lý thuyết suông mà là cảnh báo thực tiễn.',
+          },
+        ],
+      },
+    ],
+  },
+};
+
 export const PRESENTATION_SLIDES: SlideItem[] = [
   {
     id: 'slide-1',
@@ -394,79 +636,235 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionCode: '4.1.2',
     sectionTitle: 'Đảng phải trong sạch, vững mạnh',
     title: '4.1.2. Đảng phải trong sạch, vững mạnh',
-    subtitle: 'Nền tảng giữ vững vai trò cầm quyền của Đảng',
+    subtitle: 'Nền tảng giữ vững vai trò lãnh đạo và hoàn thành nhiệm vụ cách mạng',
+    presenter: 'Ngân & Nhiên',
     layout: 'grid',
     bullets: [
       {
         title: 'a) Đảng là đạo đức, là văn minh',
-        desc: 'Mục đích vì dân, đường lối phụng sự, đảng viên gương mẫu, 6 nội dung văn minh.',
+        desc: 'Mục đích đấu tranh vì dân; đường lối không vụ lợi riêng; cán bộ cần kiệm liêm chính; 6 nội dung văn minh.',
         icon: 'Award',
       },
       {
-        title: 'b) Nguyên tắc hoạt động của Đảng',
-        desc: 'Tập trung dân chủ, tự phê bình và phê bình, kỷ luật nghiêm minh, đoàn kết thống nhất.',
+        title: 'b) 5 Nguyên tắc trong hoạt động của Đảng',
+        desc: 'Tập trung dân chủ; Tập thể lãnh đạo cá nhân phụ trách; Tự phê bình và phê bình; Kỷ luật tự giác; Đoàn kết thống nhất.',
         icon: 'Scale',
       },
       {
         title: 'c) Xây dựng đội ngũ cán bộ, đảng viên',
-        desc: '7 tiêu chuẩn đạo đức, chống giặc nội xâm, công tác cán bộ "vừa hồng vừa chuyên".',
+        desc: '7 tiêu chuẩn rèn luyện; phòng chống "giặc nội xâm"; 6 yêu cầu công tác cán bộ; bồi dưỡng thế hệ "vừa hồng vừa chuyên".',
         icon: 'UserCheck',
       },
     ],
-    notes: 'Giới thiệu tổng quan cấu trúc 3 nội dung trọng tâm của mục 4.1.2.',
+    notes: 'Giới thiệu tổng quan cấu trúc 3 nội dung trọng tâm của mục 4.1.2 do bạn Ngân và Nhiên phụ trách.',
   },
   {
     id: 'slide-8',
     sectionCode: '4.1.2-a',
     sectionTitle: 'Đảng là đạo đức, là văn minh',
     title: 'a) Đảng là đạo đức, là văn minh',
-    subtitle: 'Đạo đức cách mạng - Nền tảng lãnh đạo',
+    subtitle: '3 Biểu hiện nền tảng của một Đảng có đạo đức cách mạng',
+    presenter: 'Ngân',
     layout: 'grid',
     bullets: [
       {
-        title: 'Mục đích hoạt động',
-        desc: 'Giải phóng dân tộc, giải phóng giai cấp và con người; đem lại độc lập, tự do, ấm no cho nhân dân.',
+        title: '(1) Mục đích hoạt động',
+        desc: 'Đấu tranh vì độc lập dân tộc, giải phóng giai cấp và con người; đem lại ấm no, tự do, hạnh phúc cho nhân dân và hòa bình hữu nghị quốc tế.',
         icon: 'Heart',
       },
       {
-        title: 'Đường lối & Hoạt động',
-        desc: 'Đảng không có lợi ích riêng, toàn bộ chủ trương gắn liền với quyền lợi của Tổ quốc và nhân dân.',
+        title: '(2) Đường lối và hoạt động',
+        desc: 'Cương lĩnh, chủ trương phụng sự Tổ quốc. Đảng không có lợi ích riêng, toàn bộ sứ mệnh gắn chặt với lợi ích của nhân dân.',
         icon: 'FileText',
       },
       {
-        title: 'Đội ngũ cán bộ, đảng viên',
-        desc: 'Thường xuyên tu dưỡng: Cần, Kiệm, Liêm, Chính, Chí công vô tư. Tiên phong, gương mẫu trước quần chúng.',
+        title: '(3) Đội ngũ cán bộ, đảng viên',
+        desc: 'Thường xuyên tu dưỡng: Cần, Kiệm, Liêm, Chính, Chí công vô tư. Trung với Đảng, hiếu với dân; tiên phong gương mẫu trước mọi cám dỗ.',
         icon: 'Star',
       },
     ],
-    notes: 'Trình bày nguy cơ nếu Đảng không có đạo đức: Mất vai trò lãnh đạo, thoái hóa biến chất, đánh mất thành quả cách mạng.',
+    notes: 'Nhấn mạnh: Đạo đức cách mạng là nền tảng để Đảng giữ vững vai trò lãnh đạo và niềm tin của quần chúng.',
   },
   {
     id: 'slide-9',
+    sectionCode: '4.1.2-a',
+    sectionTitle: 'Đảng là đạo đức, là văn minh',
+    title: '6 Nội dung Đảng văn minh & Nguy cơ suy thoái',
+    subtitle: 'Xây dựng tổ chức liêm chính, hoạt động trong khuôn khổ Hiến pháp và pháp luật',
+    presenter: 'Ngân',
+    layout: 'comparison',
+    bullets: [
+      {
+        title: '6 Nội dung xây dựng Đảng văn minh',
+        desc: '1. Đại diện lương tâm, trí tuệ dân tộc. 2. Hoạt động phù hợp quy luật phát triển. 3. Luôn trong sạch, chống tiêu cực. 4. Hoạt động trong khuôn khổ Hiến pháp & pháp luật. 5. Cán bộ gương mẫu từ trên xuống dưới. 6. Quan hệ quốc tế trong sáng, hòa bình.',
+        icon: 'Shield',
+      },
+      {
+        title: 'Nguy cơ nghiêm trọng nếu thiếu đạo đức',
+        desc: 'Nếu không có đạo đức, văn minh: Mất vai trò lãnh đạo độc tôn → Trở nên không trong sạch, suy yếu tổ chức → Cán bộ đảng viên thoái hóa, biến chất → Toàn bộ thành quả cách mạng xương máu có thể bị đánh mất.',
+        icon: 'AlertTriangle',
+      },
+    ],
+    notes: 'Cảnh báo của Hồ Chí Minh mang tính tiên tri và có ý nghĩa thời đại sâu sắc đối với công tác chỉnh đốn Đảng ngày nay.',
+  },
+  {
+    id: 'slide-10',
+    sectionCode: '4.1.2-b',
+    sectionTitle: 'Nguyên tắc hoạt động của Đảng',
+    title: 'b) 5 Nguyên tắc tổ chức & hoạt động của Đảng',
+    subtitle: 'Bảo đảm Đảng luôn trong sạch, vững mạnh và thống nhất ý chí lãnh đạo',
+    layout: 'grid',
+    bullets: [
+      {
+        title: '1. Tập trung dân chủ',
+        desc: 'Nguyên tắc cơ bản nhất: Dân chủ phát huy trí tuệ; Tập trung bảo đảm thống nhất hành động. Thảo luận dân chủ, quyết định thống nhất thực hiện.',
+        icon: 'Users',
+      },
+      {
+        title: '2. Tập thể lãnh đạo, cá nhân phụ trách',
+        desc: 'Tập thể huy động trí tuệ tập thể, tránh chủ quan độc đoán; Cá nhân chịu trách nhiệm rõ ràng, khắc phục tình trạng ỷ lại dựa dẫm.',
+        icon: 'Shield',
+      },
+      {
+        title: '3. Tự phê bình và phê bình',
+        desc: 'Quy luật phát triển và vũ khí sắc bén. Chủ động nhận khuyết điểm, góp ý chân thành giúp nhau tiến bộ, không che giấu lỗi lầm.',
+        icon: 'Eye',
+      },
+      {
+        title: '4. Kỷ luật nghiêm minh & tự giác',
+        desc: 'Chấp hành nghiêm túc mọi quy chế của Đảng. Kỷ luật thống nhất kết hợp với ý thức tự giác tuân thủ của mỗi cán bộ, đảng viên.',
+        icon: 'Scale',
+      },
+      {
+        title: '5. Đoàn kết, thống nhất trong Đảng',
+        desc: 'Đoàn kết trên nền tảng mục tiêu lý tưởng chung; đặt việc công lên trên việc tư; giữ gìn đoàn kết như giữ gìn con ngươi của mắt mình.',
+        icon: 'HeartHandshake',
+      },
+    ],
+    notes: '5 nguyên tắc này gắn kết hữu cơ với nhau, tạo thành bộ khung kỷ luật và sức mạnh chiến đấu của Đảng Cộng sản.',
+  },
+  {
+    id: 'slide-11',
     sectionCode: '4.1.2-c',
     sectionTitle: 'Xây dựng đội ngũ cán bộ, đảng viên',
-    title: 'c) 7 Tiêu chuẩn & Chống "Giặc nội xâm"',
-    subtitle: 'Cán bộ là cái gốc của mọi công việc',
+    title: 'c) 7 Tiêu chuẩn rèn luyện của cán bộ, đảng viên',
+    subtitle: 'Chuẩn mực đạo đức cách mạng suốt đời của người chiến sĩ cộng sản',
+    presenter: 'Nhiên',
     layout: 'grid',
-
     bullets: [
       {
         title: '1. Tuyệt đối trung thành',
-        desc: 'Đặt lợi ích của Đảng và nhân dân lên trên hết, sẵn sàng hy sinh vì lý tưởng.',
+        desc: 'Đặt lợi ích Đảng lên trước; khi cần đến tính mệnh cũng vui lòng hy sinh cho sự nghiệp cách mạng.',
         icon: 'ShieldAlert',
       },
       {
-        title: '2. "Giặc nội xâm" nguy hiểm',
-        desc: 'Tham ô, lãng phí, quan liêu là bạn đồng minh của giặc ngoại xâm, phá hoại từ bên trong ra.',
-        icon: 'AlertTriangle',
+        title: '2. Nghiêm chỉnh thực hiện',
+        desc: 'Chấp hành đầy đủ Cương lĩnh, đường lối, nghị quyết và nguyên tắc của Đảng không ngoại lệ.',
+        icon: 'FileText',
       },
       {
-        title: '3. Công tác cán bộ sống còn',
-        desc: 'Hiểu đúng người, huấn luyện thiết thực, đề bạt chuẩn xác, kết hợp cán bộ trẻ với cán bộ cũ.',
+        title: '3. Tu dưỡng đạo đức suốt đời',
+        desc: 'Thật sự thấm nhuần cần kiệm liêm chính, chí công vô tư — việc rèn luyện là thường xuyên suốt đời.',
+        icon: 'Star',
+      },
+      {
+        title: '4. Học tập nâng cao',
+        desc: 'Liên tục học tập lý luận và chuyên môn: "Nếu không chịu khó học thì không tiến bộ. Không tiến bộ là thoái bộ".',
+        icon: 'BookOpen',
+      },
+      {
+        title: '5. Mật thiết với nhân dân',
+        desc: 'Là người "đầy tớ thật trung thành" của nhân dân; chịu khổ trước, hưởng sau: "Đảng viên đi trước, làng nước theo sau".',
+        icon: 'Users',
+      },
+      {
+        title: '6. Năng động, sáng tạo',
+        desc: 'Không thụ động, không lười biếng; dám nghĩ dám làm dám chịu trách nhiệm: "Thắng không kiêu, bại không nản".',
+        icon: 'Target',
+      },
+      {
+        title: '7. Phòng chống tiêu cực',
+        desc: 'Kiên quyết chống tham ô, lãng phí, quan liêu — coi đó là "giặc nội xâm" phá hoại từ bên trong nguy hiểm nhất.',
+        icon: 'AlertTriangle',
+      },
+    ],
+    notes: '7 tiêu chuẩn toàn diện từ tư tưởng, phẩm chất chính trị, quan hệ quần chúng đến năng lực hành động.',
+  },
+  {
+    id: 'slide-12',
+    sectionCode: '4.1.2-c',
+    sectionTitle: 'Chống giặc nội xâm & Công tác cán bộ',
+    title: 'Chống "Giặc nội xâm" & 6 Yêu cầu trong công tác cán bộ',
+    subtitle: '"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém"',
+    presenter: 'Nhiên',
+    layout: 'comparison',
+    bullets: [
+      {
+        title: 'Nhận diện Suy thoái & "Giặc nội xâm"',
+        desc: 'Bác cảnh báo: Địch bên ngoài không đáng sợ, địch bên trong đáng sợ hơn vì nó phá hoại từ trong ra. Cần tránh 4 biểu hiện: (1) Đặt lợi ích cá nhân lên trên hết; (2) Tham ô, hủ hoá, lãng phí; (3) Độc đoán, chuyên quyền, quan liêu; (4) Mất đoàn kết, thiếu kỷ luật. Đảng không giấu khuyết điểm, thẳng thắn nhận và tự sửa chữa.',
+        icon: 'AlertOctagon',
+      },
+      {
+        title: '6 Yêu cầu trong Công tác cán bộ',
+        desc: '1. Hiểu và đánh giá đúng cán bộ (tránh dùng sai chỗ). 2. Huấn luyện thiết thực, có hiệu quả. 3. Đề bạt đúng người dựa trên phẩm chất và năng lực. 4. Kết hợp cán bộ trẻ với cán bộ cũ. 5. Chống bệnh địa phương cục bộ, bè phái dòng tộc. 6. Thường xuyên kiểm tra và hỗ trợ uốn nắn.',
         icon: 'Briefcase',
       },
     ],
-    notes: 'Nhấn mạnh câu nói của Bác: "Địch bên ngoài không đáng sợ. Địch bên trong đáng sợ hơn vì nó phá hoại từ trong phá ra".',
+    notes: 'Công tác cán bộ được coi là khâu then chốt của then chốt, quyết định sự thành bại của đường lối cách mạng.',
+  },
+  {
+    id: 'slide-13',
+    sectionCode: '4.1.2-c',
+    sectionTitle: 'Đào sâu lý luận cán bộ',
+    title: 'Tại sao cán bộ là "cái gốc" & Lớp người "vừa hồng vừa chuyên"',
+    subtitle: 'Giải đáp 2 câu hỏi cốt lõi về vị trí cầu nối của cán bộ và mục tiêu bồi dưỡng thế hệ mai sau',
+    presenter: 'Nhiên',
+    layout: 'comparison',
+    bullets: [
+      {
+        title: '1/ Tại sao cán bộ lại quan trọng đến vậy?',
+        desc: 'Cán bộ là "cầu nối" trực tiếp giữa Đảng và nhân dân: truyền đạt chủ trương vào thực tiễn và phản ánh ý nguyện dân sinh lên cấp lãnh đạo. Dù đường lối có đúng đắn đến đâu, nếu thiếu đội ngũ cán bộ tốt thì không thể thành hiện thực. Cán bộ không chỉ là người thừa hành mà là nhân tố quyết định kết quả toàn cục.',
+        icon: 'HeartHandshake',
+      },
+      {
+        title: '2/ Tầm nhìn đào tạo thế hệ "Vừa hồng vừa chuyên"',
+        desc: 'Hồ Chí Minh mong muốn xây dựng một Đảng vừa trong sạch vừa vững mạnh, uy tín trước nhân dân. Mục tiêu sâu xa là đào tạo lớp người kế tục vừa "hồng" (lý tưởng cách mạng, đạo đức trong sáng) vừa "chuyên" (trình độ chuyên môn giỏi, năng lực thực tiễn sâu sắc), như lời căn dặn thiêng liêng trong Di chúc.',
+        icon: 'Sparkles',
+      },
+    ],
+    notes: 'Làm rõ sự kết hợp hữu cơ giữa Đức và Tài, giữa Hồng và Chuyên trong quan điểm dùng người của Bác.',
+  },
+  {
+    id: 'slide-14',
+    sectionCode: '4.1.2-c',
+    sectionTitle: 'Bối cảnh lịch sử thực tiễn',
+    title: '3/ Bối cảnh lịch sử tôi rèn tư tưởng Hồ Chí Minh về cán bộ',
+    subtitle: 'Tư tưởng cán bộ không xuất hiện trong chân không mà được tôi luyện qua 4 giai đoạn lịch sử',
+    presenter: 'Nhiên',
+    layout: 'grid',
+    bullets: [
+      {
+        title: '1930 – 1945: Hoạt động bí mật',
+        desc: 'Đảng non trẻ trước khủng bố khốc liệt của Pháp. Cần cán bộ trung thành tuyệt đối vì một người phản bội có thể xóa sổ cả tổ chức.',
+        icon: 'Shield',
+      },
+      {
+        title: '1945 – 1954: Kháng chiến chống Pháp',
+        desc: 'Nhà nước non trẻ thiếu nhân lực; tham nhũng quan liêu xuất hiện. Bác viết "Sửa đổi lối làm việc" (1947) nêu chuẩn mực: Nhân, Nghĩa, Dũng, Trí, Liêm.',
+        icon: 'FileText',
+      },
+      {
+        title: '1954 – 1969: Nhiệm vụ kép 2 miền',
+        desc: 'Miền Bắc xây dựng CNXH, chi viện miền Nam đánh Mỹ. Áp lực kép đòi hỏi bộ máy liêm chính tuyệt đối, tránh hậu quả dây chuyền.',
+        icon: 'Target',
+      },
+      {
+        title: 'Năm 1969: Di huấn thiêng liêng',
+        desc: 'Viết bài "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân" và Di chúc thiêng liêng — trăn trở đến cuối đời về đạo đức người cầm quyền.',
+        icon: 'Award',
+      },
+    ],
+    notes: 'Tổng kết hoàn chỉnh toàn bộ bối cảnh lịch sử thực tiễn hình thành nên quan điểm cán bộ của Bác.',
   },
   {
     id: 'slide-faq',
@@ -490,7 +888,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     notes: 'Đây là điểm sáng tạo cốt lõi của Hồ Chí Minh khi vận dụng chủ nghĩa Mác - Lênin vào thực tiễn một nước thuộc địa.',
   },
   {
-    id: 'slide-10',
+    id: 'slide-15',
     sectionCode: 'LỊCH SỬ',
     sectionTitle: 'Tiến trình lịch sử tư tưởng',
     title: 'Bối cảnh lịch sử qua các mốc thời gian',

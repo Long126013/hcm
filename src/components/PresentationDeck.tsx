@@ -81,8 +81,12 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
           <span className="text-xs text-slate-400 font-medium hidden sm:inline">
             {slide.sectionTitle}
           </span>
+          {slide.presenter && (
+            <span className="text-xs px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold">
+              Thuyết trình: {slide.presenter}
+            </span>
+          )}
         </div>
-
 
         {/* Slide Counter & Controls */}
         <div className="flex items-center gap-2">
@@ -208,17 +212,29 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
                   <h2 className="text-2xl md:text-4xl font-extrabold text-white">{slide.title}</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div
+                  className={`grid gap-4 ${
+                    slide.bullets?.length === 2
+                      ? 'grid-cols-1 md:grid-cols-2'
+                      : slide.bullets?.length === 4
+                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+                      : slide.bullets?.length === 5
+                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                      : slide.bullets?.length === 7
+                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                      : 'grid-cols-1 md:grid-cols-3'
+                  }`}
+                >
                   {slide.bullets?.map((bullet, idx) => (
                     <div
                       key={idx}
-                      className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-red-500/60 transition-all flex flex-col justify-between"
+                      className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-red-500/60 transition-all flex flex-col justify-between"
                     >
                       <div>
-                        <div className="w-10 h-10 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-sm mb-4">
+                        <div className="w-9 h-9 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-sm mb-3">
                           {idx + 1}
                         </div>
-                        <h3 className="text-base font-bold text-white mb-2">{bullet.title}</h3>
+                        <h3 className="text-sm font-bold text-white mb-2">{bullet.title}</h3>
                         <p className="text-xs text-slate-300 leading-relaxed">{bullet.desc}</p>
                       </div>
                     </div>
@@ -229,8 +245,8 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
 
             {/* SLIDE TYPE: COMPARISON */}
             {slide.layout === 'comparison' && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center animate-fadeIn">
-                <div className="md:col-span-7 space-y-5">
+              <div className={`animate-fadeIn ${slide.imagePlaceholder ? 'grid grid-cols-1 md:grid-cols-12 gap-8 items-center' : 'space-y-5'}`}>
+                <div className={slide.imagePlaceholder ? 'md:col-span-7 space-y-5' : 'space-y-5'}>
                   <div className="space-y-1">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
                       {slide.subtitle}
@@ -238,10 +254,10 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
                     <h2 className="text-2xl md:text-3xl font-extrabold text-white">{slide.title}</h2>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className={slide.imagePlaceholder ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-4'}>
                     {slide.bullets?.map((b, idx) => (
-                      <div key={idx} className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800">
-                        <div className="text-xs font-bold text-red-400 uppercase tracking-wider mb-1">
+                      <div key={idx} className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-start">
+                        <div className="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">
                           {b.title}
                         </div>
                         <p className="text-xs text-slate-200 leading-relaxed">{b.desc}</p>
@@ -250,16 +266,16 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
                   </div>
                 </div>
 
-                <div className="md:col-span-5">
-                  {slide.imagePlaceholder && (
+                {slide.imagePlaceholder && (
+                  <div className="md:col-span-5">
                     <ImagePlaceholder
                       label={slide.imagePlaceholder.label}
                       prompt={slide.imagePlaceholder.prompt}
                       aspectRatio="landscape"
                       className="bg-slate-900 border-slate-700"
                     />
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             )}
 
