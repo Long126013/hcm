@@ -965,4 +965,13 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     layout: 'timeline',
     notes: 'Tổng kết dòng thời gian các dấu mốc thực tiễn lịch sử tôi rèn nên tư tưởng Hồ Chí Minh.',
   },
+  {
+    id: 'slide-minigame',
+    sectionCode: 'MINIGAME',
+    sectionTitle: 'Tìm cụm từ – Nhận diện những biểu hiện cần tránh',
+    title: 'Tìm cụm từ – Nhận diện những biểu hiện cần tránh',
+    subtitle: 'Những hành vi, biểu hiện cần tránh để góp phần xây dựng Đảng trong sạch, vững mạnh.',
+    layout: 'minigame',
+    notes: 'Minigame tương tác cuối chương để củng cố kiến thức và nhận diện các biểu hiện suy thoái cần kiên quyết đấu tranh phòng chống.',
+  },
 ];

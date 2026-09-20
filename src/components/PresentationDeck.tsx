@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PRESENTATION_SLIDES } from '../data/curriculumData';
 import { CreativeFormula } from './CreativeFormula';
 import { TimelineView } from './TimelineView';
+import { MinigameWordSearch } from './MinigameWordSearch';
 import {
   ChevronLeft, ChevronRight, ArrowDown, Quote, AlertTriangle, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
@@ -605,7 +606,7 @@ export const PresentationDeck: React.FC = () => {
       );
     }
 
-    // Fallback for slide-15 (TimelineView)
+    // 16. Fallback for slide-15 (TimelineView)
     if (slide.id === 'slide-15') {
       return (
         <div className="w-full max-w-4xl mx-auto animate-slideUpFade">
@@ -614,23 +615,34 @@ export const PresentationDeck: React.FC = () => {
       );
     }
 
+    // 17. MINIGAME: WORD SEARCH / RECOGNITION (slide-minigame)
+    if (slide.id === 'slide-minigame' || slide.layout === 'minigame') {
+      return (
+        <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
+          <MinigameWordSearch />
+        </div>
+      );
+    }
+
     return null;
   };
+
+  const isMinigame = slide.id === 'slide-minigame' || slide.layout === 'minigame';
 
   return (
     <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${isDark ? 'bg-red-950 text-slate-100' : 'bg-[#fdfbf7] text-slate-900'}`}>
       {/* MAIN CONTENT AREA */}
-      <div className="flex-1 w-full flex items-center justify-center py-12 px-6 pb-32 overflow-y-auto">
+      <div className={`flex-1 w-full flex items-center justify-center ${isMinigame ? 'py-2 px-3 pb-16' : 'py-12 px-6 pb-32'} overflow-y-auto`}>
         {renderSlideContent()}
       </div>
 
       {/* BOTTOM CONTROL BAR */}
-      <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-white/10 px-4 md:px-8 py-3.5 flex items-center justify-between z-50 gap-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-white/10 px-4 md:px-8 py-3 flex items-center justify-between z-50 gap-4">
         {/* Previous Button */}
         <button
           onClick={handlePrev}
           disabled={currentSlideIndex === 0}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-full transition-all duration-200 shrink-0 ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full transition-all duration-200 shrink-0 ${
             currentSlideIndex === 0
               ? 'text-slate-600 cursor-not-allowed'
               : 'text-white hover:bg-white/10 active:scale-95'
@@ -641,39 +653,45 @@ export const PresentationDeck: React.FC = () => {
           <span className="font-semibold text-sm hidden md:inline">Trang trước</span>
         </button>
 
-        {/* Center: Bullets Navigation & Page Counter */}
-        <div className="flex items-center gap-3 sm:gap-5 overflow-hidden max-w-2xl px-2">
-          {/* Bullets row */}
-          <div className="flex items-center gap-1.5 overflow-x-auto py-1.5 px-2 max-w-full scrollbar-none">
-            {PRESENTATION_SLIDES.map((s, idx) => {
-              const isActive = idx === currentSlideIndex;
-              return (
-                <button
-                  key={s.id || idx}
-                  onClick={() => setCurrentSlideIndex(idx)}
-                  className={`transition-all duration-300 rounded-full shrink-0 ${
-                    isActive
-                      ? 'w-7 h-2.5 bg-red-500 shadow-sm'
-                      : 'w-2.5 h-2.5 bg-slate-600 hover:bg-slate-300 hover:scale-125'
-                  }`}
-                  title={`Trang ${idx + 1}: ${s.title}`}
-                  aria-label={`Chuyển đến trang ${idx + 1}`}
-                />
-              );
-            })}
-          </div>
+        {/* Center: Bullets Navigation & Page Counter (Hidden on Minigame) */}
+        {!isMinigame ? (
+          <div className="flex items-center gap-3 sm:gap-5 overflow-hidden max-w-2xl px-2">
+            {/* Bullets row */}
+            <div className="flex items-center gap-1.5 overflow-x-auto py-1.5 px-2 max-w-full scrollbar-none">
+              {PRESENTATION_SLIDES.map((s, idx) => {
+                const isActive = idx === currentSlideIndex;
+                return (
+                  <button
+                    key={s.id || idx}
+                    onClick={() => setCurrentSlideIndex(idx)}
+                    className={`transition-all duration-300 rounded-full shrink-0 ${
+                      isActive
+                        ? 'w-7 h-2.5 bg-red-500 shadow-sm'
+                        : 'w-2.5 h-2.5 bg-slate-600 hover:bg-slate-300 hover:scale-125'
+                    }`}
+                    title={`Trang ${idx + 1}: ${s.title}`}
+                    aria-label={`Chuyển đến trang ${idx + 1}`}
+                  />
+                );
+              })}
+            </div>
 
-          {/* Page count text */}
-          <div className="text-slate-400 text-xs sm:text-sm font-medium shrink-0 whitespace-nowrap">
-            <span className="text-white font-bold">{currentSlideIndex + 1}</span> / {totalSlides}
+            {/* Page count text */}
+            <div className="text-slate-400 text-xs sm:text-sm font-medium shrink-0 whitespace-nowrap">
+              <span className="text-white font-bold">{currentSlideIndex + 1}</span> / {totalSlides}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="text-xs font-semibold text-slate-400 tracking-wider uppercase">
+            CỦNG CỐ KIẾN THỨC
+          </div>
+        )}
 
         {/* Next Button */}
         <button
           onClick={handleNext}
           disabled={currentSlideIndex === totalSlides - 1}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-full transition-all duration-200 shrink-0 ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full transition-all duration-200 shrink-0 ${
             currentSlideIndex === totalSlides - 1
               ? 'text-slate-600 cursor-not-allowed'
               : 'text-white hover:bg-white/10 active:scale-95'
