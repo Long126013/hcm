@@ -3,6 +3,7 @@ import { PRESENTATION_SLIDES } from '../data/curriculumData';
 import { CreativeFormula } from './CreativeFormula';
 import { MinigameWordSearch } from './MinigameWordSearch';
 import { HistoricalTimelineSlide } from './HistoricalTimelineSlide';
+import { CadreStandardsCarouselSlide } from './CadreStandardsCarouselSlide';
 import {
   ChevronLeft, ChevronRight, ArrowDown, Quote, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
@@ -449,69 +450,123 @@ export const PresentationDeck: React.FC = () => {
       );
     }
 
-    // 11. STANDARDS LAYOUT (Slide 11)
+    // 11. STANDARDS CAROUSEL (Slide 11 / Page 12)
     if (slide.id === 'slide-11') {
       return (
         <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
-          <div className="space-y-3 mb-16 text-center">
+          <div className="space-y-3 mb-10 text-center">
             <h2 className={`text-3xl md:text-5xl font-extrabold ${isDark ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
-            {slide.bullets?.map((bullet: any, idx: number) => {
-              const isLastOdd = idx === slide.bullets!.length - 1 && slide.bullets!.length % 2 !== 0;
-              return (
-                <div key={idx} className={`p-8 rounded-3xl ${isDark ? 'bg-red-900/20 border-red-800/50' : 'bg-[#f7f5f0] border-[#e8e4db]'} flex flex-col h-full shadow-sm hover:shadow-md transition-shadow border ${isLastOdd ? 'md:col-span-2 md:w-[calc(50%-16px)] md:mx-auto w-full' : ''}`}>
-                  <div className="flex-1">
-                    <div className="flex items-start gap-5 mb-5">
-                      <span className={`w-10 h-10 rounded-xl ${isDark ? 'bg-red-900/50 border-red-800 text-red-300' : 'bg-white border-[#e8e4db] text-[#800000]'} font-bold text-lg flex items-center justify-center shrink-0 shadow-sm border`}>
-                        {idx + 1}
-                      </span>
-                      <span className={`text-[17px] font-bold ${isDark ? 'text-red-300' : 'text-[#800000]'} leading-snug pt-1.5`}>
-                        {bullet.title}
-                      </span>
-                    </div>
-                    <p className={`text-[15px] ${isDark ? 'text-red-100' : 'text-slate-700'} leading-relaxed pl-15`}>
-                      {bullet.desc}
-                    </p>
-                  </div>
-                  {bullet.details && (
-                    <div className="mt-auto pt-6">
-                      <div className={`p-5 rounded-xl ${isDark ? 'bg-red-900/40 border-red-800' : 'bg-white border-slate-200/80'} shadow-sm border`}>
-                        <p className={`italic text-[15px] ${isDark ? 'text-red-200/80' : 'text-slate-600'} leading-relaxed`}>
-                          "{bullet.details}"
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+            </div>
+          <CadreStandardsCarouselSlide isDark={isDark} />
         </div>
       );
     }
 
 
 
-    // 13. SIX POINT FRAMEWORK (Slide 12b)
+    // 13. SIX POINT FRAMEWORK (Slide 12b / Page 13)
     if (slide.id === 'slide-12b') {
       return (
-        <div className="w-full max-w-3xl mx-auto animate-slideUpFade">
-          <h2 className={`text-3xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-16 text-center`}>{slide.title}</h2>
-          <div className="space-y-4">
-            {slide.bullets?.map((b: any, i: number) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className={`w-full ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-[#e8e4db]'} px-8 py-6 rounded-2xl shadow-sm text-center relative z-10 group hover:border-[#800000]/50 transition-colors border`}>
-                  <h3 className={`text-xl font-bold ${isDark ? 'text-red-300' : 'text-[#800000]'} mb-2`}>{b.title}</h3>
-                  <p className={`${isDark ? 'text-red-100/80' : 'text-slate-600'} text-[15px]`}>{b.desc}</p>
+        <div className="w-full max-w-7xl mx-auto animate-slideUpFade px-2 sm:px-4">
+          <div className="text-center mb-8 max-w-3xl mx-auto space-y-2">
+            <h2 className={`text-3xl md:text-5xl font-extrabold ${isDark ? 'text-white' : 'text-slate-900'} tracking-tight`}>
+              {slide.title}
+            </h2>
+            {slide.subtitle && (
+              <p className={`text-xs sm:text-sm md:text-base ${isDark ? 'text-red-200' : 'text-slate-600'} italic max-w-2xl mx-auto`}>
+                {slide.subtitle}
+              </p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-center">
+            {/* LEFT COLUMN: 2 Staggered / Caro Images (ctcb1 & ctcb2) */}
+            <div className="hidden lg:flex lg:col-span-3 flex-col gap-6 justify-center">
+              {/* Image 1 - CTCB1 */}
+              <div className="w-full max-w-[240px] self-start transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300 bg-white p-2.5 rounded-2xl border border-stone-200/90 shadow-md">
+                <div className="w-full h-44 xl:h-52 rounded-xl overflow-hidden bg-stone-100">
+                  <img
+                    src="/ctcb1.jpg"
+                    alt="Tư liệu công tác cán bộ 1"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                {i < slide.bullets!.length - 1 && (
-                  <div className={`h-8 w-px ${isDark ? 'bg-red-500/30' : 'bg-[#800000]/30'} my-2 relative`}>
-                     <ArrowDown className={`w-4 h-4 ${isDark ? 'text-red-400/50' : 'text-[#800000]/50'} absolute -bottom-4 -left-[7px]`} />
-                  </div>
-                )}
+                <p className="text-[11px] text-center text-slate-500 font-medium pt-2 italic">
+                  Kiểm tra & giúp đỡ cán bộ 
+                </p>
               </div>
-            ))}
+
+              {/* Image 2 - CTCB2 (Offset / So le) */}
+              <div className="w-full max-w-[240px] self-end xl:translate-x-3 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300 bg-white p-2.5 rounded-2xl border border-stone-200/90 shadow-md">
+                <div className="w-full h-44 xl:h-52 rounded-xl overflow-hidden bg-stone-100">
+                  <img
+                    src="/ctcb2.png"
+                    alt="Tư liệu công tác cán bộ 2"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback to jpg if png not matching
+                      const target = e.target as HTMLImageElement;
+                      if (!target.src.endsWith('.jpg')) target.src = '/ctcb2.jpg';
+                    }}
+                  />
+                </div>
+                <p className="text-[11px] text-center text-slate-500 font-medium pt-2 italic">
+                  Cán bộ trẻ năng động
+                </p>
+              </div>
+            </div>
+
+            {/* CENTER COLUMN: 6 Point Framework List */}
+            <div className="lg:col-span-6 w-full max-w-2xl mx-auto space-y-3">
+              {slide.bullets?.map((b: any, i: number) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className={`w-full ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-[#e8e4db]'} px-6 py-3.5 sm:py-4 rounded-2xl shadow-xs text-center relative z-10 group hover:border-[#800000]/50 hover:shadow-sm transition-all border`}>
+                    <h3 className={`text-sm sm:text-base font-bold ${isDark ? 'text-red-300' : 'text-[#800000]'} mb-1`}>
+                      {i + 1}. {b.title}
+                    </h3>
+                    <p className={`${isDark ? 'text-red-100/80' : 'text-slate-600'} text-xs sm:text-[13px] leading-relaxed`}>
+                      {b.desc}
+                    </p>
+                  </div>
+                  {i < slide.bullets!.length - 1 && (
+                    <div className={`h-5 w-px ${isDark ? 'bg-red-500/30' : 'bg-[#800000]/30'} my-0.5 relative`}>
+                      <ArrowDown className={`w-3.5 h-3.5 ${isDark ? 'text-red-400/50' : 'text-[#800000]/50'} absolute -bottom-2.5 -left-[6px]`} />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* RIGHT COLUMN: 2 Staggered / Caro Images (ctcb3 & ctcb4) */}
+            <div className="hidden lg:flex lg:col-span-3 flex-col gap-6 justify-center">
+              {/* Image 3 - CTCB3 */}
+              <div className="w-full max-w-[240px] self-end transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300 bg-white p-2.5 rounded-2xl border border-stone-200/90 shadow-md">
+                <div className="w-full h-44 xl:h-52 rounded-xl overflow-hidden bg-stone-100">
+                  <img
+                    src="/ctcb3.jfif"
+                    alt="Tư liệu công tác cán bộ 3"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-[11px] text-center text-slate-500 font-medium pt-2 italic">
+                  Đào tạo & rèn luyện cán bộ
+                </p>
+              </div>
+
+              {/* Image 4 - CTCB4 (Offset / So le) */}
+              <div className="w-full max-w-[240px] self-start xl:-translate-x-3 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300 bg-white p-2.5 rounded-2xl border border-stone-200/90 shadow-md">
+                <div className="w-full h-44 xl:h-52 rounded-xl overflow-hidden bg-stone-100">
+                  <img
+                    src="/ctcb4.jfif"
+                    alt="Tư liệu công tác cán bộ 4"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-[11px] text-center text-slate-500 font-medium pt-2 italic">
+                  Đánh giá, khen thưởng cán bộ
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       );
