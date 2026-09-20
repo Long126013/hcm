@@ -600,17 +600,17 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     cardVariant: 'feature',
     bullets: [
       {
-        title: 'a. Đảng là đạo đức, là văn minh',
+        title: 'A. Đảng là đạo đức, là văn minh',
         desc: 'Mục đích đấu tranh vì dân; đường lối không vụ lợi riêng; cán bộ cần kiệm liêm chính; 6 nội dung văn minh.',
         icon: 'Award',
       },
       {
-        title: 'b. Những vấn đề nguyên tắc trong hoạt động của Đảng',
+        title: 'B. Những vấn đề nguyên tắc trong hoạt động của Đảng',
         desc: 'Tập trung dân chủ; Tập thể lãnh đạo cá nhân phụ trách; Tự phê bình và phê bình; Kỷ luật tự giác; Đoàn kết thống nhất.',
         icon: 'Scale',
       },
       {
-        title: 'c. Xây dựng đội ngũ cán bộ, đảng viên',
+        title: 'C. Xây dựng đội ngũ cán bộ, đảng viên',
         desc: 'Các tiêu chuẩn rèn luyện; phòng chống "giặc nội xâm"; 6 yêu cầu công tác cán bộ; bồi dưỡng thế hệ "vừa hồng vừa chuyên".',
         icon: 'UserCheck',
       },
@@ -621,7 +621,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-8',
     sectionCode: '4.1.2-a',
     sectionTitle: 'Đảng là đạo đức, là văn minh',
-    title: 'a. Đảng là đạo đức, là văn minh',
+    title: 'A. Đảng là đạo đức, là văn minh',
     subtitle: '3 Biểu hiện nền tảng của một Đảng có đạo đức cách mạng',
     layout: 'manifestations',
     bullets: [
@@ -718,7 +718,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-10',
     sectionCode: '4.1.2-b',
     sectionTitle: 'Nguyên tắc hoạt động của Đảng',
-    title: 'b. Những vấn đề nguyên tắc trong hoạt động của Đảng',
+    title: 'B. Những vấn đề nguyên tắc trong hoạt động của Đảng',
     subtitle: 'Bảo đảm Đảng luôn trong sạch, vững mạnh và thống nhất ý chí lãnh đạo',
     layout: 'principles',
     bullets: [
@@ -784,14 +784,14 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-11',
     sectionCode: '4.1.2-c',
     sectionTitle: 'Xây dựng đội ngũ cán bộ, đảng viên',
-    title: 'c. Xây dựng đội ngũ cán bộ, đảng viên',
+    title: 'C. Xây dựng đội ngũ cán bộ, đảng viên',
     subtitle: '7 Tiêu chuẩn rèn luyện đạo đức cách mạng suốt đời',
     layout: 'standards',
     bullets: [
       {
         title: 'Phải Tuyệt Đối Trung Thành Với Đảng',
         desc: 'Lợi ích của Đảng luôn phải đặt lên trước lợi ích cá nhân — kể cả khi phải hy sinh tính mạng.',
-        details: '"Vô luận lúc nào, vô luận việc gì, đảng viên và cán bộ phải đặt lợi ích của Đảng ra trước, lợi ích của cá nhân lại sau... Khi cần đến tính mệnh của mình cũng phải vui lòng hy sinh cho Đảng."',
+        details: 'Vô luận lúc nào, vô luận việc gì, đảng viên và cán bộ phải đặt lợi ích của Đảng ra trước, lợi ích của cá nhân lại sau... Khi cần đến tính mệnh của mình cũng phải vui lòng hy sinh cho Đảng.',
         icon: 'ShieldAlert',
       },
       {
@@ -802,30 +802,31 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
       {
         title: 'Phải Luôn Luôn Tu Dưỡng Đạo Đức Cách Mạng',
         desc: 'Rèn luyện đạo đức là việc làm suốt đời, không phải thành tích một lần.',
-        details: '"Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư."',
+        details: 'Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư.',
         icon: 'Star',
       },
       {
         title: 'Phải Luôn Luôn Học Tập Nâng Cao Trình Độ',
         desc: 'Cán bộ phải liên tục nâng cao hiểu biết về mọi mặt để không bị tụt hậu.',
-        details: '"Nếu không chịu khó học thì không tiến bộ được. Không tiến bộ là thoái bộ."',
+        details: 'Nếu không chịu khó học thì không tiến bộ được. Không tiến bộ là thoái bộ.',
         icon: 'BookOpen',
       },
       {
         title: 'Phải Có Mối Liên Hệ Mật Thiết Với Nhân Dân',
         desc: 'Cán bộ phải là "đầy tớ thật trung thành" của nhân dân — chịu khổ trước, hưởng sau.',
-        details: '"Đảng viên đi trước, làng nước theo sau."',
+        details: 'Đảng viên đi trước, làng nước theo sau.',
         icon: 'Users',
       },
       {
         title: 'Phải Luôn Chịu Trách Nhiệm, Năng Động, Sáng Tạo',
         desc: 'Không thụ động, không lười biếng — phải dám chịu trách nhiệm trước Đảng và nhân dân.',
-        details: '"Thắng không kiêu, bại không nản."',
+        details: 'Thắng không kiêu, bại không nản.',
         icon: 'Target',
       },
       {
         title: 'Phải Thường Xuyên Tự Phê Bình Và Phê Bình',
         desc: 'Kiên quyết chống tham ô, lãng phí, quan liêu — coi đó là "giặc nội xâm" phá hoại từ bên trong.',
+        details: 'Mỗi kẻ địch bên trong là một bạn đồng minh của kẻ địch bên ngoài. Địch bên ngoài không đáng sợ. Địch bên trong đáng sợ hơn, vì nó phá hoại từ trong phá ra.',
         icon: 'AlertTriangle',
       },
     ],
