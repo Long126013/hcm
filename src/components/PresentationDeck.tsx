@@ -2,21 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { PRESENTATION_SLIDES } from '../data/curriculumData';
 import { CreativeFormula } from './CreativeFormula';
 import { TimelineView } from './TimelineView';
-import { ImagePlaceholder } from './ImagePlaceholder';
 import {
-  ChevronLeft, ChevronRight, Maximize2, Minimize2, FileText, X, ChevronDown, ChevronUp, ArrowRight,
-  Award, Scale, UserCheck, Heart, Star, Target, Shield, BookOpen, 
-  CheckCircle2, Sparkles, Flag, HeartHandshake, ArrowRightCircle, 
-  AlertTriangle, AlertOctagon, ShieldAlert,
-  Search, TrendingUp, CheckCircle, UserX, EyeOff, Eye, Users
+  ChevronLeft, ChevronRight, ArrowDown, Quote, AlertTriangle, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
 
-const IconMap: Record<string, React.ElementType> = {
-  Award, Scale, UserCheck, Heart, FileText, Star, Target, Shield, BookOpen, 
-  CheckCircle2, Sparkles, Flag, HeartHandshake, ArrowRightCircle, 
-  AlertTriangle, AlertOctagon, ShieldAlert,
-  Search, TrendingUp, CheckCircle, UserX, EyeOff, Eye, Users
-};
+
 
 export const PresentationDeck: React.FC = () => {
   const getInitialIndex = () => {
@@ -26,18 +16,16 @@ export const PresentationDeck: React.FC = () => {
   };
   
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(getInitialIndex());
-  const [showNotes, setShowNotes] = useState<boolean>(false);
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
-  const [openDiscussionId, setOpenDiscussionId] = useState<number | null>(0);
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
-  // Sync hash
   useEffect(() => {
     window.history.replaceState(null, '', `#slide-${currentSlideIndex + 1}`);
-    setOpenDiscussionId(0); // Reset accordion state on slide change
+    setOpenAccordion(null); // Reset accordion on slide change
   }, [currentSlideIndex]);
 
   const totalSlides = PRESENTATION_SLIDES.length;
   const slide = PRESENTATION_SLIDES[currentSlideIndex];
+  const isDark = slide.theme === 'dark' || slide.id === 'slide-1' || slide.layout === 'intro';
 
   const handleNext = () => {
     if (currentSlideIndex < totalSlides - 1) {
@@ -51,635 +39,651 @@ export const PresentationDeck: React.FC = () => {
     }
   };
 
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEndHandler = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    if (distance > minSwipeDistance) handleNext();
-    if (distance < -minSwipeDistance) handlePrev();
-  };
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
         handleNext();
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      } else if (e.key === 'ArrowLeft') {
         handlePrev();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSlideIndex, totalSlides]);
+  }, [currentSlideIndex]);
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen().catch(() => {});
-      setIsFullscreen(false);
+  const renderSlideContent = () => {
+    // 1. HERO SECTION (Slide 1)
+    if (slide.id === 'slide-1') {
+      return (
+        <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center animate-slideUpFade">
+          <span className="inline-block py-2 px-5 rounded-full bg-red-900/50 border border-red-800/50 text-red-200 text-sm font-bold tracking-widest uppercase mb-8 shadow-sm">
+            Chương 04
+          </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8 drop-shadow-md">
+            {slide.title}
+          </h1>
+          {(slide.subtitle || slide.notes) && (
+            <p className="text-xl md:text-2xl text-red-100 max-w-3xl leading-relaxed opacity-90">
+              {slide.subtitle || slide.notes}
+            </p>
+          )}
+        </div>
+      );
     }
-  };
 
-  const isIntro = slide.layout === 'intro';
+    // 2. LARGE QUOTE (Slide 2)
+    if (slide.id === 'slide-2') {
+      return (
+        <div className="w-full max-w-5xl mx-auto space-y-6 animate-slideUpFade">
+          <div className="flex items-center gap-4 pb-3 border-b border-slate-200">
+            <span className="w-10 h-10 rounded-xl bg-[#800000] text-white font-bold flex items-center justify-center text-lg shadow-sm">
+              I
+            </span>
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900">
+                Tính tất yếu của sự ra đời và vai trò hạt nhân của Đảng
+              </h3>
+              <p className="text-sm text-slate-500 mt-1">Đảng là điều kiện tiên quyết của cách mạng và là người cầm lái con thuyền dân tộc</p>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-sm space-y-6">
+            <div className="flex items-center gap-3 text-red-900 font-bold text-sm uppercase tracking-wider border-b border-slate-100 pb-4">
+              <BookOpen className="w-5 h-5 text-red-800" />
+              <span>1. Đảng – Điều kiện tiên quyết của cách mạng</span>
+            </div>
 
-  // THEME CLASSES (HCM_SPST PALETTE & RED COVER FIX)
-  const themeClasses = {
-    wrapper: isIntro ? 'bg-red-950 text-slate-100' : 'bg-[#FDFBF7] text-[#1A2530]',
-    title: isIntro ? 'text-white' : 'text-[#800000]', 
-    subtitleBadge: isIntro ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : 'bg-[#800000]/5 text-[#800000] border-[#800000]/20',
-    desc: isIntro ? 'text-white/80' : 'text-[#1A2530]/80',
-    card: isIntro ? 'bg-black/20 border-white/10' : 'bg-white border-[#800000]/10 shadow-[0_10px_30px_rgb(0,0,0,0.04)]',
-    cardTitle: isIntro ? 'text-white' : 'text-[#800000]',
-    iconBox: isIntro ? 'bg-white/10 text-white' : 'bg-[#FDFBF7] border border-[#D4AF37]/40 text-[#800000]',
-  };
-
-  return (
-    <div 
-      className={`fixed inset-0 z-50 flex flex-col select-none overflow-hidden transition-colors duration-500 ${themeClasses.wrapper}`}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEndHandler}
-    >
-      
-      {/* THIN PROGRESS BAR */}
-      <div className="h-1 bg-black/10 w-full z-50 absolute top-0 shrink-0">
-        <div
-          className="h-full bg-[#D4AF37] transition-all duration-300"
-          style={{ width: `${(currentSlideIndex / (totalSlides - 1)) * 100}%` }}
-        />
-      </div>
-
-      <div className="flex-1 flex relative min-h-0">
-        {/* MAIN SLIDE AREA */}
-        <div className="flex-1 flex flex-col items-center p-4 sm:p-8 md:p-12 lg:p-24 overflow-y-auto min-h-0">
-          <div className="w-full max-w-6xl mx-auto my-auto">
-            
-            {/* INTRO LAYOUT (RED COVER) */}
-            {slide.layout === 'intro' && (
-              <div className="text-center space-y-6 animate-slideUpFade">
-                <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                  {slide.sectionCode} - {slide.sectionTitle}
-                </span>
-                <h1 className={`text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-sm text-white`}>
-                  {slide.title}
-                </h1>
-                <p className={`text-lg md:text-2xl font-medium max-w-3xl mx-auto text-amber-400`}>
-                  {slide.subtitle}
+            {/* Quote từ Đường cách mệnh */}
+            <div className="p-6 rounded-lg bg-slate-100/80 border-l-4 border-red-800">
+              <div className="text-sm text-slate-600 font-medium mb-2">
+                Trong tác phẩm <em>Đường cách mệnh (1927)</em>, Người nêu rõ:
+              </div>
+              <div className="flex items-start gap-3">
+                <Quote className="w-6 h-6 text-red-800 shrink-0 mt-1" />
+                <p className="italic text-slate-900 text-lg md:text-xl leading-relaxed font-medium">
+                  "Trước hết phải có đảng cách mệnh, để trong thì vận động và tổ chức dân chúng, ngoài thì liên lạc với dân tộc bị áp bức và vô sản giai cấp mọi nơi."
                 </p>
               </div>
-            )}
+            </div>
 
-            {/* QUOTE LAYOUT */}
-            {slide.layout === 'quote' && (
-              <div className="max-w-4xl mx-auto animate-slideUpFade">
-                <div className="mb-10 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.title}
-                  </span>
-                </div>
-                <div className="relative pl-8 md:pl-12 border-l-8 border-[#D4AF37] py-4 bg-white/40 rounded-r-2xl shadow-sm">
-                  <div className="space-y-8">
-                    <p className={`font-serif-quote italic text-2xl md:text-4xl leading-relaxed font-medium text-[#800000]`}>
-                      "{slide.quote?.text || slide.content?.[0]}"
-                    </p>
-                    {slide.quote?.author && (
-                      <div className="pt-4 flex items-center gap-4">
-                        <div className={`w-12 h-[2px] bg-[#800000]/30`}></div>
-                        <div>
-                          <p className={`font-bold text-xl text-[#1A2530]`}>{slide.quote.author}</p>
-                          {slide.quote.work && <p className={`text-base font-serif-quote italic mt-1 text-[#1A2530]/60`}>{slide.quote.work}</p>}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
+            {/* Hình tượng cốt lõi */}
+            <div className="p-5 rounded-lg bg-[#f7f5f0] border border-[#e8e4db] space-y-3">
+              <div className="flex items-center gap-2 text-stone-800 font-bold text-sm">
+                <Compass className="w-4 h-4 text-amber-800" />
+                <span>Hình tượng cốt lõi: Người cầm lái con thuyền cách mạng</span>
               </div>
-            )}
-
-            {/* MANIFESTATIONS LAYOUT (Image 3 UI) */}
-            {slide.layout === 'manifestations' && (
-              <div className="space-y-10 animate-slideUpFade">
-                <div className="space-y-3 mb-10">
-                  <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-3 text-[#800000]">
-                    <Award className="w-7 h-7 text-[#800000]" />
-                    {slide.subtitle}
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                  {slide.bullets?.map((bullet, idx) => (
-                    <div key={idx} className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col h-full">
-                      <div className="flex-1">
-                        <span className="text-lg font-bold text-[#800000] uppercase block mb-3">
-                          ({idx + 1}) {bullet.title}
-                        </span>
-                        <p className="text-[15px] font-medium text-slate-900 leading-relaxed">
-                          {bullet.desc}
-                        </p>
-                      </div>
-                      <div className="mt-auto pt-4 border-t border-slate-100">
-                        <p className="text-[14px] text-slate-600 leading-relaxed">
-                          {bullet.details}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* PRINCIPLES LAYOUT (Image 1 UI) */}
-            {slide.layout === 'principles' && (
-              <div className="space-y-10 animate-slideUpFade">
-                <div className="space-y-3 mb-8 text-center">
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                  <p className="text-lg text-slate-600">{slide.subtitle}</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                  {slide.bullets?.map((bullet, idx) => {
-                    const icons = [Users, Shield, Eye, Scale, HeartHandshake];
-                    const IconComp = icons[idx] || Users;
-                    const isLastOdd = idx === slide.bullets!.length - 1 && slide.bullets!.length % 2 !== 0;
-
-                    return (
-                      <div
-                        key={idx}
-                        className={`p-6 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col h-full ${
-                          isLastOdd ? 'md:col-span-2 md:w-[calc(50%-12px)] md:mx-auto w-full' : ''
-                        }`}
-                      >
-                        <div className="flex items-center gap-3 pb-3 border-b border-slate-100 shrink-0">
-                          <div className="w-10 h-10 rounded-lg bg-red-50 text-red-800 flex items-center justify-center shrink-0">
-                            <IconComp className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <span className="text-[13px] font-extrabold uppercase tracking-wider text-[#800000] block">
-                              Nguyên tắc {idx + 1}
-                            </span>
-                            <h4 className="font-bold text-slate-900 text-lg">{bullet.title}</h4>
-                          </div>
-                        </div>
-
-                        <div className="flex-1 mt-4">
-                          <p className="text-[15px] font-semibold text-slate-800 leading-relaxed bg-[#f8f6f0] p-4 rounded-xl">
-                            {bullet.desc}
-                          </p>
-                          <div className="space-y-2 pl-2 mt-4">
-                            {bullet.points?.map((pt: string, pIdx: number) => (
-                              <div key={pIdx} className="flex items-start gap-2 text-[15px] text-slate-700">
-                                <span className="text-[#800000] font-bold mt-0.5">•</span>
-                                <span className="leading-relaxed">{pt}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="mt-auto pt-5">
-                          <div className="p-4 rounded-xl bg-[#e6f4ea] border border-[#ceead6] text-[15px] text-[#0d652d] font-medium flex items-center gap-3">
-                            <ArrowRight className="w-5 h-5 text-[#0d652d] shrink-0" />
-                            <span>{bullet.details}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* STANDARDS LAYOUT (Image 2 UI) */}
-            {slide.layout === 'standards' && (
-              <div className="space-y-10 animate-slideUpFade">
-                <div className="space-y-3 mb-8 text-center">
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto items-stretch">
-                  {slide.bullets?.map((bullet, idx) => {
-                    const isLastOdd = idx === slide.bullets!.length - 1 && slide.bullets!.length % 2 !== 0;
-
-                    return (
-                      <div
-                        key={idx}
-                        className={`p-6 rounded-2xl bg-[#f7f5f0] border border-[#e8e4db] flex flex-col h-full shadow-sm hover:shadow-md transition-shadow ${
-                          isLastOdd ? 'md:col-span-2 md:w-[calc(50%-12px)] md:mx-auto w-full' : ''
-                        }`}
-                      >
-                        <div className="flex-1">
-                          <div className="flex items-start gap-4 mb-4">
-                            <span className="w-8 h-8 rounded-lg bg-white border border-[#e8e4db] text-[#800000] font-bold text-[15px] flex items-center justify-center shrink-0 shadow-sm">
-                              {idx + 1}
-                            </span>
-                            <span className="text-[16px] font-bold text-[#800000] leading-snug pt-1">
-                              {bullet.title}
-                            </span>
-                          </div>
-                          <p className="text-[15px] text-slate-700 leading-relaxed pl-12">
-                            {bullet.desc}
-                          </p>
-                        </div>
-
-                        {bullet.details && (
-                          <div className="mt-auto pt-5">
-                            <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
-                              <p className="font-serif-quote italic text-[14px] text-slate-600 leading-relaxed">
-                                {bullet.details}
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* FLIP LAYOUT */}
-            {slide.layout === 'flip' && (
-              <div className="space-y-10 animate-slideUpFade">
-                <div className="space-y-3 mb-10 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-8">
-                  {slide.bullets?.map((bullet, idx) => {
-                    const Icon = bullet.icon && IconMap[bullet.icon] ? IconMap[bullet.icon] : Sparkles;
-                    return (
-                      <div
-                        key={idx}
-                        className="flip-card w-[320px] h-[380px] opacity-0 animate-slideUpFade"
-                        style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
-                      >
-                        <div className="flip-card-inner">
-                          <div className={`flip-card-front rounded-[20px] flex flex-col items-center justify-center p-8 text-center shadow-[0_15px_35px_rgba(0,0,0,0.1)] border-2 bg-[#800000] border-[#D4AF37]`}>
-                            <Icon className="w-16 h-16 text-[#D4AF37] mb-6" />
-                            <h3 className="text-2xl font-bold text-white leading-tight">{bullet.title}</h3>
-                            <div className="mt-8 px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-bold uppercase tracking-widest text-white/80 flex items-center gap-2">
-                              <span>Trỏ chuột lật thẻ</span>
-                            </div>
-                          </div>
-                          <div className={`flip-card-back rounded-[20px] border-2 flex flex-col items-center justify-center p-8 text-center shadow-xl bg-[#D4AF37] border-[#800000]`}>
-                            <p className="text-lg font-bold leading-relaxed text-[#1A2530]">{bullet.desc}</p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* PILLAR LAYOUT */}
-            {slide.layout === 'pillar' && (
-              <div className="space-y-10 animate-slideUpFade">
-                <div className="space-y-3 mb-12 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-6">
-                  {slide.bullets?.map((bullet, idx) => {
-                    const Icon = bullet.icon && IconMap[bullet.icon] ? IconMap[bullet.icon] : Sparkles;
-                    return (
-                      <div
-                        key={idx}
-                        className={`flex-1 min-w-[220px] p-8 rounded-2xl rounded-b-md border-b-[6px] border-b-[#800000] transition-all hover:-translate-y-3 opacity-0 animate-slideUpFade ${themeClasses.card} text-center flex flex-col items-center`}
-                        style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
-                      >
-                        <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-sm border-2 border-[#D4AF37] bg-[#FDFBF7]`}>
-                          <Icon className={`w-8 h-8 text-[#800000]`} />
-                        </div>
-                        <h3 className={`text-lg font-bold mb-4 ${themeClasses.cardTitle}`}>{bullet.title}</h3>
-                        <p className={`text-sm leading-relaxed ${themeClasses.desc}`}>{bullet.desc}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* DISCUSSION LAYOUT */}
-            {slide.layout === 'discussion' && (
-              <div className="space-y-10 animate-slideUpFade max-w-4xl mx-auto">
-                <div className="space-y-3 mb-10 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-
-                <div className="space-y-4">
-                  {slide.bullets?.map((bullet, idx) => {
-                    const Icon = bullet.icon && IconMap[bullet.icon] ? IconMap[bullet.icon] : Sparkles;
-                    const isOpen = openDiscussionId === idx;
-                    return (
-                      <div
-                        key={idx}
-                        className={`rounded-2xl border overflow-hidden transition-all duration-300 opacity-0 animate-slideUpFade bg-white border-[#800000]/20`}
-                        style={{ animationDelay: `${idx * 100}ms`, animationFillMode: 'both', boxShadow: isOpen ? '0 10px 30px rgba(128,0,0,0.08)' : 'none' }}
-                      >
-                        <button
-                          onClick={() => setOpenDiscussionId(isOpen ? null : idx)}
-                          className={`w-full flex items-center justify-between p-5 text-left cursor-pointer transition-colors ${isOpen ? 'bg-[#FDFBF7]' : 'hover:bg-black/5'}`}
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border border-[#D4AF37]/40 ${isOpen ? 'bg-[#800000] text-[#D4AF37]' : 'bg-[#FDFBF7] text-[#800000]'}`}>
-                              <Icon className="w-5 h-5" />
-                            </div>
-                            <h3 className={`font-bold text-lg pr-4 ${themeClasses.cardTitle}`}>{bullet.title}</h3>
-                          </div>
-                          {isOpen ? <ChevronUp className={`w-5 h-5 shrink-0 ${themeClasses.cardTitle}`} /> : <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />}
-                        </button>
-                        
-                        {isOpen && (
-                          <div className={`p-6 pt-2 pl-[88px] animate-fadeIn ${themeClasses.desc}`}>
-                            <div className={`w-8 h-1 bg-[#D4AF37] rounded-full mb-3`}></div>
-                            <p className="text-lg leading-relaxed">{bullet.desc}</p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* GRID LAYOUT (GENERIC WITH VARIANTS) */}
-            {slide.layout === 'grid' && (
-              <div className="space-y-10 animate-slideUpFade">
-                <div className="space-y-3 mb-10 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-
-                <div
-                  className={`grid gap-6 items-stretch ${
-                    slide.bullets?.length === 2
-                      ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
-                      : slide.bullets?.length === 4
-                      ? 'grid-cols-1 sm:grid-cols-2'
-                      : slide.bullets?.length === 5
-                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-                      : slide.bullets?.length === 7
-                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                      : 'grid-cols-1 md:grid-cols-3'
-                  }`}
-                >
-                  {slide.bullets?.map((bullet, idx) => {
-                    const Icon = bullet.icon && IconMap[bullet.icon] ? IconMap[bullet.icon] : Sparkles;
-                    const variant = slide.cardVariant || 'feature';
-                    
-                    return (
-                      <div
-                        key={idx}
-                        className={`p-6 rounded-3xl transition-all duration-300 flex flex-col relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg opacity-0 animate-slideUpFade h-full ${themeClasses.card}`}
-                        style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
-                      >
-                        {variant === 'principle' && (
-                          <div className="flex-1 flex flex-col">
-                            <h3 className={`text-xl font-bold mb-3 leading-snug ${themeClasses.title}`}>{bullet.title}</h3>
-                            <p className={`text-[15px] leading-relaxed ${themeClasses.desc}`}>{bullet.desc}</p>
-                          </div>
-                        )}
-
-                        {variant === 'info' && (
-                          <div className="flex-1 flex flex-col">
-                            <div className="flex items-start gap-3 mb-2">
-                              <div className={`mt-0.5 shrink-0 ${themeClasses.title}`}>
-                                <Icon className="w-5 h-5" />
-                              </div>
-                              <h3 className={`text-lg font-bold leading-snug ${themeClasses.cardTitle}`}>{bullet.title}</h3>
-                            </div>
-                            <p className={`text-[15px] leading-relaxed pl-8 ${themeClasses.desc}`}>{bullet.desc}</p>
-                          </div>
-                        )}
-
-                        {variant === 'feature' && (
-                          <div className="flex-1 flex flex-col">
-                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 shrink-0 shadow-sm transition-transform group-hover:scale-110 ${themeClasses.iconBox}`}>
-                              <Icon className="w-6 h-6" />
-                            </div>
-                            <h3 className={`text-lg font-bold mb-2 ${themeClasses.cardTitle}`}>{bullet.title}</h3>
-                            <p className={`text-[14px] leading-relaxed ${themeClasses.desc}`}>{bullet.desc}</p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* CONTENT LAYOUT */}
-            {slide.layout === 'content' && (
-              <div className="space-y-6 animate-slideUpFade">
-                <div className="space-y-3 mb-10 text-center">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-                <div className="space-y-4 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
-                  {slide.content?.map((text, idx) => (
-                    <p key={idx} className={themeClasses.desc}>{text}</p>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* FORMULA LAYOUT */}
-            {slide.layout === 'formula' && (
-              <div className="space-y-6 animate-slideUpFade">
-                <div className="text-center mb-10 space-y-3">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-                <div className={`p-8 rounded-3xl ${themeClasses.card}`}>
-                  <CreativeFormula />
-                </div>
-              </div>
-            )}
-
-            {/* COMPARISON LAYOUT */}
-            {slide.layout === 'comparison' && (
-              <div className={`animate-slideUpFade ${slide.imagePlaceholder ? 'grid grid-cols-1 md:grid-cols-12 gap-12 items-center' : 'space-y-10'}`}>
-                <div className={slide.imagePlaceholder ? 'md:col-span-7 space-y-8' : 'space-y-10'}>
-                  <div className="space-y-3">
-                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                      {slide.subtitle}
-                    </span>
-                    <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                  </div>
-
-                  <div className={slide.imagePlaceholder ? 'space-y-5' : 'grid grid-cols-1 md:grid-cols-2 gap-6'}>
-                    {slide.bullets?.map((b, idx) => {
-                      const Icon = b.icon && IconMap[b.icon] ? IconMap[b.icon] : Sparkles;
-                      return (
-                        <div 
-                          key={idx} 
-                          className={`p-6 rounded-3xl flex gap-4 justify-start relative overflow-hidden group hover:-translate-y-1 hover:shadow-xl transition-all opacity-0 animate-slideUpFade ${themeClasses.card}`}
-                          style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
-                        >
-                          <div className={`w-12 h-12 rounded-xl shrink-0 flex items-center justify-center shadow-sm ${themeClasses.iconBox}`}>
-                            <Icon className="w-6 h-6" />
-                          </div>
-                          <div>
-                            <div className={`text-sm font-bold uppercase tracking-wider mb-2 relative z-10 text-[#800000]`}>
-                              {b.title}
-                            </div>
-                            <p className={`text-sm leading-relaxed relative z-10 ${themeClasses.desc}`}>{b.desc}</p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {slide.imagePlaceholder && (
-                  <div className="md:col-span-5 opacity-0 animate-fadeInScale" style={{ animationDelay: '300ms' }}>
-                    <ImagePlaceholder
-                      label={slide.imagePlaceholder.label}
-                      prompt={slide.imagePlaceholder.prompt}
-                      imageUrl={slide.imagePlaceholder.imageUrl}
-                      aspectRatio="landscape"
-                      className="bg-white border-[#800000]/10 rounded-3xl"
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* TIMELINE LAYOUT */}
-            {slide.layout === 'timeline' && (
-              <div className="space-y-8 animate-slideUpFade">
-                <div className="text-center mb-8 space-y-3">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${themeClasses.subtitleBadge}`}>
-                    {slide.subtitle}
-                  </span>
-                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
-                </div>
-                <div className={`p-6 md:p-8 rounded-3xl ${themeClasses.card}`}>
-                  <TimelineView />
-                </div>
-              </div>
-            )}
+              <p className="italic text-slate-900 text-lg md:text-xl font-bold">
+                "Đảng có vững, cách mệnh mới thành công, cũng như người cầm lái có vững thuyền mới chạy."
+              </p>
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed pt-2">
+                Hồ Chí Minh đã dùng hình tượng chiếc thuyền vượt sóng gió và người cầm lái để nhấn mạnh: phong trào cách mạng của quần chúng nếu không có một bộ tham mưu sáng suốt, kiên định dẫn đường thì sẽ mất phương hướng, tan rã trước phong ba bão táp.
+              </p>
+            </div>
           </div>
         </div>
+      );
+    }
 
-        {/* SPEAKER NOTES DRAWER */}
-        {showNotes && (
-          <div className="absolute right-6 top-6 w-80 bg-[#FDFBF7]/95 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(128,0,0,0.15)] border border-[#800000]/20 p-6 flex flex-col justify-between animate-fadeInScale z-50 text-[#1A2530]">
+    // 3. VERTICAL PROGRESSION (Slide 3)
+    if (slide.id === 'slide-3') {
+      return (
+        <div className="w-full max-w-5xl mx-auto space-y-6 animate-slideUpFade">
+          <div className="flex items-center gap-4 pb-3 border-b border-slate-200">
+            <span className="w-10 h-10 rounded-xl bg-[#800000] text-white font-bold flex items-center justify-center text-lg shadow-sm">
+              I
+            </span>
             <div>
-              <div className="flex items-center justify-between pb-3 border-b border-[#800000]/10 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#800000] flex items-center gap-1.5">
-                  <FileText className="w-4 h-4" /> Ghi chú
-                </span>
-                <button
-                  onClick={() => setShowNotes(false)}
-                  className="text-[#1A2530]/50 hover:text-[#800000] hover:bg-[#800000]/5 p-1 rounded-md transition-all cursor-pointer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+              <h3 className="text-2xl font-bold text-slate-900">
+                Tính tất yếu của sự ra đời và vai trò hạt nhân của Đảng
+              </h3>
+              <p className="text-sm text-slate-500 mt-1">Đảng là điều kiện tiên quyết của cách mạng và là người cầm lái con thuyền dân tộc</p>
+            </div>
+          </div>
+
+          <div className="bg-[#fdfbf7] rounded-xl border border-[#e8e4db] p-8 shadow-sm">
+            <div className="flex items-center gap-3 text-red-900 font-bold text-sm uppercase tracking-wider border-b border-slate-200 pb-4 mb-6">
+              <Anchor className="w-5 h-5 text-red-800" />
+              <span>2. Vai trò hạt nhân xuyên suốt của Đảng</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Khách quan */}
+              <div className="p-6 rounded-xl bg-[#f7f5f0] border border-slate-200/80 shadow-sm flex flex-col h-full">
+                <div>
+                  <span className="text-sm font-bold px-3 py-1.5 rounded-md bg-slate-200 text-slate-800 inline-block">Khách quan</span>
+                  <h5 className="font-bold text-slate-900 text-lg md:text-xl mt-5 mb-4 leading-snug">Tính tất yếu khách quan</h5>
+                  <p className="text-base text-slate-700 leading-relaxed">
+                    Sự lãnh đạo của Đảng là tất yếu khách quan, bắt nguồn trực tiếp từ yêu cầu giải phóng dân tộc khỏi ách nô lệ và khát vọng phát triển của non sông đất nước.
+                  </p>
+                </div>
               </div>
-              <div className="text-sm leading-relaxed space-y-3 font-medium">
-                <p>{slide.notes || 'Không có ghi chú riêng cho trang này.'}</p>
+              {/* Quyết định */}
+              <div className="p-6 rounded-xl bg-[#f7f5f0] border border-slate-200/80 shadow-sm flex flex-col h-full">
+                <div>
+                  <span className="text-sm font-bold px-3 py-1.5 rounded-md bg-blue-100 text-blue-800 inline-block">Quyết định</span>
+                  <h5 className="font-bold text-slate-900 text-lg md:text-xl mt-5 mb-4 leading-snug">Quyết định cả hai giai đoạn cách mạng</h5>
+                  <p className="text-base text-slate-700 leading-relaxed">
+                    Đảng giữ vai trò nhân tố quyết định thắng lợi trong cả hai bước ngoặt vĩ đại: Cách mạng dân tộc dân chủ nhân dân (giành độc lập) và Cách mạng xã hội chủ nghĩa (xây dựng đất nước tự do, phồn vinh).
+                  </p>
+                </div>
+              </div>
+              {/* Cốt lõi */}
+              <div className="p-6 rounded-xl bg-[#f7f5f0] border border-slate-200/80 shadow-sm flex flex-col h-full">
+                <div>
+                  <span className="text-sm font-bold px-3 py-1.5 rounded-md bg-red-100 text-red-800 inline-block">Cốt lõi</span>
+                  <h5 className="font-bold text-slate-900 text-lg md:text-xl mt-5 mb-4 leading-snug">Mục tiêu cốt lõi bất biến</h5>
+                  <p className="text-base text-slate-700 leading-relaxed">
+                    Bảo đảm sự phát triển của đất nước theo mục tiêu "Độc lập dân tộc gắn liền với chủ nghĩa xã hội" là nguyên tắc vận hành cốt lõi và ngọn cờ xuyên suốt từ ngày đầu thành lập.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        )}
-      </div>
-
-      {/* BOTTOM SLIDE CONTROLS (OLD DESIGN RESTORED) */}
-      <div className="h-16 px-6 bg-slate-900 border-t border-slate-800 flex items-center justify-between z-20 shrink-0">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handlePrev}
-            disabled={currentSlideIndex === 0}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-              currentSlideIndex === 0
-                ? 'opacity-30 cursor-not-allowed text-slate-500'
-                : 'bg-slate-800 hover:bg-slate-700 text-white'
-            }`}
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">Trang trước</span>
-          </button>
         </div>
+      );
+    }
 
-        <div className="flex items-center gap-4">
-          <span className="text-xs font-bold text-slate-300">
-            {currentSlideIndex + 1} <span className="text-slate-600">/</span> {totalSlides}
-          </span>
-          <div className="hidden sm:flex gap-1">
-            {PRESENTATION_SLIDES.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlideIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                  currentSlideIndex === idx ? 'w-6 bg-red-600' : 'bg-slate-700 hover:bg-slate-500'
-                }`}
-                title={`Trang ${idx + 1}`}
-              />
+    // 4. CREATIVE FORMULA (Slide 4)
+    if (slide.id === 'slide-4') {
+      return (
+        <div className="w-full max-w-5xl mx-auto space-y-6 animate-slideUpFade">
+          <div className="flex items-center gap-4 pb-3 border-b border-slate-200">
+            <span className="w-10 h-10 rounded-xl bg-[#800000] text-white font-bold flex items-center justify-center text-lg shadow-sm">
+              II
+            </span>
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900">
+                Quy luật ra đời mang tính sáng tạo của Đảng Cộng sản Việt Nam
+              </h3>
+              <p className="text-sm text-slate-500 mt-1">Mô hình 3 thành tố: Bổ sung Phong trào yêu nước vào lý luận thành lập Đảng</p>
+            </div>
+          </div>
+          <CreativeFormula />
+        </div>
+      );
+    }
+
+    // 6. COMPARISON (Slide 6)
+    if (slide.id === 'slide-6') {
+      return (
+        <div className="w-full max-w-5xl mx-auto space-y-6 animate-slideUpFade">
+          <div className="flex items-center gap-4 pb-3 border-b border-slate-200">
+            <span className="w-10 h-10 rounded-xl bg-[#800000] text-white font-bold flex items-center justify-center text-lg shadow-sm">
+              III
+            </span>
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900">
+                Giá trị lý luận và ý nghĩa thực tiễn
+              </h3>
+              <p className="text-sm text-slate-500 mt-1">Đóng góp cho lý luận cách mạng giải phóng dân tộc và bước ngoặt cứu nước</p>
+            </div>
+          </div>
+          
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-px ${isDark ? 'bg-red-800/50' : 'bg-[#800000]/10'} rounded-3xl overflow-hidden shadow-sm`}>
+            {slide.bullets?.map((b: any, i: number) => (
+              <div key={i} className={`${isDark ? 'bg-red-900/60 hover:bg-red-900/80' : 'bg-white hover:bg-[#fdfbf7]'} p-10 md:p-12 transition-colors`}>
+                <div className={`text-sm font-bold ${isDark ? 'text-red-300 border-red-400/50' : 'text-[#800000] border-[#800000]'} uppercase tracking-widest mb-6 inline-block border-b-2 pb-2`}>
+                  {b.title}
+                </div>
+                <p className={`text-lg ${isDark ? 'text-red-100' : 'text-slate-700'} leading-relaxed`}>{b.desc}</p>
+              </div>
             ))}
           </div>
         </div>
+      );
+    }
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowNotes(!showNotes)}
-            className={`p-2 rounded-lg transition-colors cursor-pointer ${showNotes ? 'bg-amber-500 text-slate-900' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}`}
-            title="Ghi chú"
-          >
-            <FileText className="w-4 h-4" />
-          </button>
+    // 7. MODERN ACADEMIC SECTION HEADER (Slide 1b and Slide 7)
+    if (slide.id === 'slide-1b' || slide.id === 'slide-7') {
+      const isSlide1b = slide.id === 'slide-1b';
+      const sectionNum = isSlide1b ? '4 · 1 · 1' : '4 · 1 · 2';
+      const subtitle = isSlide1b
+        ? 'Quy luật ra đời và vai trò hạt nhân lãnh đạo sự nghiệp cách mạng'
+        : 'Nền tảng giữ vững vai trò lãnh đạo và hoàn thành nhiệm vụ cách mạng';
 
-          <button
-            onClick={toggleFullscreen}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
-            title="Toàn màn hình"
-          >
-            {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-          </button>
+      return (
+        <div className="w-full max-w-4xl mx-auto animate-slideUpFade">
+          <div className="relative bg-white/90 backdrop-blur-xs rounded-2xl md:rounded-3xl border border-slate-200/80 shadow-xs py-14 px-8 sm:px-12 md:px-16 overflow-hidden text-center">
+            {/* Subtle background dot grid pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none"></div>
 
-          <button
-            onClick={handleNext}
-            disabled={currentSlideIndex === totalSlides - 1}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer sm:ml-2 ${
-              currentSlideIndex === totalSlides - 1
-                ? 'opacity-30 cursor-not-allowed text-slate-500'
-                : 'bg-red-700 hover:bg-red-600 text-white shadow-md'
-            }`}
-          >
-            <span className="hidden sm:inline">Trang kế</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
+            <div className="relative z-10 space-y-6">
+              {/* Section number pill */}
+              <div>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50/80 border border-red-100 text-[#800000] font-bold text-xs md:text-sm tracking-[0.25em] uppercase shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#800000]"></span>
+                  MỤC {sectionNum}
+                </span>
+              </div>
+
+              {/* Main Title with balanced responsive typography */}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.3] max-w-3xl mx-auto uppercase">
+                {isSlide1b ? (
+                  <>
+                    Tính tất yếu và vai trò lãnh đạo <br className="hidden sm:inline" />
+                    của Đảng Cộng sản Việt Nam
+                  </>
+                ) : (
+                  'Đảng phải trong sạch, vững mạnh'
+                )}
+              </h1>
+
+              {/* Minimalist Accent line with dot */}
+              <div className="flex items-center justify-center gap-2 pt-1 pb-1">
+                <div className="w-10 h-px bg-slate-200"></div>
+                <div className="w-2 h-2 rounded-full bg-[#800000]/70"></div>
+                <div className="w-10 h-px bg-slate-200"></div>
+              </div>
+
+              {/* Subtitle */}
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+                {subtitle}
+              </p>
+            </div>
+          </div>
         </div>
+      );
+    }
+
+    // 8. EDITORIAL LIST (Slide 8)
+    if (slide.id === 'slide-8') {
+      return (
+        <div className="w-full max-w-4xl animate-slideUpFade">
+          <h2 className={`text-3xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-16`}>{slide.title}</h2>
+          <div className="space-y-16">
+            {slide.bullets?.map((b: any, i: number) => (
+              <div key={i}>
+                <div className="flex items-center gap-6 mb-6">
+                  <span className={`text-3xl ${isDark ? 'text-red-400' : 'text-[#800000]'} italic font-bold`}>0{i+1}</span>
+                  <div className={`flex-1 h-px ${isDark ? 'bg-red-800/50' : 'bg-[#800000]/20'}`}></div>
+                </div>
+                <h3 className={`text-2xl font-bold ${isDark ? 'text-red-100' : 'text-slate-900'} mb-6`}>{b.title}</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <p className={`text-[16px] font-medium ${isDark ? 'text-red-100/90 border-red-800' : 'text-slate-800 border-slate-200'} leading-relaxed border-l-2 pl-4`}>{b.desc}</p>
+                  <p className={`text-[16px] ${isDark ? 'text-red-200/80 border-red-500/30 bg-red-900/30' : 'text-slate-600 border-[#800000]/20 bg-[#f7f5f0]'} leading-relaxed border-l-2 pl-4 p-4 rounded-r-xl`}>{b.details}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 9. SIX POINT GRID (Slide 9)
+    if (slide.id === 'slide-9') {
+      return (
+        <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
+          <h2 className={`text-3xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-6 text-center`}>{slide.title}</h2>
+          <p className={`text-xl ${isDark ? 'text-red-200' : 'text-slate-600'} mb-20 text-center`}>{slide.subtitle}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+            {slide.bullets?.map((b: any, i: number) => (
+              <div key={i} className={`relative pt-6 border-t-2 ${isDark ? 'border-red-800/50 hover:border-red-400' : 'border-slate-200 hover:border-[#800000]'} transition-colors group`}>
+                <div className={`absolute top-0 right-0 -mt-10 text-6xl font-black ${isDark ? 'text-red-900/30 group-hover:text-red-800/50' : 'text-slate-100 group-hover:text-[#800000]/5'} transition-colors -z-10`}>
+                  0{i+1}
+                </div>
+                <h3 className={`text-lg font-bold ${isDark ? 'text-red-300' : 'text-[#800000]'} mb-4 leading-snug pr-8`}>{b.title}</h3>
+                <p className={`${isDark ? 'text-red-100/70' : 'text-slate-600'} leading-relaxed text-[15px]`}>{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 9b. PREMIUM E-LEARNING LEARNING POINTS (Slide 9b / Page 11)
+    if (slide.id === 'slide-9b') {
+      const risks = [
+        {
+          num: '01',
+          title: 'Mất vai trò lãnh đạo',
+          desc: 'Đánh mất niềm tin thiêng liêng của nhân dân và vị thế hạt nhân tiên phong dẫn đường.',
+        },
+        {
+          num: '02',
+          title: 'Trở nên không trong sạch, vững mạnh',
+          desc: 'Nội bộ bị suy giảm sức chiến đấu, kỷ luật buông lỏng và thiếu tính nhất quán.',
+        },
+        {
+          num: '03',
+          title: 'Cán bộ, đảng viên thoái hóa, biến chất',
+          desc: 'Sa vào chủ nghĩa cá nhân, tham ô, lãng phí, quan liêu và xa rời quần chúng nhân dân.',
+        },
+        {
+          num: '04',
+          title: 'Nguy cơ mất thành quả cách mạng',
+          desc: 'Thành quả xương máu đấu tranh của bao thế hệ có nguy cơ bị hủy hoại từ bên trong.',
+        },
+      ];
+
+      return (
+        <div className="w-full max-w-4xl mx-auto space-y-7 animate-slideUpFade px-4">
+          {/* Header Context */}
+          <div className="space-y-3 text-center sm:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.25]">
+              Vì sao phải xây dựng Đảng trong sạch, vững mạnh?
+            </h1>
+
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+              Nếu Đảng không có đạo đức, không giữ vững tính văn minh, tổ chức sẽ đối mặt với 4 nguy cơ cốt tử:
+            </p>
+          </div>
+
+          {/* 4 Learning Cards in a 2x2 Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {risks.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-xs hover:border-[#800000]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-black text-[#800000] bg-red-50 border border-red-100 px-2.5 py-1 rounded-md">
+                      NGUY CƠ {item.num}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-red-500 opacity-60 group-hover:opacity-100 transition-opacity"></span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 10. PRINCIPLES LAYOUT (Slide 10)
+    if (slide.id === 'slide-10') {
+      return (
+        <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
+          <div className="space-y-3 mb-16 text-center">
+            <h2 className={`text-3xl md:text-5xl font-extrabold ${isDark ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h2>
+            <p className={`text-lg ${isDark ? 'text-red-200' : 'text-slate-600'} mt-4`}>{slide.subtitle}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {slide.bullets?.map((bullet: any, idx: number) => {
+              const icons = [Users, Shield, Eye, Scale, HeartHandshake];
+              const IconComp = icons[idx] || Users;
+              const isLastOdd = idx === slide.bullets!.length - 1 && slide.bullets!.length % 2 !== 0;
+
+              return (
+                <div key={idx} className={`p-8 rounded-3xl ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-[#e8e4db]'} shadow-sm flex flex-col h-full ${isLastOdd ? 'md:col-span-2 md:w-[calc(50%-16px)] md:mx-auto w-full' : ''}`}>
+                  <div className={`flex items-center gap-4 pb-4 border-b ${isDark ? 'border-red-800/50' : 'border-slate-100'} shrink-0`}>
+                    <div className={`w-12 h-12 rounded-xl ${isDark ? 'bg-red-900/50 text-red-300' : 'bg-red-50 text-[#800000]'} flex items-center justify-center shrink-0`}>
+                      <IconComp className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span className={`text-sm font-extrabold uppercase tracking-wider ${isDark ? 'text-red-400' : 'text-[#800000]'} block mb-1`}>Nguyên tắc {idx + 1}</span>
+                      <h4 className={`font-bold ${isDark ? 'text-red-100' : 'text-slate-900'} text-lg`}>{bullet.title}</h4>
+                    </div>
+                  </div>
+                  <div className="flex-1 mt-6">
+                    <p className={`text-[15px] font-semibold ${isDark ? 'text-red-100/90 bg-red-900/40' : 'text-slate-800 bg-[#f7f5f0]'} leading-relaxed p-5 rounded-xl`}>
+                      {bullet.desc}
+                    </p>
+                    <div className="space-y-3 pl-2 mt-6">
+                      {bullet.points?.map((pt: string, pIdx: number) => (
+                        <div key={pIdx} className={`flex items-start gap-3 text-[15px] ${isDark ? 'text-red-200/80' : 'text-slate-700'}`}>
+                          <span className={`${isDark ? 'text-red-400' : 'text-[#800000]'} font-bold mt-0.5`}>•</span>
+                          <span className="leading-relaxed">{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-auto pt-6">
+                    <div className={`p-5 rounded-xl ${isDark ? 'bg-emerald-900/30 border-emerald-800/50 text-emerald-300' : 'bg-[#e6f4ea]/50 border-[#ceead6] text-[#0d652d]'} text-[15px] font-medium flex items-center gap-3`}>
+                      <ArrowRight className="w-5 h-5 shrink-0" />
+                      <span>{bullet.details}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // 11. STANDARDS LAYOUT (Slide 11)
+    if (slide.id === 'slide-11') {
+      return (
+        <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
+          <div className="space-y-3 mb-16 text-center">
+            <h2 className={`text-3xl md:text-5xl font-extrabold ${isDark ? 'text-white' : 'text-slate-900'}`}>{slide.title}</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+            {slide.bullets?.map((bullet: any, idx: number) => {
+              const isLastOdd = idx === slide.bullets!.length - 1 && slide.bullets!.length % 2 !== 0;
+              return (
+                <div key={idx} className={`p-8 rounded-3xl ${isDark ? 'bg-red-900/20 border-red-800/50' : 'bg-[#f7f5f0] border-[#e8e4db]'} flex flex-col h-full shadow-sm hover:shadow-md transition-shadow border ${isLastOdd ? 'md:col-span-2 md:w-[calc(50%-16px)] md:mx-auto w-full' : ''}`}>
+                  <div className="flex-1">
+                    <div className="flex items-start gap-5 mb-5">
+                      <span className={`w-10 h-10 rounded-xl ${isDark ? 'bg-red-900/50 border-red-800 text-red-300' : 'bg-white border-[#e8e4db] text-[#800000]'} font-bold text-lg flex items-center justify-center shrink-0 shadow-sm border`}>
+                        {idx + 1}
+                      </span>
+                      <span className={`text-[17px] font-bold ${isDark ? 'text-red-300' : 'text-[#800000]'} leading-snug pt-1.5`}>
+                        {bullet.title}
+                      </span>
+                    </div>
+                    <p className={`text-[15px] ${isDark ? 'text-red-100' : 'text-slate-700'} leading-relaxed pl-15`}>
+                      {bullet.desc}
+                    </p>
+                  </div>
+                  {bullet.details && (
+                    <div className="mt-auto pt-6">
+                      <div className={`p-5 rounded-xl ${isDark ? 'bg-red-900/40 border-red-800' : 'bg-white border-slate-200/80'} shadow-sm border`}>
+                        <p className={`italic text-[15px] ${isDark ? 'text-red-200/80' : 'text-slate-600'} leading-relaxed`}>
+                          "{bullet.details}"
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // 12. WARNING SECTION (Slide 12)
+    if (slide.id === 'slide-12') {
+      return (
+        <div className="w-full max-w-4xl mx-auto bg-[#800000] text-white p-12 md:p-16 rounded-[3rem] shadow-xl relative overflow-hidden animate-slideUpFade">
+          <div className="absolute -top-24 -right-24 text-white/5">
+            <AlertTriangle className="w-96 h-96" />
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center gap-6 mb-12 relative z-10">
+            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
+              <AlertTriangle className="w-8 h-8 text-red-200" />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-2">{slide.title}</h2>
+              <p className="text-red-200/80 text-lg">{slide.subtitle}</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
+            {slide.bullets?.map((b: any, i: number) => (
+              <div key={i} className="border-l-2 border-red-400/30 pl-6 hover:border-red-400 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2">{b.title}</h3>
+                <p className="text-white/70 leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 13. SIX POINT FRAMEWORK (Slide 12b)
+    if (slide.id === 'slide-12b') {
+      return (
+        <div className="w-full max-w-3xl mx-auto animate-slideUpFade">
+          <h2 className={`text-3xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-16 text-center`}>{slide.title}</h2>
+          <div className="space-y-4">
+            {slide.bullets?.map((b: any, i: number) => (
+              <div key={i} className="flex flex-col items-center">
+                <div className={`w-full ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-[#e8e4db]'} px-8 py-6 rounded-2xl shadow-sm text-center relative z-10 group hover:border-[#800000]/50 transition-colors border`}>
+                  <h3 className={`text-xl font-bold ${isDark ? 'text-red-300' : 'text-[#800000]'} mb-2`}>{b.title}</h3>
+                  <p className={`${isDark ? 'text-red-100/80' : 'text-slate-600'} text-[15px]`}>{b.desc}</p>
+                </div>
+                {i < slide.bullets!.length - 1 && (
+                  <div className={`h-8 w-px ${isDark ? 'bg-red-500/30' : 'bg-[#800000]/30'} my-2 relative`}>
+                     <ArrowDown className={`w-4 h-4 ${isDark ? 'text-red-400/50' : 'text-[#800000]/50'} absolute -bottom-4 -left-[7px]`} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 14. REFLECTION ACCORDION (Slide 13)
+    if (slide.id === 'slide-13') {
+      return (
+        <div className="w-full max-w-3xl mx-auto space-y-6 animate-slideUpFade">
+          <h2 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-8`}>{slide.title}</h2>
+          <p className={`text-lg ${isDark ? 'text-red-200' : 'text-slate-600'} mb-12`}>{slide.subtitle}</p>
+          <div className="space-y-4">
+            {slide.bullets?.map((b: any, i: number) => {
+              const isOpen = openAccordion === `${slide.id}-${i}`;
+              return (
+                <div key={i} className={`${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-[#e8e4db]'} rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md border`}>
+                  <button 
+                    onClick={() => setOpenAccordion(isOpen ? null : `${slide.id}-${i}`)}
+                    className={`w-full flex items-center justify-between p-6 text-left ${isDark ? 'hover:bg-red-900/50' : 'hover:bg-[#fdfbf7]'} transition-colors`}
+                  >
+                    <span className={`font-bold text-lg ${isDark ? 'text-red-100' : 'text-slate-900'} pr-8`}>{b.title}</span>
+                    <div className={`shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-transform duration-300 ${isOpen ? 'bg-[#800000] text-white border-[#800000] rotate-180' : 'border-slate-200 text-slate-400'}`}>
+                      <ArrowDown className="w-4 h-4" />
+                    </div>
+                  </button>
+                  {isOpen && (
+                    <div className={`px-6 pb-6 ${isDark ? 'text-red-200/80 bg-red-900/20' : 'text-slate-600 bg-[#f7f5f0]/50'} leading-relaxed text-[15px]`}>
+                      <div className={`h-px w-full ${isDark ? 'bg-red-800/50' : 'bg-slate-200'} mb-6`}></div>
+                      <p className="mb-4">{b.desc}</p>
+                      {b.details && <p className="italic opacity-80">"{b.details}"</p>}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // 15. HISTORICAL TIMELINE (Slide 14)
+    if (slide.id === 'slide-14') {
+      return (
+        <div className="w-full max-w-5xl mx-auto overflow-x-auto pb-8 animate-slideUpFade">
+          <h2 className={`text-3xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-6 text-center`}>{slide.title}</h2>
+          <p className={`text-lg ${isDark ? 'text-red-200' : 'text-slate-600'} mb-20 text-center`}>{slide.subtitle}</p>
+          <div className="flex flex-col md:flex-row gap-8 relative min-w-[800px] md:min-w-0">
+            <div className={`hidden md:block absolute top-[28px] left-0 w-full h-px ${isDark ? 'bg-red-800/50' : 'bg-[#800000]/20'} -z-10`}></div>
+            {slide.bullets?.map((b: any, i: number) => {
+              const yearMatch = b.title.match(/^[0-9–-]+/);
+              const yearStr = yearMatch ? yearMatch[0] : `Mốc ${i+1}`;
+              const titleRest = b.title.replace(yearStr, '').replace(/^:\s*/, '').trim();
+
+              return (
+                <div key={i} className={`flex-1 relative ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-slate-100'} md:bg-transparent p-6 md:p-0 rounded-2xl md:rounded-none border md:border-none shadow-sm md:shadow-none`}>
+                  <div className={`w-14 h-14 ${isDark ? 'bg-red-950 border-red-400 text-red-300' : 'bg-[#fdfbf7] border-[#800000] text-[#800000]'} border-4 rounded-full flex items-center justify-center text-sm font-bold mb-6 shadow-sm mx-auto md:mx-0`}>
+                    {yearStr.split('–')[0]}
+                  </div>
+                  <h3 className={`font-bold ${isDark ? 'text-red-100' : 'text-slate-900'} mb-3 text-lg leading-snug`}>{titleRest || b.title}</h3>
+                  <p className={`text-[14px] ${isDark ? 'text-red-200/80' : 'text-slate-600'} leading-relaxed`}>{b.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // Fallback for slide-15 (TimelineView)
+    if (slide.id === 'slide-15') {
+      return (
+        <div className="w-full max-w-4xl mx-auto animate-slideUpFade">
+          <TimelineView />
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${isDark ? 'bg-red-950 text-slate-100' : 'bg-[#fdfbf7] text-slate-900'}`}>
+      {/* MAIN CONTENT AREA */}
+      <div className="flex-1 w-full flex items-center justify-center py-12 px-6 pb-32 overflow-y-auto">
+        {renderSlideContent()}
       </div>
 
+      {/* BOTTOM CONTROL BAR */}
+      <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-white/10 px-4 md:px-8 py-3.5 flex items-center justify-between z-50 gap-4">
+        {/* Previous Button */}
+        <button
+          onClick={handlePrev}
+          disabled={currentSlideIndex === 0}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-full transition-all duration-200 shrink-0 ${
+            currentSlideIndex === 0
+              ? 'text-slate-600 cursor-not-allowed'
+              : 'text-white hover:bg-white/10 active:scale-95'
+          }`}
+          title="Trang trước (Mũi tên Trái)"
+        >
+          <ChevronLeft className="w-5 h-5" />
+          <span className="font-semibold text-sm hidden md:inline">Trang trước</span>
+        </button>
+
+        {/* Center: Bullets Navigation & Page Counter */}
+        <div className="flex items-center gap-3 sm:gap-5 overflow-hidden max-w-2xl px-2">
+          {/* Bullets row */}
+          <div className="flex items-center gap-1.5 overflow-x-auto py-1.5 px-2 max-w-full scrollbar-none">
+            {PRESENTATION_SLIDES.map((s, idx) => {
+              const isActive = idx === currentSlideIndex;
+              return (
+                <button
+                  key={s.id || idx}
+                  onClick={() => setCurrentSlideIndex(idx)}
+                  className={`transition-all duration-300 rounded-full shrink-0 ${
+                    isActive
+                      ? 'w-7 h-2.5 bg-red-500 shadow-sm'
+                      : 'w-2.5 h-2.5 bg-slate-600 hover:bg-slate-300 hover:scale-125'
+                  }`}
+                  title={`Trang ${idx + 1}: ${s.title}`}
+                  aria-label={`Chuyển đến trang ${idx + 1}`}
+                />
+              );
+            })}
+          </div>
+
+          {/* Page count text */}
+          <div className="text-slate-400 text-xs sm:text-sm font-medium shrink-0 whitespace-nowrap">
+            <span className="text-white font-bold">{currentSlideIndex + 1}</span> / {totalSlides}
+          </div>
+        </div>
+
+        {/* Next Button */}
+        <button
+          onClick={handleNext}
+          disabled={currentSlideIndex === totalSlides - 1}
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-full transition-all duration-200 shrink-0 ${
+            currentSlideIndex === totalSlides - 1
+              ? 'text-slate-600 cursor-not-allowed'
+              : 'text-white hover:bg-white/10 active:scale-95'
+          }`}
+          title="Trang sau (Mũi tên Phải / Phím Cách)"
+        >
+          <span className="font-semibold text-sm hidden md:inline">Trang sau</span>
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
     </div>
   );
 };

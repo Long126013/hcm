@@ -420,7 +420,7 @@ export const CONTENT_412 = {
       corePrincipleQuote: 'Đảng không che giấu những khuyết điểm của mình, không sợ phê bình. Đảng phải nhận khuyết điểm của mình mà tự sửa chữa.',
     },
     cadreWork: {
-      title: 'Công Tác Cán Bộ (Yếu Tố Quyết Định Thành Bại)',
+      title: 'Công Tác Cán Bộ',
       famousQuote: 'Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.',
       requirements: [
         {
@@ -502,6 +502,14 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     notes: 'Lời mở đầu: Giới thiệu chuyên đề Chương 4 môn Tư tưởng Hồ Chí Minh, trọng tâm nghiên cứu về Đảng cầm quyền và Nhà nước pháp quyền xã hội chủ nghĩa.',
   },
   {
+    id: 'slide-1b',
+    sectionCode: '4.1.1',
+    sectionTitle: 'Tính tất yếu và vai trò lãnh đạo của Đảng Cộng sản Việt Nam',
+    title: 'Tính tất yếu và vai trò lãnh đạo của Đảng Cộng sản Việt Nam',
+    subtitle: 'Quy luật ra đời và vai trò hạt nhân lãnh đạo sự nghiệp cách mạng',
+    layout: 'section_divider',
+  },
+  {
     id: 'slide-2',
     sectionCode: '4.1.1',
     sectionTitle: 'Tính tất yếu và vai trò lãnh đạo của Đảng',
@@ -556,33 +564,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     notes: 'Trình bày mô hình 3 thành tố: Chủ nghĩa Mác Lênin + Phong trào công nhân + Phong trào yêu nước.',
   },
   {
-    id: 'slide-5',
-    sectionCode: '4.1.1',
-    sectionTitle: 'Quy luật ra đời mang tính sáng tạo',
-    title: 'Cơ sở khoa học bổ sung "Phong trào yêu nước"',
-    subtitle: '3 yếu tố thực tiễn lịch sử sâu sắc',
-    layout: 'grid',
-    cardVariant: 'info',
-    bullets: [
-      {
-        title: 'Bối cảnh thuộc địa nửa phong kiến',
-        desc: 'Mâu thuẫn hàng đầu là toàn thể dân tộc chống thực dân, không phải mâu thuẫn giai cấp vô sản - tư sản đơn thuần.',
-        icon: 'Shield',
-      },
-      {
-        title: 'Sự gắn kết tự nhiên',
-        desc: 'Giai cấp công nhân sinh ra từ lòng dân tộc yêu nước, chia sẻ chung một mục tiêu thiêng liêng giành độc lập.',
-        icon: 'HeartHandshake',
-      },
-      {
-        title: 'Sự chuyển hóa tư tưởng',
-        desc: 'Sĩ phu, trí thức, thanh niên yêu nước (qua Hội VN CMTN) nhanh chóng tiếp nhận chủ nghĩa Mác để cứu nước.',
-        icon: 'ArrowRightCircle',
-      },
-    ],
-    notes: 'Lý giải vì sao phong trào yêu nước và phong trào công nhân ở Việt Nam tự nhiên quyện chặt vào nhau.',
-  },
-  {
     id: 'slide-6',
     sectionCode: '4.1.1',
     sectionTitle: 'Giá trị lý luận và thực tiễn',
@@ -629,7 +610,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
       },
       {
         title: 'c. Xây dựng đội ngũ cán bộ, đảng viên',
-        desc: '7 tiêu chuẩn rèn luyện; phòng chống "giặc nội xâm"; 6 yêu cầu công tác cán bộ; bồi dưỡng thế hệ "vừa hồng vừa chuyên".',
+        desc: 'Các tiêu chuẩn rèn luyện; phòng chống "giặc nội xâm"; 6 yêu cầu công tác cán bộ; bồi dưỡng thế hệ "vừa hồng vừa chuyên".',
         icon: 'UserCheck',
       },
     ],
@@ -885,7 +866,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-12b',
     sectionCode: '4.1.2-c',
     sectionTitle: 'Công tác cán bộ',
-    title: 'Công tác cán bộ (công tác gốc của Đảng)',
+    title: 'Công tác cán bộ',
     subtitle: '"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém"',
     layout: 'discussion',
     bullets: [
@@ -947,7 +928,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-14',
     sectionCode: '4.1.2-c',
     sectionTitle: 'Bối cảnh lịch sử thực tiễn',
-    title: '3/ Bối cảnh lịch sử tôi rèn tư tưởng Hồ Chí Minh về cán bộ',
+    title: 'Bối cảnh lịch sử tôi rèn tư tưởng Hồ Chí Minh về cán bộ',
     subtitle: 'Tư tưởng cán bộ không xuất hiện trong chân không mà được tôi luyện qua 4 giai đoạn lịch sử',
     layout: 'grid',
     cardVariant: 'info',
@@ -974,28 +955,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
       },
     ],
     notes: 'Tổng kết hoàn chỉnh toàn bộ bối cảnh lịch sử thực tiễn hình thành nên quan điểm cán bộ của Bác.',
-  },
-  {
-    id: 'slide-faq',
-    sectionCode: 'FAQ',
-    sectionTitle: 'Đảng Kiểu Mới',
-    title: 'Đảng Kiểu Mới có gì khác biệt?',
-    subtitle: 'So sánh với các đảng chính trị khác trên thế giới',
-    layout: 'grid',
-    cardVariant: 'info',
-    bullets: [
-      {
-        title: 'Bản chất giai cấp & Dân tộc',
-        desc: 'Không chỉ đại biểu cho lợi ích giai cấp công nhân mà còn của nhân dân lao động và của toàn dân tộc (Kết hợp 3 yếu tố: Chủ nghĩa Mác - Lênin, PT Công nhân, PT Yêu nước).',
-        icon: 'Users',
-      },
-      {
-        title: 'Mục đích & Mối quan hệ',
-        desc: 'Đảng không có lợi ích tư riêng. Vừa là người lãnh đạo, vừa là người "đầy tớ" thật trung thành của nhân dân. Mối quan hệ máu thịt, không đứng trên nhân dân.',
-        icon: 'HeartHandshake',
-      },
-    ],
-    notes: 'Đây là điểm sáng tạo cốt lõi của Hồ Chí Minh khi vận dụng chủ nghĩa Mác - Lênin vào thực tiễn một nước thuộc địa.',
   },
   {
     id: 'slide-15',

@@ -28,10 +28,10 @@ export interface SlideItem {
   subtitle?: string;
   presenter?: string;
   theme?: 'dark' | 'light';
-  layout: 'intro' | 'formula' | 'timeline' | 'content' | 'quote' | 'grid' | 'comparison' | 'manifestations' | 'principles' | 'standards' | 'discussion';
+  layout: 'intro' | 'formula' | 'timeline' | 'content' | 'quote' | 'grid' | 'comparison' | 'manifestations' | 'principles' | 'standards' | 'discussion' | 'section_divider';
   cardVariant?: 'feature' | 'info' | 'principle' | 'content' | 'stat' | 'navigation';
   content?: string[];
-  bullets?: { title: string; desc: string; icon?: string }[];
+  bullets?: { title: string; desc: string; icon?: string; details?: string; points?: string[] }[];
   quote?: { text: string; author?: string; work?: string };
   imagePlaceholder?: {
     label: string;
