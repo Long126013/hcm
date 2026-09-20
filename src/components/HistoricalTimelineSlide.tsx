@@ -7,8 +7,7 @@ import {
   CheckCircle2, 
   Bookmark, 
   X, 
-  ArrowRight,
-  Clock
+  ArrowRight
 } from 'lucide-react';
 
 interface Props {
