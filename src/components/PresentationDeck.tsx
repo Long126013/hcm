@@ -4,7 +4,7 @@ import { CreativeFormula } from './CreativeFormula';
 import { MinigameWordSearch } from './MinigameWordSearch';
 import { HistoricalTimelineSlide } from './HistoricalTimelineSlide';
 import {
-  ChevronLeft, ChevronRight, ArrowDown, Quote, AlertTriangle, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
+  ChevronLeft, ChevronRight, ArrowDown, Quote, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
 
 
@@ -491,33 +491,7 @@ export const PresentationDeck: React.FC = () => {
       );
     }
 
-    // 12. WARNING SECTION (Slide 12)
-    if (slide.id === 'slide-12') {
-      return (
-        <div className="w-full max-w-4xl mx-auto bg-[#800000] text-white p-12 md:p-16 rounded-[3rem] shadow-xl relative overflow-hidden animate-slideUpFade">
-          <div className="absolute -top-24 -right-24 text-white/5">
-            <AlertTriangle className="w-96 h-96" />
-          </div>
-          <div className="flex flex-col md:flex-row md:items-center gap-6 mb-12 relative z-10">
-            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
-              <AlertTriangle className="w-8 h-8 text-red-200" />
-            </div>
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">{slide.title}</h2>
-              <p className="text-red-200/80 text-lg">{slide.subtitle}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
-            {slide.bullets?.map((b: any, i: number) => (
-              <div key={i} className="border-l-2 border-red-400/30 pl-6 hover:border-red-400 transition-colors">
-                <h3 className="text-xl font-bold text-white mb-2">{b.title}</h3>
-                <p className="text-white/70 leading-relaxed">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
+
 
     // 13. SIX POINT FRAMEWORK (Slide 12b)
     if (slide.id === 'slide-12b') {
