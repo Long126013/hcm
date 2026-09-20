@@ -94,7 +94,8 @@ export const TIMELINE_DATA: TimelineEvent[] = [
       'Đảng viên giữ vững khí tiết kiên cường trước ngục tù thực dân',
       'Đỉnh cao là thắng lợi Cách mạng Tháng Tám 1945, lập nên nước Việt Nam Dân chủ Cộng hòa',
     ],
-    suggestedImagePrompt: 'Gợi ý ảnh: Quảng trường Ba Đình ngày 2/9/1945 hoặc hình ảnh đoàn quân khởi nghĩa Cách mạng Tháng Tám',
+    suggestedImagePrompt: 'Khởi nghĩa Cách mạng Tháng Tám',
+    imageUrl: '/gd1.jpg',
   },
   {
     id: '1945-1954',
@@ -106,11 +107,11 @@ export const TIMELINE_DATA: TimelineEvent[] = [
       'Nhà nước mới thành lập, thiếu nhân lực có năng lực lẫn phẩm chất. Tham nhũng và quan liêu bắt đầu xuất hiện ngay trong hàng ngũ — đây là lý do Người viết tác phẩm "Sửa đổi lối làm việc" (1947) nêu rõ 5 tiêu chuẩn: Nhân, Nghĩa, Dũng, Trí, Liêm.',
     quote: 'Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.',
     keyPoints: [
-      'Tháng 10/1947: Bác Hồ viết tác phẩm bất hủ "Sửa đổi lối làm việc" với bút danh X.Y.Z',
       'Định ra 5 tiêu chuẩn đạo đức cách mạng của người cán bộ: Nhân, Nghĩa, Dũng, Trí, Liêm',
       'Khẳng định cuộc đấu tranh chống quan liêu, lãng phí, tham ô là "giặc nội xâm"',
     ],
-    suggestedImagePrompt: 'Gợi ý ảnh: Bác Hồ làm việc tại chiến khu Việt Bắc hoặc bìa tác phẩm "Sửa đổi lối làm việc" (1947)',
+    suggestedImagePrompt: 'Bác Hồ làm việc tại chiến khu Việt Bắc',
+    imageUrl: '/gd2.jfif',
   },
   {
     id: '1954-1969',
@@ -126,7 +127,8 @@ export const TIMELINE_DATA: TimelineEvent[] = [
       'Không ngừng củng cố khối đại đoàn kết toàn dân và mối liên hệ mật thiết giữa Đảng với dân',
       'Nêu cao nguyên tắc: "Đảng viên đi trước, làng nước theo sau"',
     ],
-    suggestedImagePrompt: 'Gợi ý ảnh: Bác Hồ nói chuyện với các đại biểu tại Đại hội Đảng toàn quốc lần thứ III (1960) hoặc Bác thăm nông dân, công nhân miền Bắc',
+    suggestedImagePrompt: 'Bác thăm người dân miền Bắc',
+    imageUrl: '/gd3.jpg',
   },
   {
     id: '1969',
@@ -138,11 +140,11 @@ export const TIMELINE_DATA: TimelineEvent[] = [
       'Chỉ vài tháng trước khi mất, Người vẫn viết "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân" — cho thấy đây là vấn đề Người lo lắng đến tận cuối đời, không phải lý thuyết suông mà là cảnh báo thực tiễn.',
     quote: 'Trước hết nói về Đảng - Phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình. Phải thật sự cần kiệm liêm chính, chí công vô tư.',
     keyPoints: [
-      '3/2/1969: Đăng bài báo quan trọng "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân"',
       'Khẳng định chủ nghĩa cá nhân là kẻ thù nguy hiểm nhất phá hoại từ bên trong',
       'Bản Di chúc để lại muôn vàn tình thân yêu và chỉ dẫn mang tầm chiến lược cho tương lai đất nước',
     ],
-    suggestedImagePrompt: 'Gợi ý ảnh: Bản thảo Di chúc của Chủ tịch Hồ Chí Minh (1965-1969) hoặc ảnh Bác Hồ ngồi đánh máy tại nhà sàn Ba Đình',
+    suggestedImagePrompt: 'Bản thảo Di chúc của Chủ tịch Hồ Chí Minh (1965-1969)',
+    imageUrl: '/gd4.jpg',
   },
 ];
 
