@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { PRESENTATION_SLIDES } from '../data/curriculumData';
 import { CreativeFormula } from './CreativeFormula';
-import { TimelineView } from './TimelineView';
 import { MinigameWordSearch } from './MinigameWordSearch';
+import { HistoricalTimelineSlide } from './HistoricalTimelineSlide';
 import {
   ChevronLeft, ChevronRight, ArrowDown, Quote, AlertTriangle, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
@@ -578,44 +578,14 @@ export const PresentationDeck: React.FC = () => {
       );
     }
 
-    // 15. HISTORICAL TIMELINE (Slide 14)
+    // 15. HISTORICAL TIMELINE WITH MODAL OVERLAYS (Slide 14 / Page 16)
     if (slide.id === 'slide-14') {
       return (
-        <div className="w-full max-w-5xl mx-auto overflow-x-auto pb-8 animate-slideUpFade">
-          <h2 className={`text-3xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-slate-900'} mb-6 text-center`}>{slide.title}</h2>
-          <p className={`text-lg ${isDark ? 'text-red-200' : 'text-slate-600'} mb-20 text-center`}>{slide.subtitle}</p>
-          <div className="flex flex-col md:flex-row gap-8 relative min-w-[800px] md:min-w-0">
-            <div className={`hidden md:block absolute top-[28px] left-0 w-full h-px ${isDark ? 'bg-red-800/50' : 'bg-[#800000]/20'} -z-10`}></div>
-            {slide.bullets?.map((b: any, i: number) => {
-              const yearMatch = b.title.match(/^[0-9–-]+/);
-              const yearStr = yearMatch ? yearMatch[0] : `Mốc ${i+1}`;
-              const titleRest = b.title.replace(yearStr, '').replace(/^:\s*/, '').trim();
-
-              return (
-                <div key={i} className={`flex-1 relative ${isDark ? 'bg-red-900/30 border-red-800/50' : 'bg-white border-slate-100'} md:bg-transparent p-6 md:p-0 rounded-2xl md:rounded-none border md:border-none shadow-sm md:shadow-none`}>
-                  <div className={`w-14 h-14 ${isDark ? 'bg-red-950 border-red-400 text-red-300' : 'bg-[#fdfbf7] border-[#800000] text-[#800000]'} border-4 rounded-full flex items-center justify-center text-sm font-bold mb-6 shadow-sm mx-auto md:mx-0`}>
-                    {yearStr.split('–')[0]}
-                  </div>
-                  <h3 className={`font-bold ${isDark ? 'text-red-100' : 'text-slate-900'} mb-3 text-lg leading-snug`}>{titleRest || b.title}</h3>
-                  <p className={`text-[14px] ${isDark ? 'text-red-200/80' : 'text-slate-600'} leading-relaxed`}>{b.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <HistoricalTimelineSlide isDark={isDark} />
       );
     }
 
-    // 16. Fallback for slide-15 (TimelineView)
-    if (slide.id === 'slide-15') {
-      return (
-        <div className="w-full max-w-4xl mx-auto animate-slideUpFade">
-          <TimelineView />
-        </div>
-      );
-    }
-
-    // 17. MINIGAME: WORD SEARCH / RECOGNITION (slide-minigame)
+    // 16. MINIGAME: WORD SEARCH / RECOGNITION (slide-minigame)
     if (slide.id === 'slide-minigame' || slide.layout === 'minigame') {
       return (
         <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
