@@ -16,7 +16,6 @@ export const SECTIONS_LIST = [
     parentTitle: '4.1. Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam',
     title: 'Tính tất yếu và vai trò lãnh đạo của Đảng Cộng sản Việt Nam',
     status: 'completed' as const,
-    presenter: 'Nhóm Thuyết trình',
     badge: 'Trọng tâm',
     description: 'Nghiên cứu tính tất yếu lịch sử, hình tượng người cầm lái, quy luật sáng tạo 3 thành tố và ý nghĩa thời đại.',
   },
@@ -27,13 +26,12 @@ export const SECTIONS_LIST = [
     parentTitle: '4.1. Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam',
     title: 'Đảng phải trong sạch, vững mạnh',
     status: 'completed' as const,
-    presenter: 'Ngân & Nhiên',
     badge: 'Trọng tâm',
-    description: 'Gồm 3 nội dung: Đảng là đạo đức/văn minh (Ngân), các nguyên tắc hoạt động và xây dựng đội ngũ cán bộ, đảng viên (Nhiên).',
+    description: 'Gồm 3 nội dung: Đảng là đạo đức/văn minh, các nguyên tắc hoạt động và xây dựng đội ngũ cán bộ, đảng viên.',
     subsections: [
-      { id: '4.1.2-a', title: 'a) Đảng là đạo đức, là văn minh (Ngân)' },
+      { id: '4.1.2-a', title: 'a) Đảng là đạo đức, là văn minh' },
       { id: '4.1.2-b', title: 'b) Những vấn đề nguyên tắc trong hoạt động của Đảng' },
-      { id: '4.1.2-c', title: 'c) Xây dựng đội ngũ cán bộ, đảng viên (Nhiên)' },
+      { id: '4.1.2-c', title: 'c) Xây dựng đội ngũ cán bộ, đảng viên' },
     ],
   },
   {
@@ -257,7 +255,6 @@ export const CONTENT_411 = {
 export const CONTENT_412 = {
   partA: {
     title: 'a) Đảng là đạo đức, là văn minh',
-    presenter: 'Ngân',
     quote: {
       text: 'Đảng ta là đạo đức, là văn minh.',
       author: 'Chủ tịch Hồ Chí Minh',
@@ -368,7 +365,6 @@ export const CONTENT_412 = {
   },
   partC: {
     title: 'c) Xây dựng đội ngũ cán bộ, đảng viên',
-    presenter: 'Nhiên',
     standards: [
       {
         number: 1,
@@ -615,7 +611,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Đảng phải trong sạch, vững mạnh',
     title: '4.1.2. Đảng phải trong sạch, vững mạnh',
     subtitle: 'Nền tảng giữ vững vai trò lãnh đạo và hoàn thành nhiệm vụ cách mạng',
-    presenter: 'Ngân & Nhiên',
     layout: 'grid',
     bullets: [
       {
@@ -634,7 +629,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
         icon: 'UserCheck',
       },
     ],
-    notes: 'Giới thiệu tổng quan cấu trúc 3 nội dung trọng tâm của mục 4.1.2 do bạn Ngân và Nhiên phụ trách.',
+    notes: 'Giới thiệu tổng quan cấu trúc 3 nội dung trọng tâm của mục 4.1.2.',
   },
   {
     id: 'slide-8',
@@ -642,7 +637,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Đảng là đạo đức, là văn minh',
     title: 'a) Đảng là đạo đức, là văn minh',
     subtitle: '3 Biểu hiện nền tảng của một Đảng có đạo đức cách mạng',
-    presenter: 'Ngân',
     layout: 'grid',
     bullets: [
       {
@@ -669,7 +663,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Đảng là đạo đức, là văn minh',
     title: '6 Nội dung Đảng văn minh & Nguy cơ suy thoái',
     subtitle: 'Xây dựng tổ chức liêm chính, hoạt động trong khuôn khổ Hiến pháp và pháp luật',
-    presenter: 'Ngân',
     layout: 'comparison',
     bullets: [
       {
@@ -727,7 +720,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Xây dựng đội ngũ cán bộ, đảng viên',
     title: 'c) 7 Tiêu chuẩn rèn luyện của cán bộ, đảng viên',
     subtitle: 'Chuẩn mực đạo đức cách mạng suốt đời của người chiến sĩ cộng sản',
-    presenter: 'Nhiên',
     layout: 'grid',
     bullets: [
       {
@@ -774,7 +766,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Chống giặc nội xâm & Công tác cán bộ',
     title: 'Chống "Giặc nội xâm" & 6 Yêu cầu trong công tác cán bộ',
     subtitle: '"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém"',
-    presenter: 'Nhiên',
     layout: 'comparison',
     bullets: [
       {
@@ -796,7 +787,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Đào sâu lý luận cán bộ',
     title: 'Tại sao cán bộ là "cái gốc" & Lớp người "vừa hồng vừa chuyên"',
     subtitle: 'Giải đáp 2 câu hỏi cốt lõi về vị trí cầu nối của cán bộ và mục tiêu bồi dưỡng thế hệ mai sau',
-    presenter: 'Nhiên',
     layout: 'comparison',
     bullets: [
       {
@@ -818,7 +808,6 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     sectionTitle: 'Bối cảnh lịch sử thực tiễn',
     title: '3/ Bối cảnh lịch sử tôi rèn tư tưởng Hồ Chí Minh về cán bộ',
     subtitle: 'Tư tưởng cán bộ không xuất hiện trong chân không mà được tôi luyện qua 4 giai đoạn lịch sử',
-    presenter: 'Nhiên',
     layout: 'grid',
     bullets: [
       {

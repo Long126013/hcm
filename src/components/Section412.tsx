@@ -14,7 +14,6 @@ import {
   Scale,
   Calendar,
   AlertOctagon,
-  Sparkles,
   ArrowRight,
 } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
@@ -35,9 +34,7 @@ export const Section412: React.FC = () => {
             <span className="px-2.5 py-0.5 rounded text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
               Nội dung học phần
             </span>
-            <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              Thuyết trình: Ngân & Nhiên
-            </span>
+
           </div>
 
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight">
@@ -69,7 +66,6 @@ export const Section412: React.FC = () => {
               }`}
             >
               <span>a) Đảng là đạo đức, văn minh</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-red-950 text-red-200">Ngân</span>
             </button>
             <button
               onClick={() => setActiveSubTab('b')}
@@ -90,14 +86,13 @@ export const Section412: React.FC = () => {
               }`}
             >
               <span>c) Đội ngũ cán bộ, đảng viên</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-red-950 text-red-200">Nhiên</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* ======================================================== */}
-      {/* SUB-SECTION A: ĐẢNG LÀ ĐẠO ĐỨC, VĂN MINH (NGÂN) */}
+      {/* SUB-SECTION A: ĐẢNG LÀ ĐẠO ĐỨC, VĂN MINH */}
       {/* ======================================================== */}
       {(activeSubTab === 'all' || activeSubTab === 'a') && (
         <section className="space-y-6 pt-2">
@@ -113,10 +108,6 @@ export const Section412: React.FC = () => {
                 </p>
               </div>
             </div>
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              Thuyết trình: {partA.presenter}
-            </span>
           </div>
 
           {/* Quote Card */}
@@ -281,7 +272,7 @@ export const Section412: React.FC = () => {
       )}
 
       {/* ======================================================== */}
-      {/* SUB-SECTION C: XÂY DỰNG ĐỘI NGŨ CÁN BỘ, ĐẢNG VIÊN (NHIÊN) */}
+      {/* SUB-SECTION C: XÂY DỰNG ĐỘI NGŨ CÁN BỘ, ĐẢNG VIÊN */}
       {/* ======================================================== */}
       {(activeSubTab === 'all' || activeSubTab === 'c') && (
         <section className="space-y-6 pt-4">
@@ -297,10 +288,6 @@ export const Section412: React.FC = () => {
                 </p>
               </div>
             </div>
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              Thuyết trình: {partC.presenter}
-            </span>
           </div>
 
           {/* Câu châm ngôn kinh điển */}

@@ -8,29 +8,30 @@ import {
   ChevronRight,
   Maximize2,
   Minimize2,
-  X,
   FileText,
   Quote,
-  Sparkles,
+  X
 } from 'lucide-react';
 
-
-
-interface PresentationDeckProps {
-  onClose: () => void;
-  initialSlideIndex?: number;
-}
-
-export const PresentationDeck: React.FC<PresentationDeckProps> = ({
-  onClose,
-  initialSlideIndex = 0,
-}) => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(initialSlideIndex);
+export const PresentationDeck: React.FC = () => {
+  const getInitialIndex = () => {
+    const hash = window.location.hash.replace('#slide-', '');
+    const idx = parseInt(hash) - 1;
+    return !isNaN(idx) && idx >= 0 && idx < PRESENTATION_SLIDES.length ? idx : 0;
+  };
+  
+  const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(getInitialIndex());
   const [showNotes, setShowNotes] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
+  // Sync hash
+  useEffect(() => {
+    window.history.replaceState(null, '', `#slide-${currentSlideIndex + 1}`);
+  }, [currentSlideIndex]);
+
   const totalSlides = PRESENTATION_SLIDES.length;
   const slide = PRESENTATION_SLIDES[currentSlideIndex];
+  const isDark = slide.theme === 'dark' || slide.layout === 'intro' || slide.layout === 'quote';
 
   const handleNext = () => {
     if (currentSlideIndex < totalSlides - 1) {
@@ -44,18 +45,34 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
     }
   };
 
-  // Keyboard controls
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndHandler = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > minSwipeDistance) handleNext();
+    if (distance < -minSwipeDistance) handlePrev();
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         handleNext();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         handlePrev();
-      } else if (e.key === 'Escape') {
-        onClose();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSlideIndex, totalSlides]);
@@ -70,150 +87,112 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
     }
   };
 
+  const themeClasses = {
+    wrapper: isDark ? 'bg-red-950 text-slate-100' : 'bg-stone-50 text-slate-900',
+    title: isDark ? 'text-white' : 'text-slate-900',
+    subtitle: isDark ? 'text-amber-400' : 'text-red-800',
+    desc: isDark ? 'text-slate-300' : 'text-slate-700',
+    card: isDark ? 'bg-red-900/40 border-red-800' : 'bg-white border-slate-200 shadow-sm',
+    cardTitle: isDark ? 'text-white' : 'text-slate-900',
+    numberBadge: isDark ? 'bg-red-800/80 text-red-100' : 'bg-red-100 text-red-800',
+  };
+
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950 text-slate-100 flex flex-col select-none overflow-hidden">
-      {/* TOP BAR */}
-      <div className="h-14 px-6 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex items-center justify-between z-20">
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-extrabold px-2.5 py-1 rounded bg-red-600 text-white">
-            {slide.sectionCode}
-          </span>
-          <span className="text-xs text-slate-400 font-medium hidden sm:inline">
-            {slide.sectionTitle}
-          </span>
-          {slide.presenter && (
-            <span className="text-xs px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold">
-              Thuyết trình: {slide.presenter}
-            </span>
-          )}
-        </div>
-
-        {/* Slide Counter & Controls */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowNotes(!showNotes)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
-              showNotes ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
-            }`}
-            title="Ghi chú người thuyết trình"
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Ghi chú</span>
-          </button>
-
-          <button
-            onClick={toggleFullscreen}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
-            title="Toàn màn hình"
-          >
-            {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-          </button>
-
-          <button
-            onClick={onClose}
-            className="p-2 rounded-lg bg-red-600/80 hover:bg-red-600 text-white transition-colors cursor-pointer ml-2"
-            title="Thoát trình chiếu (Esc)"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* PROGRESS BAR */}
-      <div className="h-1 bg-slate-800 w-full">
+    <div 
+      className={`fixed inset-0 z-50 flex flex-col select-none overflow-hidden transition-colors duration-500 ${themeClasses.wrapper}`}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEndHandler}
+    >
+      
+      {/* THIN PROGRESS BAR */}
+      <div className="h-1 bg-black/10 w-full z-50 absolute top-0 shrink-0">
         <div
-          className="h-full bg-red-600 transition-all duration-300"
-          style={{ width: `${((currentSlideIndex + 1) / totalSlides) * 100}%` }}
+          className="h-full bg-amber-500 transition-all duration-300"
+          style={{ width: `${(currentSlideIndex / (totalSlides - 1)) * 100}%` }}
         />
       </div>
 
-      {/* SLIDE CANVAS (MAIN CONTENT) */}
-      <div className="flex-1 flex overflow-hidden relative">
-        <div className="flex-1 flex items-center justify-center p-6 md:p-12 overflow-y-auto">
-          <div className="max-w-5xl w-full mx-auto">
-            {/* SLIDE TYPE: INTRO */}
+      <div className="flex-1 flex relative min-h-0">
+        {/* MAIN SLIDE AREA */}
+        <div className="flex-1 flex flex-col items-center p-4 sm:p-8 md:p-12 lg:p-24 overflow-y-auto min-h-0">
+          <div className="w-full max-w-5xl mx-auto my-auto">
+            
             {slide.layout === 'intro' && (
-              <div className="text-center space-y-6 animate-fadeIn py-10">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold bg-red-900/60 border border-red-700/60 text-red-300">
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  MÔN HỌC: TƯ TƯỞNG HỒ CHÍ MINH
-                </div>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+              <div className="text-center space-y-6 animate-fadeIn">
+                <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${isDark ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : 'bg-red-100 text-red-800 border-red-200'}`}>
+                  {slide.sectionCode} - {slide.sectionTitle}
+                </span>
+                <h1 className={`text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-sm ${themeClasses.title}`}>
                   {slide.title}
                 </h1>
-                <p className="text-lg md:text-2xl text-amber-300/90 font-medium max-w-3xl mx-auto">
+                <p className={`text-lg md:text-2xl font-medium max-w-3xl mx-auto ${themeClasses.subtitle}`}>
                   {slide.subtitle}
                 </p>
-                <div className="pt-8 flex justify-center gap-3">
-                  <button
-                    onClick={handleNext}
-                    className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm transition-all shadow-lg cursor-pointer active:scale-95 flex items-center gap-2"
-                  >
-                    <span>Bắt đầu thuyết trình</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
               </div>
             )}
 
-            {/* SLIDE TYPE: QUOTE */}
             {slide.layout === 'quote' && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center animate-fadeIn">
-                <div className="md:col-span-7 space-y-6">
-                  <div className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                    {slide.subtitle}
-                  </div>
-                  <h2 className="text-2xl md:text-4xl font-extrabold text-white">
-                    {slide.title}
-                  </h2>
-                  <div className="p-6 rounded-2xl bg-slate-900/80 border-l-4 border-red-500 shadow-xl space-y-4">
-                    <Quote className="w-8 h-8 text-red-500" />
-                    <p className="font-serif-quote italic text-lg md:text-xl text-slate-100 leading-relaxed">
-                      "{slide.quote?.text}"
+              <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn text-center relative">
+                <Quote className="w-24 h-24 absolute -top-12 -left-8 text-amber-500/20 -z-10" />
+                <h2 className={`text-xl md:text-2xl font-bold uppercase tracking-wide ${themeClasses.subtitle}`}>
+                  {slide.title}
+                </h2>
+                <div className="space-y-6">
+                  {slide.content?.map((text, idx) => (
+                    <p key={idx} className={`font-serif-quote italic text-2xl md:text-4xl leading-relaxed ${themeClasses.title}`}>
+                      "{text}"
                     </p>
-                    <div className="text-right text-xs text-amber-300 font-semibold">
-                      — {slide.quote?.author} ({slide.quote?.work})
+                  ))}
+                  {slide.quote?.author && (
+                    <div className="pt-6">
+                      <p className={`font-bold text-lg md:text-xl ${themeClasses.title}`}>{slide.quote.author}</p>
+                      {slide.quote.work && <p className={`text-sm ${themeClasses.desc}`}>{slide.quote.work}</p>}
                     </div>
-                  </div>
-                </div>
-                <div className="md:col-span-5">
-                  {slide.imagePlaceholder && (
-                    <ImagePlaceholder
-                      label={slide.imagePlaceholder.label}
-                      prompt={slide.imagePlaceholder.prompt}
-                      aspectRatio="portrait"
-                      className="bg-slate-900 border-slate-700"
-                    />
                   )}
                 </div>
               </div>
             )}
 
-            {/* SLIDE TYPE: FORMULA */}
+            {slide.layout === 'content' && (
+              <div className="space-y-6 animate-fadeIn">
+                <div className="space-y-2 mb-8">
+                  <span className={`text-xs font-bold uppercase tracking-wider ${themeClasses.subtitle}`}>
+                    {slide.subtitle}
+                  </span>
+                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
+                </div>
+                <div className="space-y-4 text-lg md:text-xl leading-relaxed">
+                  {slide.content?.map((text, idx) => (
+                    <p key={idx} className={themeClasses.desc}>{text}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {slide.layout === 'formula' && (
               <div className="space-y-6 animate-fadeIn">
-                <div className="text-center max-w-2xl mx-auto space-y-2 mb-4">
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-white">{slide.title}</h2>
-                  <p className="text-sm text-slate-300">{slide.subtitle}</p>
+                <div className="text-center mb-6 space-y-2">
+                  <h2 className={`text-3xl md:text-4xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
+                  <p className={`text-sm font-medium ${themeClasses.subtitle}`}>{slide.subtitle}</p>
                 </div>
-                <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                <div className={`p-6 rounded-2xl border ${isDark ? 'bg-red-900/40 border-red-800' : 'bg-white border-slate-200 shadow-sm'}`}>
                   <CreativeFormula />
                 </div>
               </div>
             )}
 
-            {/* SLIDE TYPE: GRID BULLETS */}
             {slide.layout === 'grid' && (
               <div className="space-y-6 animate-fadeIn">
-                <div className="space-y-2 mb-6">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                <div className="space-y-2 mb-8">
+                  <span className={`text-xs font-bold uppercase tracking-wider ${themeClasses.subtitle}`}>
                     {slide.subtitle}
                   </span>
-                  <h2 className="text-2xl md:text-4xl font-extrabold text-white">{slide.title}</h2>
+                  <h2 className={`text-3xl md:text-5xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
                 </div>
 
                 <div
-                  className={`grid gap-4 ${
+                  className={`grid gap-5 ${
                     slide.bullets?.length === 2
                       ? 'grid-cols-1 md:grid-cols-2'
                       : slide.bullets?.length === 4
@@ -228,39 +207,36 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
                   {slide.bullets?.map((bullet, idx) => (
                     <div
                       key={idx}
-                      className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-red-500/60 transition-all flex flex-col justify-between"
+                      className={`p-5 rounded-2xl border transition-all flex flex-col justify-start ${themeClasses.card}`}
                     >
-                      <div>
-                        <div className="w-9 h-9 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-sm mb-3">
-                          {idx + 1}
-                        </div>
-                        <h3 className="text-sm font-bold text-white mb-2">{bullet.title}</h3>
-                        <p className="text-xs text-slate-300 leading-relaxed">{bullet.desc}</p>
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg mb-4 ${themeClasses.numberBadge}`}>
+                        {idx + 1}
                       </div>
+                      <h3 className={`text-lg font-bold mb-2 ${themeClasses.cardTitle}`}>{bullet.title}</h3>
+                      <p className={`text-sm leading-relaxed ${themeClasses.desc}`}>{bullet.desc}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* SLIDE TYPE: COMPARISON */}
             {slide.layout === 'comparison' && (
-              <div className={`animate-fadeIn ${slide.imagePlaceholder ? 'grid grid-cols-1 md:grid-cols-12 gap-8 items-center' : 'space-y-5'}`}>
-                <div className={slide.imagePlaceholder ? 'md:col-span-7 space-y-5' : 'space-y-5'}>
-                  <div className="space-y-1">
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+              <div className={`animate-fadeIn ${slide.imagePlaceholder ? 'grid grid-cols-1 md:grid-cols-12 gap-10 items-center' : 'space-y-6'}`}>
+                <div className={slide.imagePlaceholder ? 'md:col-span-7 space-y-6' : 'space-y-6'}>
+                  <div className="space-y-2">
+                    <span className={`text-xs font-bold uppercase tracking-wider ${themeClasses.subtitle}`}>
                       {slide.subtitle}
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-extrabold text-white">{slide.title}</h2>
+                    <h2 className={`text-3xl md:text-4xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
                   </div>
 
-                  <div className={slide.imagePlaceholder ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-4'}>
+                  <div className={slide.imagePlaceholder ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-5'}>
                     {slide.bullets?.map((b, idx) => (
-                      <div key={idx} className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col justify-start">
-                        <div className="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">
+                      <div key={idx} className={`p-5 rounded-2xl border flex flex-col justify-start ${themeClasses.card}`}>
+                        <div className={`text-sm font-bold uppercase tracking-wider mb-2 ${themeClasses.subtitle}`}>
                           {b.title}
                         </div>
-                        <p className="text-xs text-slate-200 leading-relaxed">{b.desc}</p>
+                        <p className={`text-sm leading-relaxed ${themeClasses.desc}`}>{b.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -272,21 +248,20 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
                       label={slide.imagePlaceholder.label}
                       prompt={slide.imagePlaceholder.prompt}
                       aspectRatio="landscape"
-                      className="bg-slate-900 border-slate-700"
+                      className={isDark ? 'bg-red-900/40 border-red-800' : 'bg-slate-100 border-slate-200'}
                     />
                   </div>
                 )}
               </div>
             )}
 
-            {/* SLIDE TYPE: TIMELINE */}
             {slide.layout === 'timeline' && (
               <div className="space-y-4 animate-fadeIn">
-                <div className="text-center mb-2">
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-white">{slide.title}</h2>
-                  <p className="text-xs text-slate-400">{slide.subtitle}</p>
+                <div className="text-center mb-4 space-y-1">
+                  <h2 className={`text-3xl md:text-4xl font-extrabold ${themeClasses.title}`}>{slide.title}</h2>
+                  <p className={`text-sm font-medium ${themeClasses.subtitle}`}>{slide.subtitle}</p>
                 </div>
-                <div className="bg-slate-900 p-4 rounded-2xl border border-slate-800">
+                <div className={`p-4 rounded-2xl border ${isDark ? 'bg-red-900/40 border-red-800' : 'bg-white border-slate-200 shadow-sm'}`}>
                   <TimelineView />
                 </div>
               </div>
@@ -296,48 +271,48 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
 
         {/* SPEAKER NOTES DRAWER */}
         {showNotes && (
-          <div className="w-80 bg-slate-900 border-l border-slate-800 p-6 flex flex-col justify-between animate-fadeIn z-10">
+          <div className="w-80 bg-stone-100 border-l border-slate-200 p-6 flex flex-col justify-between animate-fadeIn z-10 text-slate-800">
             <div>
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5" /> Ghi chú người nói
+              <div className="flex items-center justify-between pb-3 border-b border-slate-300 mb-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-red-800 flex items-center gap-1.5">
+                  <FileText className="w-4 h-4" /> Ghi chú
                 </span>
                 <button
                   onClick={() => setShowNotes(false)}
-                  className="text-slate-400 hover:text-white cursor-pointer"
+                  className="text-slate-500 hover:text-slate-900 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
-
-              <div className="text-xs text-slate-300 leading-relaxed space-y-3">
+              <div className="text-sm leading-relaxed space-y-3 font-medium">
                 <p>{slide.notes || 'Không có ghi chú riêng cho trang này.'}</p>
               </div>
             </div>
-
-            <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-500">
-              Phím tắt: [→] Trang kế, [←] Trang trước, [Esc] Thoát
+            <div className="pt-4 border-t border-slate-300 text-[11px] text-slate-500 font-medium">
+              Phím tắt: [→] Trang kế, [←] Trang trước
             </div>
           </div>
         )}
       </div>
 
       {/* BOTTOM SLIDE CONTROLS */}
-      <div className="h-16 px-6 bg-slate-900/90 backdrop-blur-md border-t border-slate-800 flex items-center justify-between z-20">
-        <button
-          onClick={handlePrev}
-          disabled={currentSlideIndex === 0}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-            currentSlideIndex === 0
-              ? 'opacity-30 cursor-not-allowed text-slate-500'
-              : 'bg-slate-800 hover:bg-slate-700 text-white'
-          }`}
-        >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Trước</span>
-        </button>
+      <div className="h-16 px-6 bg-slate-900 border-t border-slate-800 flex items-center justify-between z-20 shrink-0">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handlePrev}
+            disabled={currentSlideIndex === 0}
+            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentSlideIndex === 0
+                ? 'opacity-30 cursor-not-allowed text-slate-500'
+                : 'bg-slate-800 hover:bg-slate-700 text-white'
+            }`}
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span className="hidden sm:inline">Trang trước</span>
+          </button>
+        </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <span className="text-xs font-bold text-slate-300">
             {currentSlideIndex + 1} <span className="text-slate-600">/</span> {totalSlides}
           </span>
@@ -347,27 +322,46 @@ export const PresentationDeck: React.FC<PresentationDeckProps> = ({
                 key={idx}
                 onClick={() => setCurrentSlideIndex(idx)}
                 className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                  currentSlideIndex === idx ? 'w-6 bg-red-500' : 'bg-slate-700 hover:bg-slate-500'
+                  currentSlideIndex === idx ? 'w-6 bg-red-600' : 'bg-slate-700 hover:bg-slate-500'
                 }`}
-                title={`Nhảy tới trang ${idx + 1}`}
+                title={`Trang ${idx + 1}`}
               />
             ))}
           </div>
         </div>
 
-        <button
-          onClick={handleNext}
-          disabled={currentSlideIndex === totalSlides - 1}
-          className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-            currentSlideIndex === totalSlides - 1
-              ? 'opacity-30 cursor-not-allowed text-slate-500'
-              : 'bg-red-600 hover:bg-red-700 text-white shadow-md'
-          }`}
-        >
-          <span>Tiếp theo</span>
-          <ChevronRight className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowNotes(!showNotes)}
+            className={`p-2 rounded-lg transition-colors cursor-pointer ${showNotes ? 'bg-amber-500 text-slate-900' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}`}
+            title="Ghi chú"
+          >
+            <FileText className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={toggleFullscreen}
+            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
+            title="Toàn màn hình"
+          >
+            {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+          </button>
+
+          <button
+            onClick={handleNext}
+            disabled={currentSlideIndex === totalSlides - 1}
+            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer sm:ml-2 ${
+              currentSlideIndex === totalSlides - 1
+                ? 'opacity-30 cursor-not-allowed text-slate-500'
+                : 'bg-red-700 hover:bg-red-600 text-white shadow-md'
+            }`}
+          >
+            <span className="hidden sm:inline">Trang kế</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
       </div>
+
     </div>
   );
 };

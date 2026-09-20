@@ -27,6 +27,7 @@ export interface SlideItem {
   title: string;
   subtitle?: string;
   presenter?: string;
+  theme?: 'dark' | 'light';
   layout: 'intro' | 'formula' | 'timeline' | 'content' | 'quote' | 'grid' | 'comparison';
   content?: string[];
   bullets?: { title: string; desc: string; icon?: string }[];
