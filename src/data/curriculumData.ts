@@ -83,11 +83,12 @@ export const TIMELINE_DATA: TimelineEvent[] = [
   {
     id: '1930-1945',
     year: '1930 – 1945',
-    title: 'Lãnh đạo đấu tranh giành chính quyền',
+    title: 'Giai đoạn 1930–1945: Hoạt động bí mật',
     subtitle: 'Thời kỳ bí mật & Khởi nghĩa Tháng Tám',
     badge: 'Khẳng định vai trò lãnh đạo',
     description:
-      'Đảng còn non trẻ, hoạt động bí mật dưới sự khủng bố tàn bạo của thực dân Pháp. Đội ngũ cán bộ phải tuyệt đối kiên trung, sẵn sàng hy sinh bảo vệ tổ chức.',
+      'Đảng Cộng sản Việt Nam còn non trẻ, hoạt động bí mật dưới sự đàn áp của thực dân Pháp. Cần cán bộ trung thành tuyệt đối vì một người phản bội có thể xóa sổ cả tổ chức.',
+    quote: 'Đảng có vững cách mệnh mới thành công, cũng như người cầm lái có vững thuyền mới chạy.',
     keyPoints: [
       'Tập dượt qua cao trào Xô Viết Nghệ Tĩnh 1930-1931 và Mặt trận Dân chủ 1936-1939',
       'Đảng viên giữ vững khí tiết kiên cường trước ngục tù thực dân',
@@ -98,11 +99,11 @@ export const TIMELINE_DATA: TimelineEvent[] = [
   {
     id: '1945-1954',
     year: '1945 – 1954',
-    title: 'Kháng chiến chống Pháp & "Sửa đổi lối làm việc"',
-    subtitle: 'Xây dựng chỉnh đốn Đảng khi nắm chính quyền',
+    title: 'Giai đoạn 1945–1954 (Kháng chiến chống Pháp)',
+    subtitle: 'Chiến khu Việt Bắc & "Sửa đổi lối làm việc"',
     badge: 'Tác phẩm kinh điển',
     description:
-      'Nhà nước mới thành lập đối mặt thù trong giặc ngoài. Nguy cơ quan liêu, tham nhũng bắt đầu manh nha khi cán bộ có chức có quyền.',
+      'Nhà nước mới thành lập, thiếu nhân lực có năng lực lẫn phẩm chất. Tham nhũng và quan liêu bắt đầu xuất hiện ngay trong hàng ngũ — đây là lý do Người viết tác phẩm "Sửa đổi lối làm việc" (1947) nêu rõ 5 tiêu chuẩn: Nhân, Nghĩa, Dũng, Trí, Liêm.',
     quote: 'Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém.',
     keyPoints: [
       'Tháng 10/1947: Bác Hồ viết tác phẩm bất hủ "Sửa đổi lối làm việc" với bút danh X.Y.Z',
@@ -114,11 +115,11 @@ export const TIMELINE_DATA: TimelineEvent[] = [
   {
     id: '1954-1969',
     year: '1954 – 1969',
-    title: 'Xây dựng CNXH miền Bắc & Kháng chiến chống Mỹ',
+    title: 'Giai đoạn 1954–1969 (Xây dựng miền Bắc, kháng chiến chống Mỹ)',
     subtitle: 'Thực hiện đồng thời 2 nhiệm vụ chiến lược',
     badge: 'Vừa hồng vừa chuyên',
     description:
-      'Áp lực kép: Xây dựng miền Bắc làm hậu phương lớn xã hội chủ nghĩa, đồng thời chi viện cho chiến trường miền Nam kháng chiến chống Mỹ.',
+      'Đất nước bị chia cắt, miền Bắc vừa xây dựng chủ nghĩa xã hội vừa chi viện cho miền Nam. Áp lực kép này đòi hỏi bộ máy cán bộ không được có điểm yếu nào — sự suy thoái của một cá nhân có thể gây hậu quả dây chuyền cho cả hệ thống.',
     quote: 'Đảng cần phải chăm lo giáo dục đạo đức cách mạng cho họ, đào tạo họ thành những người thừa kế xây dựng chủ nghĩa xã hội vừa "hồng" vừa "chuyên".',
     keyPoints: [
       'Yêu cầu người cán bộ phải có lý tưởng cách mạng (hồng) và có năng lực khoa học thực tiễn (chuyên)',
@@ -130,11 +131,11 @@ export const TIMELINE_DATA: TimelineEvent[] = [
   {
     id: '1969',
     year: '1969',
-    title: 'Lời dặn dò cuối đời & Bản Di chúc thiêng liêng',
-    subtitle: 'Nâng cao đạo đức, quét sạch chủ nghĩa cá nhân',
+    title: 'Bài báo cuối đời & Di chúc thiêng liêng (1969)',
+    subtitle: 'Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân',
     badge: 'Di sản vô giá',
     description:
-      'Chỉ vài tháng trước khi đi xa, Người vẫn không ngừng trăn trở về việc giữ gìn sự trong sạch, đoàn kết thống nhất của Đảng như giữ gìn con ngươi của mắt mình.',
+      'Chỉ vài tháng trước khi mất, Người vẫn viết "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân" — cho thấy đây là vấn đề Người lo lắng đến tận cuối đời, không phải lý thuyết suông mà là cảnh báo thực tiễn.',
     quote: 'Trước hết nói về Đảng - Phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình. Phải thật sự cần kiệm liêm chính, chí công vô tư.',
     keyPoints: [
       '3/2/1969: Đăng bài báo quan trọng "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân"',
@@ -928,42 +929,33 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-14',
     sectionCode: '4.1.2-c',
     sectionTitle: 'Bối cảnh lịch sử thực tiễn',
-    title: 'Bối cảnh lịch sử tôi rèn tư tưởng Hồ Chí Minh về cán bộ',
-    subtitle: 'Tư tưởng cán bộ không xuất hiện trong chân không mà được tôi luyện qua 4 giai đoạn lịch sử',
+    title: 'Bối cảnh lịch sử nào đã dẫn đến những tư tưởng này?',
+    subtitle: 'Những yêu cầu này không xuất hiện trong chân không — chúng là phản ứng trực tiếp trước thực tế lịch sử khắc nghiệt mà Việt Nam đang trải qua:',
     layout: 'grid',
     cardVariant: 'info',
     bullets: [
       {
-        title: '1930 – 1945: Hoạt động bí mật',
-        desc: 'Đảng non trẻ trước khủng bố khốc liệt của Pháp. Cần cán bộ trung thành tuyệt đối vì một người phản bội có thể xóa sổ cả tổ chức.',
+        title: 'Giai đoạn 1930–1945',
+        desc: 'Đảng Cộng sản Việt Nam còn non trẻ, hoạt động bí mật dưới sự đàn áp của thực dân Pháp. Cần cán bộ trung thành tuyệt đối vì một người phản bội có thể xóa sổ cả tổ chức.',
         icon: 'Shield',
       },
       {
-        title: '1945 – 1954: Kháng chiến chống Pháp',
-        desc: 'Nhà nước non trẻ thiếu nhân lực; tham nhũng quan liêu xuất hiện. Bác viết "Sửa đổi lối làm việc" (1947) nêu chuẩn mực: Nhân, Nghĩa, Dũng, Trí, Liêm.',
+        title: 'Giai đoạn 1945–1954 (Kháng chiến chống Pháp)',
+        desc: 'Nhà nước mới thành lập, thiếu nhân lực có năng lực lẫn phẩm chất. Tham nhũng và quan liêu bắt đầu xuất hiện ngay trong hàng ngũ — đây là lý do Người viết tác phẩm "Sửa đổi lối làm việc" (1947) nêu rõ 5 tiêu chuẩn: Nhân, Nghĩa, Dũng, Trí, Liêm.',
         icon: 'FileText',
       },
       {
-        title: '1954 – 1969: Nhiệm vụ kép 2 miền',
-        desc: 'Miền Bắc xây dựng CNXH, chi viện miền Nam đánh Mỹ. Áp lực kép đòi hỏi bộ máy liêm chính tuyệt đối, tránh hậu quả dây chuyền.',
+        title: 'Giai đoạn 1954–1969 (Xây dựng miền Bắc, kháng chiến chống Mỹ)',
+        desc: 'Đất nước bị chia cắt, miền Bắc vừa xây dựng chủ nghĩa xã hội vừa chi viện cho miền Nam. Áp lực kép này đòi hỏi bộ máy cán bộ không được có điểm yếu nào — sự suy thoái của một cá nhân có thể gây hậu quả dây chuyền cho cả hệ thống.',
         icon: 'Target',
       },
       {
-        title: 'Năm 1969: Di huấn thiêng liêng',
-        desc: 'Viết bài "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân" và Di chúc thiêng liêng — trăn trở đến cuối đời về đạo đức người cầm quyền.',
+        title: 'Bài báo cuối đời (1969)',
+        desc: 'Chỉ vài tháng trước khi mất, Người vẫn viết "Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân" — cho thấy đây là vấn đề Người lo lắng đến tận cuối đời, không phải lý thuyết suông mà là cảnh báo thực tiễn.',
         icon: 'Award',
       },
     ],
     notes: 'Tổng kết hoàn chỉnh toàn bộ bối cảnh lịch sử thực tiễn hình thành nên quan điểm cán bộ của Bác.',
-  },
-  {
-    id: 'slide-15',
-    sectionCode: 'LỊCH SỬ',
-    sectionTitle: 'Tiến trình lịch sử tư tưởng',
-    title: 'Bối cảnh lịch sử qua các mốc thời gian',
-    subtitle: 'Sự hình thành và phát triển tư tưởng Hồ Chí Minh về Đảng (1927 – 1969)',
-    layout: 'timeline',
-    notes: 'Tổng kết dòng thời gian các dấu mốc thực tiễn lịch sử tôi rèn nên tư tưởng Hồ Chí Minh.',
   },
   {
     id: 'slide-minigame',
