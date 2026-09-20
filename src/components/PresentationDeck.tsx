@@ -60,7 +60,7 @@ export const PresentationDeck: React.FC = () => {
           <span className="inline-block py-2 px-5 rounded-full bg-red-900/50 border border-red-800/50 text-red-200 text-sm font-bold tracking-widest uppercase mb-8 shadow-sm">
             Chương 04
           </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8 drop-shadow-md">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-yellow-300 leading-tight mb-8 drop-shadow-md">
             {slide.title}
           </h1>
           {(slide.subtitle || slide.notes) && (
