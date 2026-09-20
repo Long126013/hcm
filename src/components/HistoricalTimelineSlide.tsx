@@ -235,13 +235,6 @@ export const HistoricalTimelineSlide: React.FC<Props> = ({ isDark = false }) => 
             {/* A. COMPACT HEADER */}
             <div className="px-5 py-3 sm:px-6 sm:py-3.5 bg-white border-b border-stone-200/90 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5 min-w-0">
-                <span className="shrink-0 text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded bg-[#800000] text-white shadow-xs">
-                  MỐC {activeMilestone.year}
-                </span>
-                <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-300"></span>
-                <h3 className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-                  {activeMilestone.title}
-                </h3>
               </div>
 
               {/* Close Button */}
@@ -317,6 +310,7 @@ export const HistoricalTimelineSlide: React.FC<Props> = ({ isDark = false }) => 
                     <ImagePlaceholder
                       label={`Tư liệu mốc ${activeMilestone.year}`}
                       prompt={activeMilestone.suggestedImagePrompt || `Tư liệu lịch sử giai đoạn ${activeMilestone.year}`}
+                      imageUrl={activeMilestone.imageUrl}
                       aspectRatio="landscape"
                       className="w-full rounded-xl"
                     />
@@ -325,10 +319,7 @@ export const HistoricalTimelineSlide: React.FC<Props> = ({ isDark = false }) => 
                   {/* Caption & Instructions */}
                   <div className="text-center px-1 space-y-1">
                     <p className="text-xs font-semibold text-slate-700">
-                      Tư liệu lịch sử: Giai đoạn {activeMilestone.year}
-                    </p>
-                    <p className="text-[11px] text-slate-400 italic leading-tight">
-                      💡 Khung ảnh tư liệu: Có thể dán URL ảnh trực tiếp hoặc sao chép prompt để tìm kiếm.
+                      Ảnh minh họa
                     </p>
                   </div>
                 </div>

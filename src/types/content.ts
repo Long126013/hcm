@@ -8,6 +8,7 @@ export interface TimelineEvent {
   quote?: string;
   keyPoints?: string[];
   suggestedImagePrompt?: string;
+  imageUrl?: string;
 }
 
 export interface SectionContent {
