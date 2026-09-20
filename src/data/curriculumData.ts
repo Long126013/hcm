@@ -831,38 +831,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     ],
     notes: '7 tiêu chuẩn toàn diện từ tư tưởng, phẩm chất chính trị, quan hệ quần chúng đến năng lực hành động.',
   },
-  {
-    id: 'slide-12',
-    sectionCode: '4.1.2-c',
-    sectionTitle: 'Chống giặc nội xâm & Công tác cán bộ',
-    title: 'Nhận diện 4 biểu hiện của "Giặc nội xâm"',
-    subtitle: 'Địch bên ngoài không đáng sợ bằng địch bên trong, vì nó phá hoại từ trong ra',
-    layout: 'grid',
-    cardVariant: 'feature',
-    bullets: [
-      {
-        title: 'Chủ nghĩa cá nhân',
-        desc: 'Đặt lợi ích cá nhân lên trên hết, vun vén tư lợi thay vì lợi ích chung của tập thể và nhân dân.',
-        icon: 'UserX',
-      },
-      {
-        title: 'Tham ô, lãng phí, hủ hóa',
-        desc: 'Lợi dụng chức quyền để chiếm đoạt tài sản, sống xa hoa lãng phí mồ hôi nước mắt của dân.',
-        icon: 'AlertTriangle',
-      },
-      {
-        title: 'Quan liêu, độc đoán',
-        desc: 'Xa rời quần chúng, chuyên quyền độc đoán, không lắng nghe ý kiến từ cơ sở.',
-        icon: 'EyeOff',
-      },
-      {
-        title: 'Mất đoàn kết, vô kỷ luật',
-        desc: 'Chia rẽ nội bộ, kèn cựa địa vị, thiếu ý thức tổ chức và không chấp hành kỷ luật Đảng.',
-        icon: 'Users',
-      },
-    ],
-    notes: 'Đảng không giấu khuyết điểm, dũng cảm nhìn nhận để tự sửa chữa và thanh lọc đội ngũ.',
-  },
+
   {
     id: 'slide-12b',
     sectionCode: '4.1.2-c',
