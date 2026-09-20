@@ -28,7 +28,8 @@ export interface SlideItem {
   subtitle?: string;
   presenter?: string;
   theme?: 'dark' | 'light';
-  layout: 'intro' | 'formula' | 'timeline' | 'content' | 'quote' | 'grid' | 'comparison';
+  layout: 'intro' | 'formula' | 'timeline' | 'content' | 'quote' | 'grid' | 'comparison' | 'manifestations' | 'principles' | 'standards' | 'discussion';
+  cardVariant?: 'feature' | 'info' | 'principle' | 'content' | 'stat' | 'navigation';
   content?: string[];
   bullets?: { title: string; desc: string; icon?: string }[];
   quote?: { text: string; author?: string; work?: string };

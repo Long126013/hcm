@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CONTENT_411 } from '../data/curriculumData';
 import { CreativeFormula } from './CreativeFormula';
 import { ImagePlaceholder } from './ImagePlaceholder';
@@ -9,6 +9,7 @@ interface Section411Props {
 }
 
 export const Section411: React.FC<Section411Props> = ({ onNavigateToSlideMode }) => {
+  const [activeSubTab, setActiveSubTab] = useState<'all' | '1' | '2' | '3'>('all');
   const { part1, part3 } = CONTENT_411;
 
   return (
@@ -34,7 +35,7 @@ export const Section411: React.FC<Section411Props> = ({ onNavigateToSlideMode })
           </p>
 
           {onNavigateToSlideMode && (
-            <div className="mt-5">
+            <div className="mt-5 mb-5">
               <button
                 onClick={onNavigateToSlideMode}
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-red-700 hover:bg-red-600 text-white font-semibold text-xs transition-all cursor-pointer shadow-xs active:scale-95"
@@ -44,13 +45,58 @@ export const Section411: React.FC<Section411Props> = ({ onNavigateToSlideMode })
               </button>
             </div>
           )}
+
+          {/* Sub-navigation tabs */}
+          <div className="mt-5 flex flex-wrap gap-2 text-xs">
+            <button
+              onClick={() => setActiveSubTab('all')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                activeSubTab === 'all'
+                  ? 'bg-red-700 text-white shadow-xs'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
+            >
+              Xem toàn bộ (I, II, III)
+            </button>
+            <button
+              onClick={() => setActiveSubTab('1')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeSubTab === '1'
+                  ? 'bg-red-700 text-white shadow-xs'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
+            >
+              <span>I. Tính tất yếu</span>
+            </button>
+            <button
+              onClick={() => setActiveSubTab('2')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeSubTab === '2'
+                  ? 'bg-red-700 text-white shadow-xs'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
+            >
+              <span>II. Quy luật</span>
+            </button>
+            <button
+              onClick={() => setActiveSubTab('3')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeSubTab === '3'
+                  ? 'bg-red-700 text-white shadow-xs'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
+            >
+              <span>III. Ý nghĩa</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* ======================================================== */}
       {/* PHẦN I: TÍNH TẤT YẾU VÀ VAI TRÒ HẠT NHÂN */}
       {/* ======================================================== */}
-      <section className="space-y-5">
+      {(activeSubTab === 'all' || activeSubTab === '1') && (
+      <section className="space-y-5 pt-2">
         <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
           <span className="w-8 h-8 rounded-lg bg-red-800 text-white font-bold flex items-center justify-center text-sm shadow-xs">
             I
@@ -135,11 +181,13 @@ export const Section411: React.FC<Section411Props> = ({ onNavigateToSlideMode })
           </div>
         </div>
       </section>
+      )}
 
       {/* ======================================================== */}
       {/* PHẦN II: QUY LUẬT RA ĐỜI MANG TÍNH SÁNG TẠO */}
       {/* ======================================================== */}
-      <section className="space-y-5">
+      {(activeSubTab === 'all' || activeSubTab === '2') && (
+      <section className="space-y-5 pt-4">
         <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
           <span className="w-8 h-8 rounded-lg bg-red-800 text-white font-bold flex items-center justify-center text-sm shadow-xs">
             II
@@ -155,11 +203,13 @@ export const Section411: React.FC<Section411Props> = ({ onNavigateToSlideMode })
         {/* Sơ đồ quy luật 3 thành tố */}
         <CreativeFormula />
       </section>
+      )}
 
       {/* ======================================================== */}
       {/* PHẦN III: GIÁ TRỊ LÝ LUẬN VÀ Ý NGHĨA THỰC TIỄN */}
       {/* ======================================================== */}
-      <section className="space-y-5">
+      {(activeSubTab === 'all' || activeSubTab === '3') && (
+      <section className="space-y-5 pt-4">
         <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
           <span className="w-8 h-8 rounded-lg bg-red-800 text-white font-bold flex items-center justify-center text-sm shadow-xs">
             III
@@ -234,6 +284,7 @@ export const Section411: React.FC<Section411Props> = ({ onNavigateToSlideMode })
           />
         </div>
       </section>
+      )}
     </div>
   );
 };
