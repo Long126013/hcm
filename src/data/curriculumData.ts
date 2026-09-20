@@ -3,7 +3,7 @@ import type { TimelineEvent, SlideItem } from '../types/content';
 export const CHAPTER_INFO = {
   id: 'chuong-4',
   code: 'CHƯƠNG 4',
-  title: 'Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam và Nhà nước của nhân dân, do nhân dân, vì nhân dân',
+  title: 'Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam',
   subject: 'Triết học & Tư tưởng Hồ Chí Minh',
   academicYear: 'Học phần Lý luận Chính trị',
 };
@@ -46,28 +46,6 @@ export const SECTIONS_LIST = [
     description: 'Giải đáp: Hồ Chí Minh chú trọng xây dựng Đảng Cộng sản Việt Nam thành đảng kiểu mới, vậy đảng này theo Bác khác gì với các đảng chính trị khác trên thế giới?',
   },
 
-  {
-    id: '4.2.1',
-    code: '4.2.1',
-    parent: '4.2',
-    parentTitle: '4.2. Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân',
-    title: 'Nhà nước dân chủ',
-    status: 'placeholder' as const,
-    presenter: 'Chưa phân công',
-    badge: 'Đầu mục',
-    description: 'Bản chất dân chủ của Nhà nước Việt Nam mới: quyền lực thuộc về nhân dân, dân là chủ và dân làm chủ.',
-  },
-  {
-    id: '4.2.2',
-    code: '4.2.2',
-    parent: '4.2',
-    parentTitle: '4.2. Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân',
-    title: 'Nhà nước pháp quyền',
-    status: 'placeholder' as const,
-    presenter: 'Chưa phân công',
-    badge: 'Đầu mục',
-    description: 'Nhà nước quản lý xã hội bằng Hiến pháp và pháp luật, thượng tôn pháp luật gắn liền với đạo đức cách mạng.',
-  },
 ];
 
 export const TIMELINE_DATA: TimelineEvent[] = [

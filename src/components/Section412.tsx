@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Award, UserCheck, AlertTriangle, Users, Quote, CheckCircle2, BookOpen, HeartHandshake, Eye, Bookmark } from 'lucide-react';
+import { Shield, Award, UserCheck, AlertTriangle, Users, Quote, CheckCircle2, BookOpen, HeartHandshake, Bookmark } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
 
 export const Section412: React.FC = () => {
@@ -195,23 +195,28 @@ export const Section412: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
-                title: '1. Tập trung dân chủ',
-                desc: 'Là nguyên tắc tổ chức cơ bản nhất của Đảng. Tập trung trên cơ sở dân chủ, và dân chủ dưới sự chỉ đạo tập trung. Thiểu số phục tùng đa số, cấp dưới phục tùng cấp trên, toàn Đảng phục tùng Trung ương.',
+                title: '1. Nguyên tắc tập trung dân chủ',
+                desc: 'Tập trung dân chủ là nguyên tắc cơ bản trong tổ chức và hoạt động của Đảng. Dân chủ nhằm phát huy trí tuệ, trách nhiệm và quyền tham gia của các tổ chức, cán bộ, đảng viên. Tập trung nhằm bảo đảm sự thống nhất về tư tưởng, tổ chức và hành động. Các vấn đề quan trọng cần được thảo luận dân chủ, nhưng khi đã có quyết định thì phải thống nhất thực hiện. → Nguyên tắc này giúp Đảng vừa phát huy dân chủ, vừa bảo đảm sự thống nhất trong hoạt động.',
                 icon: Users,
               },
               {
-                title: '2. Tập thể lãnh đạo, cá nhân phụ trách',
-                desc: 'Tập thể lãnh đạo nhằm phát huy trí tuệ nhiều người, tránh độc đoán chuyên quyền; cá nhân phụ trách để đề cao trách nhiệm cá nhân, khắc phục tư tưởng ỷ lại, vô trách nhiệm.',
+                title: '2. Nguyên tắc tập thể lãnh đạo, cá nhân phụ trách',
+                desc: 'Hồ Chí Minh đề cao sự kết hợp giữa tập thể lãnh đạo và cá nhân phụ trách. Tập thể lãnh đạo giúp huy động trí tuệ của nhiều người và hạn chế quyết định chủ quan. Cá nhân phụ trách giúp xác định rõ người chịu trách nhiệm và bảo đảm công việc được thực hiện cụ thể. Hai yếu tố này phải đi đôi với nhau, tránh tình trạng dựa dẫm vào tập thể hoặc độc đoán, cá nhân quyết định mọi việc. → Mục đích là bảo đảm công việc có sự bàn bạc tập thể nhưng vẫn có người chịu trách nhiệm rõ ràng.',
                 icon: Shield,
               },
               {
-                title: '3. Tự phê bình và phê bình',
-                desc: 'Là quy luật phát triển của Đảng, vũ khí sắc bén để củng cố và phát triển nội bộ. Phải tiến hành thường xuyên như việc rửa mặt hàng ngày, với động cơ trong sáng và tình thương yêu đồng chí.',
-                icon: Eye,
+                title: '3. Nguyên tắc tự phê bình và phê bình',
+                desc: 'Hồ Chí Minh coi tự phê bình và phê bình là nguyên tắc quan trọng để xây dựng và chỉnh đốn Đảng. Tự phê bình là mỗi tổ chức, cán bộ và đảng viên phải chủ động nhìn nhận khuyết điểm của mình. Phê bình là góp ý, chỉ ra những hạn chế, sai sót của đồng chí và tổ chức. Mục đích của phê bình không phải để công kích cá nhân mà nhằm sửa chữa khuyết điểm, giúp nhau tiến bộ và củng cố đoàn kết. Đảng phải có tinh thần thẳng thắn nhìn nhận khuyết điểm và tự sửa chữa, thay vì che giấu khuyết điểm.',
+                icon: BookOpen,
               },
               {
-                title: '4. Kỷ luật nghiêm minh, tự giác & Đoàn kết thống nhất',
-                desc: 'Kỷ luật Đảng là kỷ luật sắt, tự giác; không ai đứng ngoài hay đứng trên kỷ luật. Đoàn kết là sức mạnh cốt tử, phải giữ gìn sự đoàn kết thống nhất như giữ gìn con ngươi của mắt mình.',
+                title: '4. Nguyên tắc kỷ luật nghiêm minh và tự giác',
+                desc: 'Đảng phải có kỷ luật nghiêm minh và tự giác. Mọi tổ chức và đảng viên phải chấp hành các nguyên tắc, quy định và quyết định chung của Đảng. Kỷ luật phải được thực hiện nghiêm túc, thống nhất. Đồng thời, mỗi cán bộ, đảng viên phải có ý thức tự giác chấp hành kỷ luật, chứ không chỉ thực hiện khi bị kiểm tra hoặc nhắc nhở. → Kỷ luật giúp bảo đảm sự thống nhất trong tổ chức và hành động của Đảng.',
+                icon: Bookmark,
+              },
+              {
+                title: '5. Nguyên tắc đoàn kết, thống nhất trong Đảng',
+                desc: 'Hồ Chí Minh đặc biệt coi trọng đoàn kết, thống nhất trong Đảng. Đoàn kết phải được xây dựng trên cơ sở mục tiêu, lý tưởng và nguyên tắc chung. Mỗi cán bộ, đảng viên cần đặt lợi ích chung lên trên lợi ích cá nhân. Phải giữ gìn sự thống nhất về tư tưởng và hành động. Đồng thời, cần tránh những biểu hiện mất đoàn kết, cục bộ, bè phái. → Đoàn kết, thống nhất là điều kiện quan trọng để Đảng có đủ sức mạnh thực hiện vai trò lãnh đạo.',
                 icon: HeartHandshake,
               },
             ].map((principle, idx) => (
@@ -263,17 +268,50 @@ export const Section412: React.FC = () => {
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
-                { title: '1. Tuyệt đối trung thành với Đảng', quote: 'Lợi ích của Đảng luôn đặt lên trước cá nhân; khi cần tính mệnh cũng vui lòng hy sinh.' },
-                { title: '2. Nghiêm chỉnh thực hiện cương lĩnh', quote: 'Mọi chủ trương, nghị quyết, nguyên tắc xây dựng Đảng phải được chấp hành đầy đủ, không ngoại lệ.' },
-                { title: '3. Thường xuyên tu dưỡng đạo đức', quote: 'Thấm nhuần đạo đức cách mạng, cần kiệm liêm chính, chí công vô tư — việc rèn luyện là suốt đời.' },
-                { title: '4. Không ngừng học tập nâng cao', quote: 'Nếu không chịu khó học thì không tiến bộ được. Không tiến bộ là thoái bộ.' },
-                { title: '5. Mật thiết với nhân dân', quote: 'Đảng viên đi trước, làng nước theo sau — là đầy tớ thật trung thành của nhân dân.' },
-                { title: '6. Năng động, dám chịu trách nhiệm', quote: 'Thắng không kiêu, bại không nản — không thụ động, không lười biếng trước gian khó.' },
-                { title: '7. Phòng và chống các tiêu cực', quote: 'Tham ô, lãng phí, quan liêu là giặc nội xâm nguy hiểm hơn giặc ngoại xâm.' },
+                { 
+                  title: '1. Phải Tuyệt Đối Trung Thành Với Đảng', 
+                  desc: 'Lợi ích của Đảng luôn phải đặt lên trước lợi ích cá nhân — kể cả khi phải hy sinh tính mạng.', 
+                  quote: 'Vô luận lúc nào, vô luận việc gì, đảng viên và cán bộ phải đặt lợi ích của Đảng ra trước, lợi ích của cá nhân lại sau… Khi cần đến tính mệnh của mình cũng phải vui lòng hy sinh cho Đảng.' 
+                },
+                { 
+                  title: '2. Phải Nghiêm Chỉnh Thực Hiện Cương Lĩnh, Đường Lối Của Đảng', 
+                  desc: 'Mọi chủ trương, nghị quyết, nguyên tắc xây dựng Đảng phải được chấp hành đầy đủ, không ngoại lệ.', 
+                  quote: null 
+                },
+                { 
+                  title: '3. Phải Luôn Luôn Tu Dưỡng Đạo Đức Cách Mạng', 
+                  desc: 'Rèn luyện đạo đức là việc làm suốt đời, không phải thành tích một lần.', 
+                  quote: 'Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư.' 
+                },
+                { 
+                  title: '4. Phải Luôn Luôn Học Tập Nâng Cao Trình Độ', 
+                  desc: 'Cán bộ phải liên tục nâng cao hiểu biết về mọi mặt để không bị tụt hậu.', 
+                  quote: 'Nếu không chịu khó học thì không tiến bộ được. Không tiến bộ là thoái bộ.' 
+                },
+                { 
+                  title: '5. Phải Có Mối Liên Hệ Mật Thiết Với Nhân Dân', 
+                  desc: 'Cán bộ phải là "đầy tớ thật trung thành" của nhân dân — chịu khổ trước, hưởng sau.', 
+                  quote: 'Đảng viên đi trước, làng nước theo sau.' 
+                },
+                { 
+                  title: '6. Phải Luôn Chịu Trách Nhiệm, Năng Động, Sáng Tạo', 
+                  desc: 'Không thụ động, không lười biếng — phải dám chịu trách nhiệm trước Đảng và nhân dân.', 
+                  quote: 'Thắng không kiêu, bại không nản.' 
+                },
+                { 
+                  title: '7. Phải Phòng Và Chống Các Tiêu Cực', 
+                  desc: 'Tham ô, lãng phí, quan liêu được Hồ Chí Minh coi là "giặc nội xâm" — nguy hiểm hơn cả kẻ thù bên ngoài.', 
+                  quote: 'Mỗi kẻ địch bên trong là một bạn đồng minh của kẻ địch bên ngoài. Địch bên ngoài không đáng sợ. Địch bên trong đáng sợ hơn, vì nó phá hoại từ trong phá ra.' 
+                },
               ].map((item, idx) => (
-                <div key={idx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200/80">
-                  <div className="text-xs font-bold text-red-900 mb-1">{item.title}</div>
-                  <p className="font-serif-quote italic text-xs text-slate-700 leading-relaxed">"{item.quote}"</p>
+                <div key={idx} className="p-3.5 rounded-lg bg-slate-50 border border-slate-200/80 flex flex-col h-full">
+                  <div className="text-xs font-bold text-red-900 mb-1.5">{item.title}</div>
+                  <p className="text-xs text-slate-700 leading-relaxed mb-2 flex-grow">{item.desc}</p>
+                  {item.quote && (
+                    <div className="mt-auto pt-2 border-t border-slate-200">
+                      <p className="font-serif-quote italic text-xs text-slate-600 leading-relaxed">"{item.quote}"</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

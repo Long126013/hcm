@@ -4,7 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { Section411 } from './components/Section411';
 import { Section412 } from './components/Section412';
 import { SectionFAQ } from './components/SectionFAQ';
-import { SectionPlaceholder } from './components/SectionPlaceholder';
+
 import { TimelineView } from './components/TimelineView';
 import { CreativeFormula } from './components/CreativeFormula';
 import { PresentationDeck } from './components/PresentationDeck';
@@ -123,25 +123,6 @@ export function App() {
 
           {activeSection === 'faq-new-party' && <SectionFAQ />}
 
-          {activeSection === '4.2.1' && (
-            <SectionPlaceholder
-              code="4.2.1"
-              title="Nhà nước dân chủ"
-              parentTitle="4.2. Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân"
-              description="Bản chất dân chủ của Nhà nước Việt Nam mới: Tất cả quyền lực thuộc về nhân dân, nhân dân là chủ và nhân dân làm chủ."
-              onBackTo411={() => setActiveSection('4.1.1')}
-            />
-          )}
-
-          {activeSection === '4.2.2' && (
-            <SectionPlaceholder
-              code="4.2.2"
-              title="Nhà nước pháp quyền"
-              parentTitle="4.2. Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân"
-              description="Nhà nước quản lý xã hội bằng Hiến pháp và pháp luật; thượng tôn pháp luật nghiêm minh kết hợp nhuần nhuyễn với đạo đức cách mạng."
-              onBackTo411={() => setActiveSection('4.1.1')}
-            />
-          )}
 
           {activeSection === 'timeline' && <TimelineView />}
 
@@ -153,7 +134,7 @@ export function App() {
               Môn học: Triết học & Tư tưởng Hồ Chí Minh — Chương 4
             </p>
             <p>
-              Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam và Nhà nước của nhân dân, do nhân dân, vì nhân dân
+              Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam
             </p>
           </footer>
         </main>

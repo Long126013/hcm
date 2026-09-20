@@ -78,46 +78,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
           </div>
 
-          {/* Group 4.2 */}
-          <div className="space-y-1 pt-2">
-            <div className="px-2 text-xs font-bold text-slate-900 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-              <span>4.2. Về Nhà nước của dân, do dân, vì dân</span>
-            </div>
-
-            <div className="pl-2 space-y-1 pt-1">
-              {SECTIONS_LIST.filter((s) => s.parent === '4.2').map((sec) => {
-                const isSelected = activeSection === sec.id;
-                return (
-                  <button
-                    key={sec.id}
-                    onClick={() => onSelectSection(sec.id)}
-                    className={`w-full text-left p-2.5 rounded-lg text-xs transition-all cursor-pointer flex flex-col gap-0.5 ${
-                      isSelected
-                        ? 'bg-slate-900 text-white font-semibold shadow-2xs'
-                        : 'hover:bg-slate-100 text-slate-700'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`font-bold ${isSelected ? 'text-amber-300' : 'text-slate-600'}`}>
-                        {sec.code}
-                      </span>
-                      <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded ${
-                          isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
-                        }`}
-                      >
-                        {sec.badge}
-                      </span>
-                    </div>
-                    <span className="line-clamp-2 leading-relaxed">
-                      {sec.title}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
 
         {/* Quick Tools */}
