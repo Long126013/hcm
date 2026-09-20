@@ -14,13 +14,15 @@ import {
   Scale,
   Calendar,
   AlertOctagon,
-  Sparkles,
   ArrowRight,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
 
 export const Section412: React.FC = () => {
   const [activeSubTab, setActiveSubTab] = useState<'all' | 'a' | 'b' | 'c'>('all');
+  const [openQuestionId, setOpenQuestionId] = useState<number | null>(0); // 0 is first question
   const { partA, partB, partC } = CONTENT_412;
 
   return (
@@ -35,9 +37,7 @@ export const Section412: React.FC = () => {
             <span className="px-2.5 py-0.5 rounded text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
               Nội dung học phần
             </span>
-            <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              Thuyết trình: Ngân & Nhiên
-            </span>
+
           </div>
 
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white leading-tight">
@@ -69,7 +69,6 @@ export const Section412: React.FC = () => {
               }`}
             >
               <span>a) Đảng là đạo đức, văn minh</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-red-950 text-red-200">Ngân</span>
             </button>
             <button
               onClick={() => setActiveSubTab('b')}
@@ -90,14 +89,13 @@ export const Section412: React.FC = () => {
               }`}
             >
               <span>c) Đội ngũ cán bộ, đảng viên</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-red-950 text-red-200">Nhiên</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* ======================================================== */}
-      {/* SUB-SECTION A: ĐẢNG LÀ ĐẠO ĐỨC, VĂN MINH (NGÂN) */}
+      {/* SUB-SECTION A: ĐẢNG LÀ ĐẠO ĐỨC, VĂN MINH */}
       {/* ======================================================== */}
       {(activeSubTab === 'all' || activeSubTab === 'a') && (
         <section className="space-y-6 pt-2">
@@ -113,10 +111,6 @@ export const Section412: React.FC = () => {
                 </p>
               </div>
             </div>
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              Thuyết trình: {partA.presenter}
-            </span>
           </div>
 
           {/* Quote Card */}
@@ -142,7 +136,7 @@ export const Section412: React.FC = () => {
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {partA.manifestations.map((m, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-2">
+                <div key={idx} className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-2 h-full flex flex-col justify-between">
                   <span className="text-xs font-bold text-red-800 uppercase tracking-wide block">
                     {m.number} {m.title}
                   </span>
@@ -281,7 +275,7 @@ export const Section412: React.FC = () => {
       )}
 
       {/* ======================================================== */}
-      {/* SUB-SECTION C: XÂY DỰNG ĐỘI NGŨ CÁN BỘ, ĐẢNG VIÊN (NHIÊN) */}
+      {/* SUB-SECTION C: XÂY DỰNG ĐỘI NGŨ CÁN BỘ, ĐẢNG VIÊN */}
       {/* ======================================================== */}
       {(activeSubTab === 'all' || activeSubTab === 'c') && (
         <section className="space-y-6 pt-4">
@@ -297,10 +291,6 @@ export const Section412: React.FC = () => {
                 </p>
               </div>
             </div>
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              Thuyết trình: {partC.presenter}
-            </span>
           </div>
 
           {/* Câu châm ngôn kinh điển */}
@@ -334,7 +324,7 @@ export const Section412: React.FC = () => {
               {partC.standards.map((item) => (
                 <div
                   key={item.number}
-                  className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-2"
+                  className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-2 h-full"
                 >
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-2">
@@ -415,7 +405,7 @@ export const Section412: React.FC = () => {
               {partC.cadreWork.requirements.map((req, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-lg bg-slate-50 border border-slate-100 hover:border-red-200 transition-colors"
+                  className="p-3.5 rounded-lg bg-slate-50 border border-slate-100 hover:border-red-200 transition-colors h-full flex flex-col"
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-5 h-5 rounded-full bg-red-100 text-red-800 font-bold text-[11px] flex items-center justify-center shrink-0">
@@ -444,54 +434,53 @@ export const Section412: React.FC = () => {
             </div>
 
             <div className="space-y-4">
-              {/* Câu hỏi 1 */}
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                <h5 className="font-bold text-red-900 text-xs md:text-sm">
-                  {partC.deepDiveQuestions[0].question}
-                </h5>
-                <p className="text-xs text-slate-700 leading-relaxed">
-                  {partC.deepDiveQuestions[0].answer}
-                </p>
-              </div>
-
-              {/* Câu hỏi 2 */}
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                <h5 className="font-bold text-red-900 text-xs md:text-sm">
-                  {partC.deepDiveQuestions[1].question}
-                </h5>
-                <p className="text-xs text-slate-700 leading-relaxed">
-                  {partC.deepDiveQuestions[1].answer}
-                </p>
-              </div>
-
-              {/* Câu hỏi 3: Kèm Timeline 4 giai đoạn */}
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
-                <div>
-                  <h5 className="font-bold text-red-900 text-xs md:text-sm">
-                    {partC.deepDiveQuestions[2].question}
-                  </h5>
-                  <p className="text-xs text-slate-700 leading-relaxed mt-1">
-                    {partC.deepDiveQuestions[2].answer}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-                  {partC.deepDiveQuestions[2].historicalStages?.map((stage, sIdx) => (
-                    <div
-                      key={sIdx}
-                      className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5"
+              {partC.deepDiveQuestions.map((q, qIdx) => {
+                const isOpen = openQuestionId === qIdx;
+                return (
+                  <div key={qIdx} className="rounded-xl bg-slate-50 border border-slate-200 overflow-hidden transition-all">
+                    <button
+                      onClick={() => setOpenQuestionId(isOpen ? null : qIdx)}
+                      className="w-full flex items-center justify-between p-4 text-left cursor-pointer hover:bg-slate-100 transition-colors"
                     >
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-red-800">
-                        <Calendar className="w-3.5 h-3.5 text-red-700" />
-                        <span>{stage.period}</span>
+                      <h5 className="font-bold text-red-900 text-xs md:text-sm pr-4">
+                        {q.question}
+                      </h5>
+                      {isOpen ? (
+                        <ChevronUp className="w-5 h-5 text-red-800 shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                      )}
+                    </button>
+                    
+                    {isOpen && (
+                      <div className="p-4 pt-0 space-y-3 animate-fadeIn border-t border-slate-100 mt-1">
+                        <p className="text-xs text-slate-700 leading-relaxed mt-3">
+                          {q.answer}
+                        </p>
+                        
+                        {q.historicalStages && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3">
+                            {q.historicalStages.map((stage, sIdx) => (
+                              <div
+                                key={sIdx}
+                                className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5 h-full flex flex-col justify-start"
+                              >
+                                <div className="flex items-center gap-1.5 text-xs font-bold text-red-800 mb-1">
+                                  <Calendar className="w-3.5 h-3.5 text-red-700 shrink-0" />
+                                  <span>{stage.period}</span>
+                                </div>
+                                <p className="text-xs text-slate-600 leading-relaxed">
+                                  {stage.context}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">
-                        {stage.context}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
