@@ -7,6 +7,7 @@ interface ImagePlaceholderProps {
   prompt: string;
   aspectRatio?: 'landscape' | 'portrait' | 'square';
   className?: string;
+  imageUrl?: string;
 }
 
 export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
@@ -14,8 +15,9 @@ export const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({
   prompt,
   aspectRatio = 'landscape',
   className = '',
+  imageUrl: initialImageUrl = '',
 }) => {
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>(initialImageUrl);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [inputUrl, setInputUrl] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);

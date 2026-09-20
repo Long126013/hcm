@@ -602,6 +602,7 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     imagePlaceholder: {
       label: 'Ảnh tư liệu lịch sử',
       prompt: 'Gợi ý ảnh: Quảng trường Ba Đình 1945 hoặc Hội nghị thành lập Đảng 3/2/1930',
+      imageUrl: 'https://images.unsplash.com/photo-1599708153386-62bf0bd1799a?auto=format&fit=crop&w=1000'
     },
     notes: 'Tổng kết mục 4.1.1 trước khi chuyển tiếp sang mục 4.1.2 về công tác xây dựng Đảng.',
   },
@@ -661,22 +662,68 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-9',
     sectionCode: '4.1.2-a',
     sectionTitle: 'Đảng là đạo đức, là văn minh',
-    title: '6 Nội dung Đảng văn minh & Nguy cơ suy thoái',
+    title: '6 Nội dung xây dựng Đảng văn minh',
     subtitle: 'Xây dựng tổ chức liêm chính, hoạt động trong khuôn khổ Hiến pháp và pháp luật',
-    layout: 'comparison',
+    layout: 'grid',
     bullets: [
       {
-        title: '6 Nội dung xây dựng Đảng văn minh',
-        desc: '1. Đại diện lương tâm, trí tuệ dân tộc. 2. Hoạt động phù hợp quy luật phát triển. 3. Luôn trong sạch, chống tiêu cực. 4. Hoạt động trong khuôn khổ Hiến pháp & pháp luật. 5. Cán bộ gương mẫu từ trên xuống dưới. 6. Quan hệ quốc tế trong sáng, hòa bình.',
+        title: 'Đại diện lương tâm, trí tuệ dân tộc',
+        desc: 'Đảng phải kết tinh được những giá trị tinh hoa tốt đẹp nhất của dân tộc Việt Nam.',
+        icon: 'Award',
+      },
+      {
+        title: 'Quy luật phát triển',
+        desc: 'Hoạt động và đưa ra đường lối phù hợp với quy luật khách quan của lịch sử và thời đại.',
+        icon: 'Target',
+      },
+      {
+        title: 'Luôn trong sạch, vững mạnh',
+        desc: 'Kiên quyết phòng ngừa và chống lại các biểu hiện tiêu cực, tham nhũng, suy thoái.',
         icon: 'Shield',
       },
       {
-        title: 'Nguy cơ nghiêm trọng nếu thiếu đạo đức',
-        desc: 'Nếu không có đạo đức, văn minh: Mất vai trò lãnh đạo độc tôn → Trở nên không trong sạch, suy yếu tổ chức → Cán bộ đảng viên thoái hóa, biến chất → Toàn bộ thành quả cách mạng xương máu có thể bị đánh mất.',
-        icon: 'AlertTriangle',
+        title: 'Tuân thủ Hiến pháp & Pháp luật',
+        desc: 'Mọi tổ chức đảng và đảng viên phải hoạt động trong khuôn khổ Hiến pháp và pháp luật.',
+        icon: 'Scale',
+      },
+      {
+        title: 'Cán bộ gương mẫu',
+        desc: 'Đội ngũ cán bộ, đảng viên phải là những tấm gương sáng từ trên xuống dưới.',
+        icon: 'Users',
+      },
+      {
+        title: 'Quan hệ quốc tế trong sáng',
+        desc: 'Xây dựng mối quan hệ hữu nghị, hòa bình và hợp tác với các quốc gia trên thế giới.',
+        icon: 'HeartHandshake',
       },
     ],
-    notes: 'Cảnh báo của Hồ Chí Minh mang tính tiên tri và có ý nghĩa thời đại sâu sắc đối với công tác chỉnh đốn Đảng ngày nay.',
+    notes: 'Phân tích 6 nội dung cơ bản tạo nên sự "văn minh" của Đảng Cộng sản Việt Nam.',
+  },
+  {
+    id: 'slide-9b',
+    sectionCode: '4.1.2-a',
+    sectionTitle: 'Đảng là đạo đức, là văn minh',
+    title: 'Nguy cơ nghiêm trọng nếu thiếu đạo đức',
+    subtitle: 'Lời cảnh báo mang tính tiên tri của Hồ Chí Minh đối với công tác chỉnh đốn Đảng',
+    layout: 'comparison',
+    bullets: [
+      {
+        title: 'Mất vai trò lãnh đạo độc tôn',
+        desc: 'Đảng mất uy tín với nhân dân, trở nên không trong sạch, làm suy yếu toàn bộ hệ thống tổ chức.',
+        icon: 'AlertTriangle',
+      },
+      {
+        title: 'Đánh mất thành quả Cách mạng',
+        desc: 'Cán bộ thoái hóa, biến chất. Toàn bộ thành quả cách mạng xương máu của dân tộc có nguy cơ tiêu vong.',
+        icon: 'AlertOctagon',
+      },
+    ],
+    imagePlaceholder: {
+      label: 'Cảnh giác, phòng chống tham nhũng',
+      prompt: 'Hình ảnh ngọn đuốc, la bàn, hoặc bão tố...',
+      imageUrl: 'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?auto=format&fit=crop&w=1000'
+    },
+    notes: 'Nhấn mạnh: Đạo đức cách mạng không chỉ là khẩu hiệu mà là vấn đề sống còn của Đảng.',
   },
   {
     id: 'slide-10',
@@ -764,22 +811,73 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     id: 'slide-12',
     sectionCode: '4.1.2-c',
     sectionTitle: 'Chống giặc nội xâm & Công tác cán bộ',
-    title: 'Chống "Giặc nội xâm" & 6 Yêu cầu trong công tác cán bộ',
-    subtitle: '"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém"',
-    layout: 'comparison',
+    title: 'Nhận diện 4 biểu hiện của "Giặc nội xâm"',
+    subtitle: 'Địch bên ngoài không đáng sợ bằng địch bên trong, vì nó phá hoại từ trong ra',
+    layout: 'grid',
     bullets: [
       {
-        title: 'Nhận diện Suy thoái & "Giặc nội xâm"',
-        desc: 'Bác cảnh báo: Địch bên ngoài không đáng sợ, địch bên trong đáng sợ hơn vì nó phá hoại từ trong ra. Cần tránh 4 biểu hiện: (1) Đặt lợi ích cá nhân lên trên hết; (2) Tham ô, hủ hoá, lãng phí; (3) Độc đoán, chuyên quyền, quan liêu; (4) Mất đoàn kết, thiếu kỷ luật. Đảng không giấu khuyết điểm, thẳng thắn nhận và tự sửa chữa.',
-        icon: 'AlertOctagon',
+        title: 'Chủ nghĩa cá nhân',
+        desc: 'Đặt lợi ích cá nhân lên trên hết, vun vén tư lợi thay vì lợi ích chung của tập thể và nhân dân.',
+        icon: 'UserX',
       },
       {
-        title: '6 Yêu cầu trong Công tác cán bộ',
-        desc: '1. Hiểu và đánh giá đúng cán bộ (tránh dùng sai chỗ). 2. Huấn luyện thiết thực, có hiệu quả. 3. Đề bạt đúng người dựa trên phẩm chất và năng lực. 4. Kết hợp cán bộ trẻ với cán bộ cũ. 5. Chống bệnh địa phương cục bộ, bè phái dòng tộc. 6. Thường xuyên kiểm tra và hỗ trợ uốn nắn.',
-        icon: 'Briefcase',
+        title: 'Tham ô, lãng phí, hủ hóa',
+        desc: 'Lợi dụng chức quyền để chiếm đoạt tài sản, sống xa hoa lãng phí mồ hôi nước mắt của dân.',
+        icon: 'AlertTriangle',
+      },
+      {
+        title: 'Quan liêu, độc đoán',
+        desc: 'Xa rời quần chúng, chuyên quyền độc đoán, không lắng nghe ý kiến từ cơ sở.',
+        icon: 'EyeOff',
+      },
+      {
+        title: 'Mất đoàn kết, vô kỷ luật',
+        desc: 'Chia rẽ nội bộ, kèn cựa địa vị, thiếu ý thức tổ chức và không chấp hành kỷ luật Đảng.',
+        icon: 'Users',
       },
     ],
-    notes: 'Công tác cán bộ được coi là khâu then chốt của then chốt, quyết định sự thành bại của đường lối cách mạng.',
+    notes: 'Đảng không giấu khuyết điểm, dũng cảm nhìn nhận để tự sửa chữa và thanh lọc đội ngũ.',
+  },
+  {
+    id: 'slide-12b',
+    sectionCode: '4.1.2-c',
+    sectionTitle: 'Chống giặc nội xâm & Công tác cán bộ',
+    title: '6 Yêu cầu cốt lõi trong Công tác Cán bộ',
+    subtitle: '"Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại đều do cán bộ tốt hoặc kém"',
+    layout: 'grid',
+    bullets: [
+      {
+        title: 'Hiểu và đánh giá đúng',
+        desc: 'Phải hiểu rõ năng lực, phẩm chất cán bộ để bố trí đúng người, đúng việc, tránh dùng sai chỗ.',
+        icon: 'Search',
+      },
+      {
+        title: 'Huấn luyện thiết thực',
+        desc: 'Đào tạo, bồi dưỡng cán bộ phải gắn liền với thực tiễn, mang lại hiệu quả thực sự.',
+        icon: 'BookOpen',
+      },
+      {
+        title: 'Đề bạt công tâm',
+        desc: 'Cất nhắc dựa trên năng lực và đạo đức thực sự, không dựa vào quan hệ cá nhân.',
+        icon: 'TrendingUp',
+      },
+      {
+        title: 'Kết hợp các thế hệ',
+        desc: 'Giao thoa kinh nghiệm của cán bộ cũ và sự năng động, sáng tạo của cán bộ trẻ.',
+        icon: 'Users',
+      },
+      {
+        title: 'Chống cục bộ, bè phái',
+        desc: 'Tuyệt đối tránh bệnh địa phương, dòng tộc, kéo bè kéo cánh trong tổ chức.',
+        icon: 'ShieldAlert',
+      },
+      {
+        title: 'Kiểm tra, uốn nắn',
+        desc: 'Thường xuyên giám sát, hỗ trợ kịp thời để cán bộ không trượt dài vào sai lầm.',
+        icon: 'CheckCircle',
+      },
+    ],
+    notes: 'Công tác cán bộ được coi là khâu then chốt của then chốt trong xây dựng Đảng.',
   },
   {
     id: 'slide-13',

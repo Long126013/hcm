@@ -35,6 +35,7 @@ export interface SlideItem {
   imagePlaceholder?: {
     label: string;
     prompt: string;
+    imageUrl?: string;
   };
   notes?: string;
 }

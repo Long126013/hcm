@@ -9,7 +9,6 @@ import {
   Maximize2,
   Minimize2,
   FileText,
-  Quote,
   X
 } from 'lucide-react';
 
@@ -133,15 +132,15 @@ export const PresentationDeck: React.FC = () => {
             )}
 
             {slide.layout === 'quote' && (
-              <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn text-center relative">
-                <Quote className="w-24 h-24 absolute -top-12 -left-8 text-amber-500/20 -z-10" />
-                <h2 className={`text-xl md:text-2xl font-bold uppercase tracking-wide ${themeClasses.subtitle}`}>
+              <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn text-center relative z-10">
+                <div className="absolute -top-16 -left-8 md:-left-16 text-9xl font-serif text-amber-500/20 pointer-events-none select-none">"</div>
+                <h2 className={`text-sm font-bold uppercase tracking-widest ${themeClasses.subtitle}`}>
                   {slide.title}
                 </h2>
-                <div className="space-y-6">
+                <div className="space-y-6 relative z-10">
                   {slide.content?.map((text, idx) => (
                     <p key={idx} className={`font-serif-quote italic text-2xl md:text-4xl leading-relaxed ${themeClasses.title}`}>
-                      "{text}"
+                      {text}
                     </p>
                   ))}
                   {slide.quote?.author && (
@@ -205,15 +204,21 @@ export const PresentationDeck: React.FC = () => {
                   }`}
                 >
                   {slide.bullets?.map((bullet, idx) => (
-                    <div
-                      key={idx}
-                      className={`p-5 rounded-2xl border transition-all flex flex-col justify-start ${themeClasses.card}`}
-                    >
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg mb-4 ${themeClasses.numberBadge}`}>
+                      <div
+                        key={idx}
+                        className={`p-5 rounded-2xl border transition-all flex flex-col justify-start relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg animate-fadeIn ${themeClasses.card}`}
+                        style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
+                      >
+                      {/* Giant Number Watermark */}
+                      <div className="absolute -bottom-6 -right-4 text-9xl font-black opacity-5 pointer-events-none select-none transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
+
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg mb-4 relative z-10 ${themeClasses.numberBadge}`}>
                         {idx + 1}
                       </div>
-                      <h3 className={`text-lg font-bold mb-2 ${themeClasses.cardTitle}`}>{bullet.title}</h3>
-                      <p className={`text-sm leading-relaxed ${themeClasses.desc}`}>{bullet.desc}</p>
+                      <h3 className={`text-lg font-bold mb-2 relative z-10 ${themeClasses.cardTitle}`}>{bullet.title}</h3>
+                      <p className={`text-sm leading-relaxed relative z-10 ${themeClasses.desc}`}>{bullet.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -232,11 +237,15 @@ export const PresentationDeck: React.FC = () => {
 
                   <div className={slide.imagePlaceholder ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-5'}>
                     {slide.bullets?.map((b, idx) => (
-                      <div key={idx} className={`p-5 rounded-2xl border flex flex-col justify-start ${themeClasses.card}`}>
-                        <div className={`text-sm font-bold uppercase tracking-wider mb-2 ${themeClasses.subtitle}`}>
+                      <div 
+                        key={idx} 
+                        className={`p-5 rounded-2xl border flex flex-col justify-start relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all animate-fadeIn ${themeClasses.card}`}
+                        style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
+                      >
+                        <div className={`text-sm font-bold uppercase tracking-wider mb-2 relative z-10 ${themeClasses.subtitle}`}>
                           {b.title}
                         </div>
-                        <p className={`text-sm leading-relaxed ${themeClasses.desc}`}>{b.desc}</p>
+                        <p className={`text-sm leading-relaxed relative z-10 ${themeClasses.desc}`}>{b.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -247,6 +256,7 @@ export const PresentationDeck: React.FC = () => {
                     <ImagePlaceholder
                       label={slide.imagePlaceholder.label}
                       prompt={slide.imagePlaceholder.prompt}
+                      imageUrl={slide.imagePlaceholder.imageUrl}
                       aspectRatio="landscape"
                       className={isDark ? 'bg-red-900/40 border-red-800' : 'bg-slate-100 border-slate-200'}
                     />
