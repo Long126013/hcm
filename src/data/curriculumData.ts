@@ -938,4 +938,13 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     layout: 'minigame',
     notes: 'Minigame tương tác cuối chương để củng cố kiến thức và nhận diện các biểu hiện suy thoái cần kiên quyết đấu tranh phòng chống.',
   },
+  {
+    id: 'slide-ai-disclosure',
+    sectionCode: 'MINH BẠCH AI',
+    sectionTitle: 'Bảng kê khai sử dụng AI & Liêm chính học thuật',
+    title: 'Bảng kê khai sử dụng AI & Liêm chính học thuật',
+    subtitle: 'Minh bạch hóa 100% mục đích, câu lệnh và mức độ can thiệp/chỉnh sửa của sinh viên đối với các công cụ Trí tuệ Nhân tạo (AI)',
+    layout: 'content',
+    notes: 'Kê khai minh bạch công cụ AI và cam kết liêm chính học thuật của nhóm sinh viên.',
+  },
 ];
