@@ -5,6 +5,7 @@ import { MinigameWordSearch } from './MinigameWordSearch';
 import { HistoricalTimelineSlide } from './HistoricalTimelineSlide';
 import { CadreStandardsCarouselSlide } from './CadreStandardsCarouselSlide';
 import { AiDisclosureSlide } from './AiDisclosureSlide';
+import { CqQuestionSlide } from './CqQuestionSlide';
 import {
   ChevronLeft, ChevronRight, ArrowDown, Quote, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
@@ -615,7 +616,14 @@ export const PresentationDeck: React.FC = () => {
       );
     }
 
-    // 16. MINIGAME: WORD SEARCH / RECOGNITION (slide-minigame)
+    // 16. CÂU HỎI CQ: CRITICAL QUESTION (slide-cq)
+    if (slide.id === 'slide-cq') {
+      return (
+        <CqQuestionSlide isDark={isDark} />
+      );
+    }
+
+    // 17. MINIGAME: WORD SEARCH / RECOGNITION (slide-minigame)
     if (slide.id === 'slide-minigame' || slide.layout === 'minigame') {
       return (
         <div className="w-full max-w-5xl mx-auto animate-slideUpFade">

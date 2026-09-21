@@ -930,6 +930,15 @@ export const PRESENTATION_SLIDES: SlideItem[] = [
     notes: 'Tổng kết hoàn chỉnh toàn bộ bối cảnh lịch sử thực tiễn hình thành nên quan điểm cán bộ của Bác.',
   },
   {
+    id: 'slide-cq',
+    sectionCode: 'CÂU HỎI CQ',
+    sectionTitle: 'Trả lời câu hỏi CQ',
+    title: 'Đảng Kiểu Mới của Hồ Chí Minh có gì khác biệt?',
+    subtitle: 'Hồ Chí Minh chú trọng xây dựng Đảng Cộng sản Việt Nam thành đảng kiểu mới, vậy đảng này theo Bác khác gì với các đảng chính trị khác trên thế giới?',
+    layout: 'content',
+    notes: 'Trả lời câu hỏi CQ về 3 bình diện khác biệt cốt lõi của Đảng kiểu mới do Chủ tịch Hồ Chí Minh sáng lập và rèn luyện.',
+  },
+  {
     id: 'slide-minigame',
     sectionCode: 'MINIGAME',
     sectionTitle: 'Tìm cụm từ – Nhận diện những biểu hiện cần tránh',
