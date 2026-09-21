@@ -4,6 +4,7 @@ import { CreativeFormula } from './CreativeFormula';
 import { MinigameWordSearch } from './MinigameWordSearch';
 import { HistoricalTimelineSlide } from './HistoricalTimelineSlide';
 import { CadreStandardsCarouselSlide } from './CadreStandardsCarouselSlide';
+import { AiDisclosureSlide } from './AiDisclosureSlide';
 import {
   ChevronLeft, ChevronRight, ArrowDown, Quote, ArrowRight, BookOpen, Shield, Users, HeartHandshake, Eye, Scale, Compass, Anchor
 } from 'lucide-react';
@@ -620,6 +621,16 @@ export const PresentationDeck: React.FC = () => {
         <div className="w-full max-w-5xl mx-auto animate-slideUpFade">
           <MinigameWordSearch />
         </div>
+      );
+    }
+
+    // 17. AI DISCLOSURE & ACADEMIC INTEGRITY (slide-ai-disclosure)
+    if (slide.id === 'slide-ai-disclosure') {
+      return (
+        <AiDisclosureSlide
+          isDark={isDark}
+          onRestart={() => setCurrentSlideIndex(0)}
+        />
       );
     }
 

@@ -23,14 +23,14 @@ const PHRASES: MysteryPhrase[] = [
     phrase: 'ĐỘC ĐOÁN',
     category: 'Tập trung dân chủ',
     explanation: 'Chuyên quyền, gia trưởng, áp đặt ý chí cá nhân lên tập thể.',
-    points: 100,
+    points: 200,
   },
   {
     id: 2,
     phrase: 'DỰA DẪM TẬP THỂ',
     category: 'Trách nhiệm cá nhân',
     explanation: 'Ỷ lại, trốn tránh trách nhiệm cá nhân, thiếu tính quyết đoán.',
-    points: 100,
+    points: 200,
   },
   {
     id: 3,
@@ -44,52 +44,45 @@ const PHRASES: MysteryPhrase[] = [
     phrase: 'MẤT ĐOÀN KẾT',
     category: 'Đoàn kết nội bộ',
     explanation: 'Phá hoại sự thống nhất ý chí và hành động của tổ chức Đảng.',
-    points: 100,
+    points: 150,
   },
   {
     id: 5,
-    phrase: 'CỤC BỘ',
-    category: 'Ý thức đại cục',
-    explanation: 'Chỉ vun vén cho lợi ích địa phương, cơ quan, đơn vị mình.',
-    points: 100,
-  },
-  {
-    id: 6,
     phrase: 'BÈ PHÁI',
     category: 'Tổ chức cán bộ',
     explanation: 'Lôi kéo người thân quen, tạo nhóm lợi ích gây chia rẽ.',
     points: 100,
   },
   {
-    id: 7,
+    id: 6,
     phrase: 'THAM Ô',
     category: 'Đạo đức cách mạng',
     explanation: 'Tội ác "giặc nội xâm", bòn rút của công và của nhân dân.',
     points: 100,
   },
   {
-    id: 8,
+    id: 7,
     phrase: 'LÃNG PHÍ',
     category: 'Đạo đức cách mạng',
     explanation: 'Tiêu hao vô bổ của cải, thời gian, công sức của tập thể.',
-    points: 100,
+    points: 150,
   },
   {
-    id: 9,
+    id: 8,
     phrase: 'QUAN LIÊU',
     category: 'Quan hệ với Dân',
     explanation: 'Xa rời thực tế, hách dịch, không lắng nghe ý kiến quần chúng.',
-    points: 100,
+    points: 150,
   },
   {
-    id: 10,
+    id: 9,
     phrase: 'THỤ ĐỘNG',
     category: 'Tác phong làm việc',
     explanation: 'Trông chờ mệnh lệnh, thiếu linh hoạt và sáng tạo trong việc.',
-    points: 100,
+    points: 150,
   },
   {
-    id: 11,
+    id: 10,
     phrase: 'LƯỜI BIẾNG',
     category: 'Rèn luyện cán bộ',
     explanation: 'Lười học lý luận, lười lao động, ngại khó khăn gian khổ.',
@@ -169,7 +162,7 @@ export const MinigameWordSearch: React.FC = () => {
                 Ô BÍ MẬT {item.id < 10 ? `0${item.id}` : item.id}
               </span>
               <span className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 block">
-                Bấm mở (+{item.points} đ)
+                Bấm mở
               </span>
             </div>
           </div>
@@ -235,7 +228,7 @@ export const MinigameWordSearch: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. MYSTERY CARDS: 4 + 4 + 3 ENLARGED LAYOUT */}
+      {/* 2. MYSTERY CARDS: 4 + 4 + 2 BALANCED & CENTERED LAYOUT */}
       <div className="space-y-3">
         {/* Row 1: 4 Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-3.5">
@@ -247,9 +240,9 @@ export const MinigameWordSearch: React.FC = () => {
           {PHRASES.slice(4, 8).map(renderCard)}
         </div>
 
-        {/* Row 3: 3 Cards (Centered on Desktop) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto gap-3 sm:gap-3.5">
-          {PHRASES.slice(8, 11).map(renderCard)}
+        {/* Row 3: 2 Cards (Centered on Desktop with matching card width) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-xl md:max-w-[calc(50%-7px)] mx-auto gap-3 sm:gap-3.5">
+          {PHRASES.slice(8, 10).map(renderCard)}
         </div>
       </div>
 
@@ -262,7 +255,7 @@ export const MinigameWordSearch: React.FC = () => {
             </div>
             <div>
               <h4 className="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-wide">
-                XUẤT SẮC! ĐÃ NHẬN DIỆN TOÀN BỘ 11 BIỂU HIỆN CẦN TRÁNH
+                XUẤT SẮC! ĐÃ NHẬN DIỆN TOÀN BỘ {PHRASES.length} BIỂU HIỆN CẦN TRÁNH
               </h4>
               <p className="text-[11px] sm:text-xs text-red-100 opacity-90">
                 Kiên quyết loại bỏ suy thoái để xây dựng Đảng trong sạch, vững mạnh.
@@ -271,9 +264,6 @@ export const MinigameWordSearch: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0">
-            <span className="px-3.5 py-1.5 rounded-xl bg-white/15 text-amber-300 text-xs sm:text-sm font-bold">
-              1100 / 1100 ĐIỂM
-            </span>
             <button
               onClick={handleReset}
               className="px-4 py-1.5 bg-white text-[#800000] hover:bg-red-50 rounded-xl font-bold text-xs sm:text-sm shadow-xs active:scale-95 transition-all"
